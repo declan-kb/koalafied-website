@@ -25,16 +25,16 @@ window.SITE_CONTENT = {
     social: [
       { label: "Instagram", href: "https://www.instagram.com/koalafied_6996/" },
       { label: "Facebook", href: "https://www.facebook.com/koalafied6996/" },
-      { label: "YouTube", href: "https://www.youtube.com/channel/UCNGR7FG2zscbgj31Bp5toSw" }
+      { label: "YouTube", href: "https://www.youtube.com/channel/UCNGR7FG2zscbgj31Bp5toSw" },
+      { label: "The Blue Alliance", href: "https://www.thebluealliance.com/team/6996" }
     ]
   },
 
   nav: [
     { id: "about", label: "About" },
-    { id: "programs", label: "Programs" },
-    { id: "gallery", label: "Gallery" },
     { id: "sponsors", label: "Sponsors" },
     { id: "join", label: "Join" },
+    { id: "gallery", label: "Gallery" },
     { id: "resources", label: "Resources" }
   ],
 
@@ -50,23 +50,24 @@ window.SITE_CONTENT = {
   },
 
   about: {
-    thesis: "Team Koalafied is a group of Pembroke School students and mentors competing in the FIRST® Robotics Competition since 2018. Every year, students design, build, test, and program a robot from scratch to compete against teams from around the world — meeting on weekends throughout build season.",
-    stats: [
-      { stat: "2018", label: "Founded" },
-      { stat: "~20", label: "Students and mentors" },
-      { stat: "2026", label: "FIRST Championship qualifier" }
-    ]
-  },
-
-  programs: {
-    thesis: "Every student picks up several of these over a season — no prior experience in any of them is expected.",
-    items: [
-      { title: "Mechanical", desc: "Assembling the robot and fabricating parts on drills, lathes, and CNC routers." },
-      { title: "Programming", desc: "Writing and fine-tuning robot code, designing autonomous paths." },
-      { title: "CAD", desc: "3D-modelling components and full robot assemblies before they're built." },
-      { title: "Prototyping", desc: "Turning an idea into a working mechanism, fast." },
-      { title: "Media", desc: "Photos, video, and marketing — including this website." },
-      { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
+    thesis: "Team Koalafied is a group of Pembroke School students and mentors competing in the FIRST® Robotics Competition since 2018. Every year, students design, build, test, and program a robot from scratch to compete against teams from around the world — meeting on weekends throughout build season. It's hands-on and multi-disciplinary: mechanical build, programming, CAD, prototyping, media, and sponsorship outreach all go into it.",
+    // Same photo pool as the Gallery carousel below — reused here as a
+    // first-impression accent beside the intro text, see renderAbout().
+    photo: { src: "assets/img/gallery-2026-scr-team-photo.jpg", alt: "Team photo with the robot 'Lemon Launcher'" },
+    // One card per event, reverse chronological (newest first) — rendered
+    // as a horizontal carousel, see renderAbout() in site.js. `sub` is the
+    // event's location, shown under the full competition title.
+    events: [
+      { event: "Melbourne Robotics Tournament 2026", sub: "Melbourne, Australia",
+        titles: ["Qual Rank 6", "Excellence in Robot Design", "2nd Place"] },
+      { event: "Southern Cross Regional 2026", sub: "Sydney, Australia",
+        titles: ["Qual Rank 4", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"] },
+      { event: "FIRST Championship: Newton Division 2025", sub: "Houston, USA",
+        titles: ["Qual Rank 18"] },
+      { event: "Melbourne Robotics Tournament 2025", sub: "Melbourne, Australia",
+        titles: ["Qual Rank 4 and 13", "Competed with two robots", "3rd Place"] },
+      { event: "Southern Cross Regional 2025", sub: "Sydney, Australia",
+        titles: ["Qual Rank 3", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"] }
     ]
   },
 
@@ -81,6 +82,50 @@ window.SITE_CONTENT = {
     ]
   },
 
+  // Text pulled and tightened from the old Google Sites Sponsorship page;
+  // the flat `sponsors` array below stays as-is since renderSponsorBanner
+  // (the small logo strip near the top of the page) reads straight from it.
+  // `sponsorTiers` drives the full tiered section further down the page.
+  sponsorship: {
+    title: "Our Sponsors",
+    thesis: "Every part of a season — the robot, the travel, the competitions — is paid for by sponsors. Here's what that support actually buys, for the team and for you:",
+    points: [
+      { title: "Robot budget", desc: "Motors, sensors, controllers, and the raw material and CNC time to machine custom parts — bought fresh every season." },
+      { title: "Competition & travel", desc: "Registration fees plus flights and accommodation for events interstate and, when we qualify, overseas." },
+      { title: "Mentorship, not just money", desc: "Many sponsors send their own engineers and tradespeople to work alongside students on the robot." },
+      { title: "A measurable return", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering — a pipeline of future hires." },
+      { title: "Visibility", desc: "Your logo travels on the robot, the team shirts, and this site — seen by thousands of students, teachers, and industry judges at every event." },
+      { title: "Something rare to back", desc: "Adelaide's only school-based FRC team — one of a small handful in the country building this from a high school, not a university or company." }
+    ]
+  },
+
+  sponsorTiers: [
+    {
+      tier: "Platinum",
+      sponsors: [
+        { name: "C&J Accountants and Advisors", logo: "assets/img/sponsors/cj-accountants.png" },
+        { name: "Pembroke School", logo: "assets/img/sponsors/pembroke.svg" }
+      ]
+    },
+    {
+      tier: "Gold",
+      sponsors: [
+        { name: "South Australia — The Defence State", logo: "assets/img/sponsors/sa-defence-state.png" },
+        { name: "Rockwell Automation", logo: "assets/img/sponsors/rockwell-automation.svg" },
+        { name: "Gene Haas Foundation", logo: "assets/img/sponsors/gene-haas-foundation.png" },
+        { name: "WHi", logo: "assets/img/sponsors/whi.png" }
+      ]
+    },
+    {
+      tier: "Silver",
+      sponsors: [
+        { name: "REDARC", logo: "assets/img/sponsors/redarc.png" },
+        { name: "Energy Exemplar", logo: "assets/img/sponsors/energy-exemplar.png" },
+        { name: "Australian Institute for Machine Learning", logo: "assets/img/sponsors/AIML.png" }
+      ]
+    }
+  ],
+
   sponsors: [
     { name: "Gene Haas Foundation", logo: "assets/img/sponsors/gene-haas-foundation.png" },
     { name: "South Australia — The Defence State", logo: "assets/img/sponsors/sa-defence-state.png" },
@@ -93,20 +138,30 @@ window.SITE_CONTENT = {
     { name: "Rockwell Automation", logo: "assets/img/sponsors/rockwell-automation.svg" }
   ],
 
+  // Primarily aimed at prospective student members — see renderJoin() in
+  // site.js. Copy pulled from the old Google Sites "Join our Team" page.
   join: {
-    thesis: "We're all chill and always welcome new members interested in any of the areas above — no experience required, we teach everything on the team.",
-    roles: [
-      { title: "Students", desc: "Open to any Pembroke School student. We meet weekends during build season, early January through March." },
-      { title: "Mentors", desc: "Engineers, tradespeople, and parents — a few hours a week during build season, more around competitions." },
-      { title: "Sponsors", desc: "Funding and materials keep the team running — see Sponsorship above, or email us below." }
-    ]
+    thesis: "We're currently around 20 students, and 2026 has been our most successful year yet — more members can only help us keep that up. We're all chill and welcome anyone at all interested in the areas below. No experience required — we teach everything on the team.",
+    schedule: "During build season — early January through our March competition in Sydney — we meet on weekends. The rest of the year we meet less often, to prepare for extra competitions, improve the robot, and pick up new skills.",
+    // An action shot rather than a posed one — sells the hands-on
+    // experience to a prospective student, see renderJoin().
+    photo: { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" },
+    areas: [
+      { title: "Mechanical", desc: "Assembling robots and fabricating parts on drills, lathes, CNC routers, rivet guns, and more." },
+      { title: "Programming", desc: "Writing and fine-tuning robot code, designing autonomous paths." },
+      { title: "CAD", desc: "3D-modelling components and full robots before they're built." },
+      { title: "Prototyping", desc: "Turning an idea into a working mechanism, fast." },
+      { title: "Woodwork", desc: "Producing large field elements for each year's game." },
+      { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
+      { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
+    ],
+    note: "And winning competitions and awards. No promises."
   },
 
   // Rendered on its own page (resources.html), not on the index one-pager —
   // see renderResources() in site.js. Links pulled from the old Google
   // Sites Resources page.
   resources: {
-    eyebrow: "Open source",
     title: "Resources",
     thesis: "In the spirit of FRC, we publish what we build — code and CAD from past seasons, in case it helps another team. Questions or comments are welcome — see the email below.",
 
@@ -120,7 +175,6 @@ window.SITE_CONTENT = {
     cad: {
       title: "Robot Design & CAD",
       desc: "Since 2022, every robot has been fully modelled in Onshape before it's built.",
-      image: { src: "assets/img/cad-lemon-launcher.webp", alt: "Full CAD assembly of Lemon Launcher, the 2026 robot", caption: "Lemon Launcher (2026) — full assembly, as modelled in Onshape" },
       seasons: [
         {
           season: "2026 Rebuilt", robot: "Lemon Launcher",

@@ -21,6 +21,14 @@
     return t.content.firstElementChild;
   }
 
+  // Shared prev/next button for any [data-carousel] track — see
+  // renderGallery() and the Events carousel in renderAbout().
+  function carouselArrow(dir, label) {
+    var d = dir < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7';
+    return '<button class="carousel-nav carousel-' + (dir < 0 ? 'prev' : 'next') + '" type="button" aria-label="' + label + '" disabled>' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="' + d + '"/></svg></button>';
+  }
+
   function fail(msg) {
     document.body.innerHTML =
       '<div class="boom"><h2>Site could not load</h2><p>' + esc(msg) + '</p>' +
@@ -45,10 +53,10 @@
         isPageLink ? 'nav-page' : '',
         isResourcesPage && isPageLink ? 'is-active' : ''
       ].join(' ').trim();
-      var icon = isPageLink
-        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>'
-        : '';
-      return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + cls + '">' + esc(n.label) + icon + '</a>';
+      // The corner-arrow icon is reserved for genuine external links —
+      // Resources is an internal page jump, so it gets no icon, just the
+      // separating rule via .nav-page.
+      return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + cls + '">' + esc(n.label) + '</a>';
     }).join('');
 
     return el(
@@ -91,29 +99,71 @@
 
   /* ---- generic section shell --------------------------------- */
 
-  function sectionShell(id, eyebrow, title, thesis, body) {
+  function sectionShell(id, title, thesis, body) {
     return '<section class="sec" id="' + esc(id) + '"><div class="wrap">' +
-      '<p class="eyebrow">' + esc(eyebrow) + '</p>' +
       '<h2 class="sec-title">' + esc(title) + '</h2>' +
       '<p class="sec-thesis">' + esc(thesis) + '</p>' +
       body +
     '</div></section>';
   }
 
-  function renderAbout() {
-    var a = C.about;
-    var cards = a.stats.map(function (s) {
-      return '<div class="card"><div class="stat">' + esc(s.stat) + '</div><p>' + esc(s.label) + '</p></div>';
-    }).join('');
-    return sectionShell('about', 'Who we are', 'About the team', a.thesis, '<div class="cards">' + cards + '</div>');
+  // Small stroke icons for event result tags, same visual language as the
+  // nav's external-link arrow — picked by keyword so content.js can stay
+  // plain data with no icon names to maintain.
+  var EVENT_ICONS = [
+    [/excellence/i, '<path d="M12 2l2.6 5.8 6.4.6-4.8 4.3 1.4 6.3L12 15.9l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/>'],
+    [/place/i, '<circle cx="12" cy="15" r="6"/><path d="M9 9.5 6.5 3M15 9.5 17.5 3"/>'],
+    [/qualified/i, '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5 5-6"/>'],
+    [/rank/i, '<path d="M4 20V11M12 20V4M20 20v-7M2 20h20"/>'],
+    [/competed|robots/i, '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5l2.6-1.5M17.2 9l2.6-1.5"/>']
+  ];
+  function eventIcon(title) {
+    var hit = EVENT_ICONS.find(function (pair) { return pair[0].test(title); });
+    var path = hit ? hit[1] : '<circle cx="12" cy="12" r="3"/>';
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + path + '</svg>';
+  }
+  // Colors the left edge by event series, so the grid reads at a glance
+  // before you even read the labels.
+  function eventSeries(name) {
+    if (/championship/i.test(name)) return 'champs';
+    if (/melbourne/i.test(name)) return 'mrt';
+    return 'ausc';
   }
 
-  function renderPrograms() {
-    var p = C.programs;
-    var cards = p.items.map(function (it) {
-      return '<div class="card"><h4>' + esc(it.title) + '</h4><p>' + esc(it.desc) + '</p></div>';
-    }).join('');
-    return sectionShell('programs', 'What we do', 'Programs', p.thesis, '<div class="cards">' + cards + '</div>');
+  function renderAbout() {
+    var a = C.about;
+    var events = '';
+    if (Array.isArray(a.events) && a.events.length) {
+      var eventCards = a.events.map(function (ev) {
+        var tags = ev.titles.map(function (t) {
+          return '<span class="event-tag">' + eventIcon(t) + esc(t) + '</span>';
+        }).join('');
+        var sub = ev.sub ? '<p class="event-sub">' + esc(ev.sub) + '</p>' : '';
+        return '<div class="carousel-item carousel-item--events">' +
+          '<div class="card event-card event-card--' + eventSeries(ev.event) + '">' +
+            '<h4>' + esc(ev.event) + '</h4>' +
+            sub +
+            '<div class="event-tags">' + tags + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+      events = '<h3 class="block-label" style="margin-top:clamp(24px,3vw,36px);">Competitions</h3>' +
+        '<figure class="carousel carousel--events" data-carousel="events" style="margin:16px 0 0;">' +
+          '<div class="carousel-track">' + eventCards + '</div>' +
+          carouselArrow(-1, 'Previous event') + carouselArrow(1, 'Next event') +
+        '</figure>';
+    }
+    var photo = a.photo
+      ? '<figure class="section-photo"><img src="' + esc(a.photo.src) + '" alt="' + esc(a.photo.alt) + '" loading="lazy"></figure>'
+      : '';
+    var intro =
+      '<div>' +
+        '<h2 class="sec-title">About the team</h2>' +
+        '<p class="sec-thesis">' + esc(a.thesis) + '</p>' +
+      '</div>';
+    var top = photo ? '<div class="sec-cols two">' + intro + photo + '</div>' : intro;
+
+    return '<section class="sec" id="about"><div class="wrap">' + top + events + '</div></section>';
   }
 
   function renderGallery() {
@@ -124,34 +174,72 @@
         '<p class="carousel-cap">' + esc(it.caption) + '</p>' +
       '</div>';
     }).join('');
-    var arrow = function (dir, label) {
-      var d = dir < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7';
-      return '<button class="carousel-nav carousel-' + (dir < 0 ? 'prev' : 'next') + '" type="button" aria-label="' + label + '" disabled>' +
-        '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="' + d + '"/></svg></button>';
-    };
     var body = '<figure class="carousel" data-carousel="gallery" style="margin:clamp(20px,3vw,32px) 0 0;">' +
-      '<div class="carousel-track">' + items + '</div>' + arrow(-1, 'Previous photo') + arrow(1, 'Next photo') +
+      '<div class="carousel-track">' + items + '</div>' + carouselArrow(-1, 'Previous photo') + carouselArrow(1, 'Next photo') +
     '</figure>';
-    return sectionShell('gallery', 'Photos', 'Gallery', g.thesis, body);
+    return sectionShell('gallery', 'Gallery', g.thesis, body);
   }
 
-  function renderSponsors() {
+  // Small, quiet strip right under the hero photo — just logos, no label.
+  // The fuller "thank you" section (renderSponsors) does the honors later
+  // in the page.
+  function renderSponsorBanner() {
     if (!Array.isArray(C.sponsors) || !C.sponsors.length) return '';
     var row = C.sponsors.map(function (s) {
       return '<img class="sponsor-logo" src="' + esc(s.logo) + '" alt="' + esc(s.name) + '" loading="lazy">';
     }).join('');
+    return '<div class="sponsor-banner"><div class="wrap"><div class="sponsor-banner-row">' + row + '</div></div></div>';
+  }
+
+  function renderSponsors() {
+    if (!Array.isArray(C.sponsorTiers) || !C.sponsorTiers.length) return '';
+    var s = C.sponsorship || {};
+    var points = Array.isArray(s.points) && s.points.length ?
+      '<div class="cards sponsors-points">' + s.points.map(function (pt) {
+        return '<div class="card"><h4>' + esc(pt.title) + '</h4><p>' + esc(pt.desc) + '</p></div>';
+      }).join('') + '</div>' : '';
+    var tiers = C.sponsorTiers.map(function (t) {
+      var row = t.sponsors.map(function (sp) {
+        return '<img class="sponsor-logo" src="' + esc(sp.logo) + '" alt="' + esc(sp.name) + '" loading="lazy">';
+      }).join('');
+      return '<div class="sponsor-tier tier-' + esc(t.tier.toLowerCase()) + '">' +
+        '<div class="sponsors-label">' + esc(t.tier) + '</div>' +
+        '<div class="sponsors-row">' + row + '</div>' +
+      '</div>';
+    }).join('');
     return '<section class="sponsors wrap" id="sponsors">' +
-      '<div class="sponsors-label">Thank you to our sponsors</div>' +
-      '<div class="sponsors-row">' + row + '</div>' +
+      (s.title ? '<h2 class="sec-title">' + esc(s.title) + '</h2>' : '') +
+      (s.thesis ? '<p class="sponsors-thesis">' + esc(s.thesis) + '</p>' : '') +
+      points +
+      tiers +
     '</section>';
   }
 
   function renderJoin() {
     var j = C.join;
-    var cards = j.roles.map(function (r) {
-      return '<div class="card"><h4>' + esc(r.title) + '</h4><p>' + esc(r.desc) + '</p></div>';
+    var areaCards = (j.areas || []).map(function (a) {
+      return '<div class="card"><h4>' + esc(a.title) + '</h4><p>' + esc(a.desc) + '</p></div>';
     }).join('');
-    return sectionShell('join', 'Get involved', 'Join the team', j.thesis, '<div class="cards">' + cards + '</div>');
+
+    var photo = j.photo
+      ? '<figure class="section-photo"><img src="' + esc(j.photo.src) + '" alt="' + esc(j.photo.alt) + '" loading="lazy"></figure>'
+      : '';
+    var intro =
+      '<div>' +
+        '<h2 class="sec-title">Join the team</h2>' +
+        '<p class="sec-thesis">' + esc(j.thesis) + '</p>' +
+        (j.schedule ? '<p class="sec-thesis" style="margin-top:14px;">' + esc(j.schedule) + '</p>' : '') +
+      '</div>';
+    // Photo on the left here (About put it on the right) — just for some
+    // rhythm between the two photo-accented sections on the page.
+    var top = photo ? '<div class="sec-cols two">' + photo + intro + '</div>' : intro;
+
+    var rest =
+      '<h3 class="block-label" style="margin-top:clamp(24px,3vw,36px);">What you could work on</h3>' +
+      '<div class="cards">' + areaCards + '</div>' +
+      (j.note ? '<p class="muted" style="margin-top:16px;font-style:italic;">' + esc(j.note) + '</p>' : '');
+
+    return '<section class="sec" id="join"><div class="wrap">' + top + rest + '</div></section>';
   }
 
   /* ---- resources page ------------------------------------------ */
@@ -177,27 +265,18 @@
       '</div>';
     }).join('');
 
-    var cadImage = r.cad.image
-      ? '<figure class="resource-figure">' +
-          '<div class="frame"><img src="' + esc(r.cad.image.src) + '" alt="' + esc(r.cad.image.alt) + '" loading="lazy"></div>' +
-          '<figcaption>' + esc(r.cad.image.caption) + '</figcaption>' +
-        '</figure>'
-      : '';
-
     return '<section class="sec" id="resources-top" style="border-top:none;"><div class="wrap">' +
-        '<p class="eyebrow">' + esc(r.eyebrow) + '</p>' +
         '<h1 class="sec-title">' + esc(r.title) + '</h1>' +
         '<p class="sec-thesis">' + esc(r.thesis) + '</p>' +
       '</div></section>' +
       '<section class="sec"><div class="wrap">' +
-        '<h3 class="block-label">' + esc(r.code.title) + '</h3>' +
-        code +
-      '</div></section>' +
-      '<section class="sec"><div class="wrap">' +
         '<h3 class="block-label">' + esc(r.cad.title) + '</h3>' +
         '<p class="sec-thesis" style="margin-top:0;">' + esc(r.cad.desc) + '</p>' +
-        cadImage +
         '<div class="cards" style="margin-top:24px;">' + cadCards + '</div>' +
+      '</div></section>' +
+      '<section class="sec"><div class="wrap">' +
+        '<h3 class="block-label">' + esc(r.code.title) + '</h3>' +
+        code +
       '</div></section>';
   }
 
@@ -320,11 +399,11 @@
     if (main) {
       main.innerHTML =
         renderHero() +
+        renderSponsorBanner() +
         renderAbout() +
-        renderPrograms() +
-        renderGallery() +
         renderSponsors() +
-        renderJoin();
+        renderJoin() +
+        renderGallery();
     }
     if (resourcesPage) {
       resourcesPage.innerHTML = renderResources();

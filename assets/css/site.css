@@ -116,8 +116,6 @@ code {
   display: inline-flex; align-items: center; gap: 5px;
   margin-left: 8px; padding-left: 19px; border-left: 1px solid var(--rule);
 }
-.nav-links a.nav-page svg { width: 11px; height: 11px; flex: none; opacity: .55; }
-.nav-links a.nav-page:hover svg { opacity: .9; }
 
 @media (max-width: 720px) { .nav-links { display: none; } }
 
@@ -183,8 +181,25 @@ code {
 
 .sec-cols { display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 40px); margin-top: clamp(24px, 3vw, 40px); }
 @media (min-width: 780px) { .sec-cols.two { grid-template-columns: 1fr 1fr; } }
+/* About and Join open with a two-column row (intro text + photo) instead
+   of the usual full-width title/thesis — no extra top margin needed since
+   it's the section's first element, not a follow-up row. */
+.wrap > .sec-cols:first-child { margin-top: 0; }
 
-/* ---- 6. Cards (About stats / Programs / Join roles) ----------- */
+/* Accent photo beside a section's intro text (About, Join). A fixed,
+   fairly wide aspect ratio keeps group/action shots readable — letting it
+   stretch to match the text column's (variable, often taller) height
+   forced a much narrower effective crop and cut people out of frame.
+   align-self keeps it pinned to its own height instead of stretching.
+   Distinct from the Gallery carousel's .carousel-frame, which is for
+   browsing many photos, not a single accent. */
+.section-photo {
+  margin: 0; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden;
+  aspect-ratio: 3 / 2; background: var(--rule-2); align-self: start;
+}
+.section-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---- 6. Cards (About stats / Join areas) ----------------------- */
 
 .cards {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -206,6 +221,38 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
   text-transform: uppercase; text-decoration: none; color: var(--accent);
 }
 .card-go:hover { text-decoration: underline; }
+
+/* Events (About section) — a card per competition, results as icon tags,
+   left edge colored by series so the grid reads at a glance. */
+.event-card { border-left-width: 3px; }
+.event-card--ausc { border-left-color: var(--accent); }
+.event-card--mrt { border-left-color: var(--accent-2); }
+.event-card--champs { border-left-color: var(--pop); }
+.event-sub {
+  margin-top: 4px; font-size: 11.5px; line-height: 1.4; color: var(--ink-3);
+}
+.event-tags { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.event-tag {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--rule-2); color: var(--ink-2); border-radius: 4px;
+  padding: 5px 10px 5px 8px; font-size: 12px; line-height: 1.2;
+}
+.event-tag svg { width: 13px; height: 13px; flex: none; color: var(--accent); }
+
+/* Events ride the same horizontal carousel as the photo Gallery (see
+   section 7 below) — reverse chronological, newest card first. Cards vary
+   in height (2 vs 3 result tags), so the nav arrows center on the track
+   itself (50%) rather than the fixed photo-frame height the base
+   .carousel-nav rule assumes. */
+/* Higher specificity than the base .carousel-item rule below (which sets
+   the same `flex` shorthand for photos) so this basis actually wins
+   regardless of source order. */
+.carousel-item.carousel-item--events { flex: 0 0 clamp(180px, 20vw, 210px); }
+.carousel--events .carousel-nav { top: 50%; }
+/* Cards vary a lot in height (1 vs 4 result tags) — without this, flex's
+   default stretch pads every shorter card with blank space below it to
+   match the tallest one in the row. */
+.carousel--events .carousel-track { align-items: flex-start; }
 
 /* ---- 7. Carousel (photos) — same component as the binder site -- */
 
@@ -239,21 +286,39 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 
 /* ---- 8. Sponsors ------------------------------------------------ */
 
-.sponsors { border-top: 1px solid var(--rule); padding: 48px 0 32px; text-align: center; }
-.sponsors-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 28px; }
-.sponsors-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 36px 48px; }
-.sponsor-logo { height: 44px; max-width: 160px; width: auto; object-fit: contain; filter: grayscale(1) opacity(.7); transition: filter .15s; }
-.sponsor-logo:hover { filter: none; }
+/* Two sponsor moments: a quiet banner strip right under the hero (small
+   logos, no label), and the fuller "thank you" section further down the
+   page (bigger logos, labelled). Both share .sponsor-logo for filter/
+   hover behavior; size is set per-container below. */
+.sponsor-banner { border-top: 1px solid var(--rule); padding: 24px 0; }
+.sponsor-banner-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 34px; }
 
-/* ---- 9. Resource figure (CAD render, etc.) ----------------------- */
+.sponsors { border-top: 1px solid var(--rule); padding-top: 56px; padding-bottom: 40px; text-align: left; }
+.sponsors .sec-title { margin-top: 10px; }
+.sponsors-thesis { max-width: var(--measure); margin: 14px 0 0; color: var(--ink-2); font-size: clamp(15px, 1.6vw, 17px); }
+.sponsors-points { margin-top: clamp(20px, 3vw, 32px); }
+.sponsors-points .card h4 { color: var(--accent); }
 
-.resource-figure { margin: clamp(20px, 3vw, 32px) 0; max-width: 560px; }
-.resource-figure .frame { border-radius: 3px; overflow: hidden; background: var(--panel); border: 1px solid var(--rule); }
-.resource-figure img { width: 100%; display: block; }
-.resource-figure figcaption {
-  margin-top: 10px; font-family: var(--font-mono); font-size: 11px;
-  letter-spacing: .06em; color: var(--ink-3);
+.sponsor-tier {
+  --tier-color: var(--rule);
+  margin-top: 28px; text-align: center;
+  background: var(--panel); border: 1px solid var(--rule); border-top: 4px solid var(--tier-color);
+  border-radius: 4px; padding: 28px 24px 32px;
 }
+.tier-platinum { --tier-color: #a9b4bd; }
+.tier-gold { --tier-color: #c99a3d; }
+.tier-silver { --tier-color: #9aa4ad; }
+
+.sponsors-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 28px; }
+.sponsors-label::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; background: var(--tier-color); }
+.sponsors-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px 56px; }
+
+.sponsor-logo { width: auto; object-fit: contain; }
+.sponsor-banner-row .sponsor-logo { height: 26px; max-width: 104px; filter: grayscale(1) opacity(.7); transition: filter .15s; }
+.sponsor-banner-row .sponsor-logo:hover { filter: none; }
+.sponsors-row .sponsor-logo { height: 60px; max-width: 190px; }
+.tier-platinum .sponsors-row .sponsor-logo { height: 76px; max-width: 230px; }
+.tier-silver .sponsors-row .sponsor-logo { height: 50px; max-width: 160px; }
 
 /* ---- 10. Lightbox — same component as the binder site ------------ */
 
