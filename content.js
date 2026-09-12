@@ -41,7 +41,7 @@ window.SITE_CONTENT = {
     sub: "High school students and mentors designing, building, and programming a competition robot every year since 2018.",
     ctas: [
       { label: "This year's robot →", href: "https://2026.teamkoalafied.com", primary: true },
-      { label: "Join the team", href: "#join" }
+      { label: "Join the team", href: "https://forms.gle/xsJZnm3jWo6AfdzR8", primary: true }
     ],
     image: { src: "assets/img/hero.jpg", alt: "Our robot on the field at a match" }
   },
