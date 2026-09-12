@@ -31,6 +31,7 @@ window.SITE_CONTENT = {
     { id: "sponsors", label: "Sponsors" },
     { id: "join", label: "Join" },
     { id: "gallery", label: "Gallery" },
+    { id: "robots", label: "Robots" },
     { id: "resources", label: "Resources" },
     { id: "binder", label: "2026 Binder", href: "https://2026.teamkoalafied.com" }
   ],
@@ -116,12 +117,110 @@ window.SITE_CONTENT = {
       { title: "Programming", desc: "Writing and fine-tuning robot code, designing autonomous paths." },
       { title: "Design", desc: "3D-modelling components and full robots using CAD software before they're built." },
       { title: "Prototyping", desc: "Turning an idea into a working mechanism, fast." },
-      { title: "Electrical", desc: "Wiring all of the robots mechanisms, bringing the robot to life." },
       { title: "Woodwork", desc: "Producing large field elements for each year's game." },
       { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
       { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
     ],
     note: "And winning competitions. No promises."
+  },
+
+  // Rendered on its own page (robots.html), not on the index one-pager —
+  // see renderRobots() in site.js. One entry per robot (not per season —
+  // 2025 fielded two robots, so it gets two entries). `official` is FIRST-
+  // sanctioned events (regionals, Championship); `offseason` is everything
+  // else (e.g. the Melbourne Robotics Tournament). Both reuse the same
+  // {event, sub, titles} shape as about.events, plus an `alliance` list of
+  // the partner teams for that event.
+  //
+  // PLACEHOLDER DATA: alliance partners below are examples only — swap in
+  // your real alliance picks/partners per event. The 2022–2024 robots have
+  // empty official/offseason arrays since that event-level detail isn't
+  // tracked elsewhere in this file yet; add it the same way once you have it.
+  robots: {
+    title: "Our Robots",
+    thesis: "Every robot we've built, season by season — from bumper to code.",
+    items: [
+      {
+        name: "Lemon Launcher",
+        season: "2026 Rebuilt",
+        images: [
+          { src: "assets/img/robots/lemon-launcher-1.jpg", alt: "Lemon Launcher, front view" },
+          { src: "assets/img/robots/lemon-launcher-2.jpg", alt: "Lemon Launcher on the field" }
+        ],
+        summary: "Swerve drive base with a dual-flywheel launcher, an over-the-bumper intake, and a telescoping climb arm.",
+        official: [
+          { event: "Southern Cross Regional 2026", sub: "Sydney, Australia",
+            titles: ["Qual Rank 4", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"],
+            alliance: ["Team 1234 — Example Robotics", "Team 5678 — Example Squad"] }
+        ],
+        offseason: [
+          { event: "Melbourne Robotics Tournament 2026", sub: "Melbourne, Australia",
+            titles: ["Qual Rank 6", "Competed with two robots", "Excellence in Robot Design", "2nd Place"],
+            alliance: ["Team 9999 — Example Bots"] }
+        ]
+      },
+      {
+        name: "Locked In",
+        season: "2025 Reefscape",
+        images: [
+          { src: "assets/img/gallery-2024-scr-team-photo.jpg", alt: "Team photo with the robot 'Locked In' and awards" }
+        ],
+        summary: "Coral-scoring arm with a ground-intake and algae remover, built around a swerve drive base.",
+        official: [
+          { event: "Southern Cross Regional 2025", sub: "Sydney, Australia",
+            titles: ["Qual Rank 3", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"],
+            alliance: ["Team 2468 — Example Robotics"] },
+          { event: "FIRST Championship: Newton Division 2025", sub: "Houston, USA",
+            titles: ["Qual Rank 18"],
+            alliance: ["Team 1357 — Example Alliance", "Team 8642 — Example Team"] }
+        ],
+        offseason: [
+          { event: "Melbourne Robotics Tournament 2025", sub: "Melbourne, Australia",
+            titles: ["Qual Rank 4 and 13", "Competed with two robots", "3rd Place"],
+            alliance: ["Team 3691 — Example Bots"] }
+        ]
+      },
+      {
+        name: "Unk",
+        season: "2025 Reefscape",
+        images: [
+          { src: "assets/img/gallery-2025-champs-waiting.jpg", alt: "Team members in the pit area among many other teams" }
+        ],
+        summary: "Our second 2025 chassis — a fixed-arm coral scorer used for offseason and practice matches.",
+        official: [],
+        offseason: [
+          { event: "Melbourne Robotics Tournament 2025", sub: "Melbourne, Australia",
+            titles: ["Qual Rank 4 and 13", "Competed with two robots", "3rd Place"],
+            alliance: ["Team 3691 — Example Bots"] }
+        ]
+      },
+      {
+        name: "#10-32",
+        season: "2024 Crescendo",
+        images: [
+          { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" }
+        ],
+        summary: "Under-bumper note intake feeding a pivoting shooter, with a single-stage climb hook.",
+        official: [],
+        offseason: []
+      },
+      {
+        name: "Borzoi",
+        season: "2023 Charged Up",
+        images: [],
+        summary: "Cube/cone dual-game-piece arm on a tank drive base, built for the 2023 AUSC and MRT events.",
+        official: [],
+        offseason: []
+      },
+      {
+        name: "Terrance",
+        season: "2022 Rapid React",
+        images: [],
+        summary: "Cargo-shooting turret with a hooded flywheel and a low-profile intake.",
+        official: [],
+        offseason: []
+      }
+    ]
   },
 
   // Rendered on its own page (resources.html), not on the index one-pager —

@@ -318,6 +318,47 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
    match the tallest one in the row. */
 .carousel--events .carousel-track { align-items: flex-start; }
 
+/* ---- 6.5 Robots page ---------------------------------------------- */
+
+/* One entry per robot: name + photo gallery on the left, a stack of
+   info "boxes" on the right (competed-in, function, official results,
+   offseason results) — see renderRobots() in site.js. Media column goes
+   sticky on wider screens so it stays in view while the results column
+   (which can run long — several event cards) scrolls past it. */
+.robot-list { margin-top: clamp(28px, 4vw, 44px); }
+.robot-entry {
+  display: grid; grid-template-columns: 1fr; gap: clamp(20px, 3vw, 36px);
+  padding: clamp(28px, 4vw, 44px) 0;
+}
+.robot-entry:first-child { padding-top: 0; }
+.robot-entry + .robot-entry { border-top: 1px solid var(--rule); }
+@media (min-width: 860px) {
+  .robot-entry { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.4fr); align-items: start; }
+  .robot-media { position: sticky; top: calc(var(--nav-h) + 24px); }
+}
+
+.robot-name { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+.robot-media .carousel { margin-top: 14px; }
+/* Robot shots vary from the Gallery's more panoramic frame — a touch
+   taller reads better for full-robot photos. Arrows center on the track
+   itself (like the Events carousel) rather than a fixed frame height,
+   since single-image robots render no frame at all. */
+.robot-media .carousel-frame { height: clamp(200px, 24vw, 300px); }
+.carousel--robot .carousel-nav { top: 50%; }
+
+.robot-info { display: flex; flex-direction: column; gap: clamp(20px, 2.6vw, 28px); }
+.robot-block .block-label { margin-bottom: 12px; }
+.robot-season { font-size: 15px; color: var(--ink-2); font-weight: 500; }
+.robot-summary { color: var(--ink-2); font-size: 14.5px; line-height: 1.6; max-width: var(--measure); }
+
+/* Alliance partners sit inside the same event-card used elsewhere, set
+   off from the result tags by a light dashed rule rather than a new card. */
+.event-alliance {
+  margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--rule);
+  font-size: 12px; line-height: 1.5; color: var(--ink-3);
+}
+.event-alliance strong { color: var(--ink-2); font-weight: 600; }
+
 /* ---- 7. Carousel (photos) — same component as the binder site -- */
 
 .carousel { position: relative; }
