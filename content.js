@@ -116,7 +116,7 @@ window.SITE_CONTENT = {
       { title: "Programming", desc: "Writing and fine-tuning robot code, designing autonomous paths." },
       { title: "Design", desc: "3D-modelling components and full robots using CAD software before they're built." },
       { title: "Prototyping", desc: "Turning an idea into a working mechanism, fast." },
-      { title: "Electrical", desc: "Wiring all of the robots mechanisms, bringing the robot to life" },
+      { title: "Electrical", desc: "Wiring all of the robots mechanisms, bringing the robot to life." },
       { title: "Woodwork", desc: "Producing large field elements for each year's game." },
       { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
       { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
