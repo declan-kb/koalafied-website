@@ -41,8 +41,8 @@ window.SITE_CONTENT = {
     title: "Koalafied",
     sub: "High school students and mentors designing, building, and programming a competition robot every year since 2018.",
     ctas: [
-      { label: "This year's robot →", href: "https://2026.teamkoalafied.com", primary: true },
-      { label: "Join the team", href: "#join" }
+      { label: "This year's robot →", href: "https://2026.teamkoalafied.com", primary: true }, // links to an external website, and makes the button the teams primary colour
+      { label: "Join the team", href: "#join" } // scrolls to the #join page of the website, wireframe style button if the type is unspecified
     ],
     image: { src: "assets/img/hero.jpg", alt: "Our robot on the field at a match" }
   },
@@ -151,12 +151,12 @@ window.SITE_CONTENT = {
         official: [
           { event: "Southern Cross Regional 2026", sub: "Sydney, Australia",
             titles: ["Qual Rank 4", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"],
-            alliance: ["Team 1234 — Example Robotics", "Team 5678 — Example Squad"] }
+            alliance: ["Team 6510 — Pymble Pride", "Team 4774 — Drop Bears"] }
         ],
         offseason: [
           { event: "Melbourne Robotics Tournament 2026", sub: "Melbourne, Australia",
             titles: ["Qual Rank 6", "Competed with two robots", "Excellence in Robot Design", "2nd Place"],
-            alliance: ["Team 9999 — Example Bots"] }
+            alliance: ["Team 5584 - IC Robotics", "Team 9991"] }
         ]
       },
       {
