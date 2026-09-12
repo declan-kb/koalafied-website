@@ -211,8 +211,8 @@
     '</div></section>';
   }
 
-  // Small, quiet strip right under the hero photo — just logos, no label,
-  // in whatever order content.js lists C.sponsors (deliberately not
+  // Small, quiet strip right under the hero photo — just a small label and
+  // logos, in whatever order content.js lists C.sponsors (deliberately not
   // grouped by tier — see the comment on `sponsors` in content.js).
   // The fuller "thank you" section (renderSponsors) does the honors later
   // in the page.
@@ -221,7 +221,10 @@
     var row = C.sponsors.map(function (s) {
       return '<img class="sponsor-logo" src="' + esc(s.logo) + '" alt="' + esc(s.name) + '" loading="lazy">';
     }).join('');
-    return '<div class="sponsor-banner"><div class="wrap"><div class="sponsor-banner-row">' + row + '</div></div></div>';
+    return '<div class="sponsor-banner"><div class="wrap">' +
+      '<div class="sponsor-banner-label">Thank you to our sponsors:</div>' +
+      '<div class="sponsor-banner-row">' + row + '</div>' +
+      '</div></div>';
   }
 
   // Display order for the tiered section below — content.js only tags each
@@ -475,7 +478,7 @@
     document.getElementById('foot').innerHTML =
       '<span>Team ' + esc(C.team.number) + ' · ' + esc(C.team.name) + '</span>' +
       '<span class="foot-links">' +
-        '<a href="mailto:' + esc(C.team.email) + '">' + esc(C.team.email) + '</a>' +
+        '<span>' + esc(C.team.email) + '</span>' +
         social +
       '</span>';
 

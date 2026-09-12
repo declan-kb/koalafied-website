@@ -20,7 +20,6 @@ window.SITE_CONTENT = {
     email: "teamkoalafied@gmail.com",
     social: [
       { label: "Instagram", href: "https://www.instagram.com/koalafied_6996/" },
-      { label: "Facebook", href: "https://www.facebook.com/koalafied6996/" },
       { label: "YouTube", href: "https://www.youtube.com/channel/UCNGR7FG2zscbgj31Bp5toSw" },
       { label: "The Blue Alliance", href: "https://www.thebluealliance.com/team/6996" }
     ]
