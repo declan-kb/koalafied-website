@@ -2,6 +2,15 @@
 
 The team's general-purpose website 
 
+## How to do simple edits
+2 options:
+* Edit content.js directly on the github website (no option to preview)
+* Edit locally on your computer
+	1. You should have github desktop installed and the repo cloned
+	2. Edit the content.js file locally in a text-editor of choice (e.g. vscode or textedit)
+	3. You can preview the changes by opening index.html in the root folder
+	4. Once changes are complete commit and push to origin. It will take a couple minutes to deploy to the live website. 
+
 ## Structure
 
 
