@@ -189,7 +189,9 @@
     '</div></section>';
   }
 
-  // Small, quiet strip right under the hero photo — just logos, no label.
+  // Small, quiet strip right under the hero photo — just logos, no label,
+  // in whatever order content.js lists C.sponsors (deliberately not
+  // grouped by tier — see the comment on `sponsors` in content.js).
   // The fuller "thank you" section (renderSponsors) does the honors later
   // in the page.
   function renderSponsorBanner() {
@@ -200,19 +202,25 @@
     return '<div class="sponsor-banner"><div class="wrap"><div class="sponsor-banner-row">' + row + '</div></div></div>';
   }
 
+  // Display order for the tiered section below — content.js only tags each
+  // sponsor with a `tier` name, it doesn't say which tier outranks which.
+  var SPONSOR_TIER_ORDER = ['Platinum', 'Gold', 'Silver'];
+
   function renderSponsors() {
-    if (!Array.isArray(C.sponsorTiers) || !C.sponsorTiers.length) return '';
+    if (!Array.isArray(C.sponsors) || !C.sponsors.length) return '';
     var s = C.sponsorship || {};
     var points = Array.isArray(s.points) && s.points.length ?
       '<ul class="sponsors-points">' + s.points.map(function (pt) {
         return '<li><strong>' + esc(pt.title) + ':</strong> ' + esc(pt.desc) + '</li>';
       }).join('') + '</ul>' : '';
-    var tiers = C.sponsorTiers.map(function (t) {
-      var row = t.sponsors.map(function (sp) {
+    var tiers = SPONSOR_TIER_ORDER.map(function (tierName) {
+      var inTier = C.sponsors.filter(function (sp) { return sp.tier === tierName; });
+      if (!inTier.length) return '';
+      var row = inTier.map(function (sp) {
         return '<img class="sponsor-logo" src="' + esc(sp.logo) + '" alt="' + esc(sp.name) + '" loading="lazy">';
       }).join('');
-      return '<div class="sponsor-tier tier-' + esc(t.tier.toLowerCase()) + '">' +
-        '<div class="sponsors-label">' + esc(t.tier) + '</div>' +
+      return '<div class="sponsor-tier tier-' + tierName.toLowerCase() + '">' +
+        '<div class="sponsors-label">' + esc(tierName) + '</div>' +
         '<div class="sponsors-row">' + row + '</div>' +
       '</div>';
     }).join('');

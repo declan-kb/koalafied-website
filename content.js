@@ -5,10 +5,6 @@
    Plain JSON wrapped in one line of JavaScript so the site works
    when you just double-click index.html (no web server, no build).
 
-   Copy pulled and tightened from the previous Google Sites page
-   (sites.google.com/view/team-koalafied) — facts checked against
-   its Home, Team History, Sponsorship and Join our Team pages.
-
    Same content/render split as the technical binder — see
    ../koalafied-design-system/website-style-guide.html "Content pattern".
    ============================================================ */
@@ -41,18 +37,16 @@ window.SITE_CONTENT = {
   hero: {
     eyebrow: "Team 6996 · Adelaide, South Australia",
     title: "Koalafied",
-    sub: "High school students and mentors designing, building, and programming a competition robot every year — since 2018.",
+    sub: "High school students and mentors designing, building, and programming a competition robot every year since 2018.",
     ctas: [
-      { label: "This year's binder →", href: "https://2026.teamkoalafied.com", primary: true },
+      { label: "This year's robot →", href: "https://2026.teamkoalafied.com", primary: true },
       { label: "Join the team", href: "#join" }
     ],
-    image: { src: "assets/img/hero.jpg", alt: "Robot 6996 on the field at a match, with a packed crowd behind the barrier" }
+    image: { src: "assets/img/hero.jpg", alt: "Our robot on the field at a match" }
   },
 
   about: {
-    thesis: "Team Koalafied is a group of Pembroke School students and mentors competing in the FIRST® Robotics Competition since 2018. Every year, students design, build, test, and program a robot from scratch to compete against teams from around the world — meeting on weekends throughout build season. It's hands-on and multi-disciplinary: mechanical build, programming, CAD, prototyping, media, and sponsorship outreach all go into it.",
-    // Same photo pool as the Gallery carousel below — reused here as a
-    // first-impression accent beside the intro text, see renderAbout().
+    thesis: "Team Koalafied is a group of Pembroke School students and mentors competing in the FIRST® Robotics Competition since 2018. Every year, students design, build, test, and program a robot from scratch to compete against teams from around the world, meeting several times a week throughout build season. It's hands-on and multi-disciplinary: mechanical build, programming, electrical, CAD, prototyping, woodwork, and media all go into it.",
     photo: { src: "assets/img/gallery-2026-scr-team-photo.jpg", alt: "Team photo with the robot 'Lemon Launcher'" },
     // One card per event, reverse chronological (newest first) — rendered
     // as a horizontal carousel, see renderAbout() in site.js. `sub` is the
@@ -82,10 +76,7 @@ window.SITE_CONTENT = {
     ]
   },
 
-  // Text pulled and tightened from the old Google Sites Sponsorship page;
-  // the flat `sponsors` array below stays as-is since renderSponsorBanner
-  // (the small logo strip near the top of the page) reads straight from it.
-  // `sponsorTiers` drives the full tiered section further down the page.
+  // Text pulled and tightened from the old Google Sites Sponsorship page.
   sponsorship: {
     title: "Our Sponsors",
     thesis: "Every part of a season — the robot, the travel, the competitions — is paid for by sponsors. Here's what that support actually buys, for the team and for you:",
@@ -97,43 +88,20 @@ window.SITE_CONTENT = {
     ]
   },
 
-  sponsorTiers: [
-    {
-      tier: "Platinum",
-      sponsors: [
-        { name: "C&J Accountants and Advisors", logo: "assets/img/sponsors/cj-accountants.png" },
-        { name: "Pembroke School", logo: "assets/img/sponsors/pembroke.svg" }
-      ]
-    },
-    {
-      tier: "Gold",
-      sponsors: [
-        { name: "South Australia — The Defence State", logo: "assets/img/sponsors/sa-defence-state.png" },
-        { name: "Rockwell Automation", logo: "assets/img/sponsors/rockwell-automation.svg" },
-        { name: "Gene Haas Foundation", logo: "assets/img/sponsors/gene-haas-foundation.png" },
-        { name: "WHi", logo: "assets/img/sponsors/whi.png" }
-      ]
-    },
-    {
-      tier: "Silver",
-      sponsors: [
-        { name: "REDARC", logo: "assets/img/sponsors/redarc.png" },
-        { name: "Energy Exemplar", logo: "assets/img/sponsors/energy-exemplar.png" },
-        { name: "Australian Institute for Machine Learning", logo: "assets/img/sponsors/AIML.png" }
-      ]
-    }
-  ],
-
+  // One row per sponsor. Two places read this same list: renderSponsorBanner
+  // (the quiet logo strip near the top of the page) and  renderSponsors
+  // (the fuller tiered "thank you" section further down) groups these by
+  // `tier`, ordered by SPONSOR_TIER_ORDER in site.js.
   sponsors: [
-    { name: "Gene Haas Foundation", logo: "assets/img/sponsors/gene-haas-foundation.png" },
-    { name: "South Australia — The Defence State", logo: "assets/img/sponsors/sa-defence-state.png" },
-    { name: "Pembroke School", logo: "assets/img/sponsors/pembroke.svg" },
-    { name: "Australian Institute for Machine Learning", logo: "assets/img/sponsors/AIML.png" },
-    { name: "REDARC", logo: "assets/img/sponsors/redarc.png" },
-    { name: "Energy Exemplar", logo: "assets/img/sponsors/energy-exemplar.png" },
-    { name: "C&J Accountants and Advisors", logo: "assets/img/sponsors/cj-accountants.png" },
-    { name: "WHi", logo: "assets/img/sponsors/whi.png" },
-    { name: "Rockwell Automation", logo: "assets/img/sponsors/rockwell-automation.svg" }
+    { name: "Gene Haas Foundation", logo: "assets/img/sponsors/gene-haas-foundation.png", tier: "Gold" },
+    { name: "South Australia — The Defence State", logo: "assets/img/sponsors/sa-defence-state.png", tier: "Gold" },
+    { name: "Pembroke School", logo: "assets/img/sponsors/pembroke.svg", tier: "Platinum" },
+    { name: "Australian Institute for Machine Learning", logo: "assets/img/sponsors/AIML.png", tier: "Silver" },
+    { name: "REDARC", logo: "assets/img/sponsors/redarc.png", tier: "Silver" },
+    { name: "Energy Exemplar", logo: "assets/img/sponsors/energy-exemplar.png", tier: "Silver" },
+    { name: "C&J Accountants and Advisors", logo: "assets/img/sponsors/cj-accountants.png", tier: "Platinum" },
+    { name: "WHi", logo: "assets/img/sponsors/whi.png", tier: "Gold" },
+    { name: "Rockwell Automation", logo: "assets/img/sponsors/rockwell-automation.svg", tier: "Gold" }
   ],
 
   // Primarily aimed at prospective student members — see renderJoin() in
@@ -141,8 +109,6 @@ window.SITE_CONTENT = {
   join: {
     thesis: "We're currently around 20 students, and 2026 has been our most successful year yet — more members can only help us keep that up. We're all chill and welcome anyone at all interested in the areas below. No experience required — we teach everything on the team.",
     schedule: "During build season — early January through our March competition in Sydney — we meet on weekends. The rest of the year we meet less often, to prepare for extra competitions, improve the robot, and pick up new skills.",
-    // An action shot rather than a posed one — sells the hands-on
-    // experience to a prospective student, see renderJoin().
     photo: { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" },
     areas: [
       { title: "Mechanical", desc: "Assembling robots and fabricating parts on drills, lathes, CNC routers, rivet guns, and more." },
@@ -153,7 +119,7 @@ window.SITE_CONTENT = {
       { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
       { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
     ],
-    note: "And winning competitions and awards. No promises."
+    note: "And winning competitions. No promises."
   },
 
   // Rendered on its own page (resources.html), not on the index one-pager —
@@ -161,7 +127,7 @@ window.SITE_CONTENT = {
   // Sites Resources page.
   resources: {
     title: "Resources",
-    thesis: "In the spirit of FRC, we publish what we build — code and CAD from past seasons, in case it helps another team. Questions or comments are welcome — see the email below.",
+    thesis: "We always publish code and CAD from past seasons, in case it helps another team. Questions or comments are welcome: see the email below.",
 
     code: {
       title: "Code",
@@ -201,7 +167,7 @@ window.SITE_CONTENT = {
           season: "2023 Charged Up", robot: "Borzoi",
           links: [
             { label: "Onshape CAD (AUSC 2023)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/v/fabf0b2e8591f270ea97c5c4/e/9278ef3a8d123b33cdecc197" },
-            { label: "Onshape CAD (Final / MRT 2023)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/w/9fce9eb2fa7de646e453ab5d/e/9278ef3a8d123b33cdecc197" }
+            { label: "Onshape CAD (MRT 2023)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/w/9fce9eb2fa7de646e453ab5d/e/9278ef3a8d123b33cdecc197" }
           ]
         },
         {
