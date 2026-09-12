@@ -35,8 +35,7 @@ window.SITE_CONTENT = {
     { id: "gallery", label: "Gallery" },
     { id: "sponsors", label: "Sponsors" },
     { id: "join", label: "Join" },
-    { id: "resources", label: "Resources" },
-    { id: "contact", label: "Contact" }
+    { id: "resources", label: "Resources" }
   ],
 
   hero: {
@@ -99,13 +98,8 @@ window.SITE_CONTENT = {
     roles: [
       { title: "Students", desc: "Open to any Pembroke School student. We meet weekends during build season, early January through March." },
       { title: "Mentors", desc: "Engineers, tradespeople, and parents — a few hours a week during build season, more around competitions." },
-      { title: "Sponsors", desc: "Funding and materials keep the team running — see Sponsorship above, or get in touch below." }
+      { title: "Sponsors", desc: "Funding and materials keep the team running — see Sponsorship above, or email us below." }
     ]
-  },
-
-  contact: {
-    thesis: "Questions about joining, sponsoring, or this year's robot — get in touch.",
-    email: "teamkoalafied@gmail.com"
   },
 
   // Rendered on its own page (resources.html), not on the index one-pager —
@@ -114,7 +108,7 @@ window.SITE_CONTENT = {
   resources: {
     eyebrow: "Open source",
     title: "Resources",
-    thesis: "In the spirit of FRC, we publish what we build — code and CAD from past seasons, in case it helps another team. Questions or comments are welcome — see Contact.",
+    thesis: "In the spirit of FRC, we publish what we build — code and CAD from past seasons, in case it helps another team. Questions or comments are welcome — see the email below.",
 
     code: {
       title: "Code",
@@ -126,6 +120,7 @@ window.SITE_CONTENT = {
     cad: {
       title: "Robot Design & CAD",
       desc: "Since 2022, every robot has been fully modelled in Onshape before it's built.",
+      image: { src: "assets/img/cad-lemon-launcher.webp", alt: "Full CAD assembly of Lemon Launcher, the 2026 robot", caption: "Lemon Launcher (2026) — full assembly, as modelled in Onshape" },
       seasons: [
         {
           season: "2026 Rebuilt", robot: "Lemon Launcher",

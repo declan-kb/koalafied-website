@@ -13,21 +13,24 @@ lives in [koalafied-design-system](https://github.com/declan-kb/koalafied-design
 Same content/render split as the binder site:
 
 - **`content.js`** — the only file most edits touch. Team info, hero copy,
-  About/Programs/Gallery/Sponsors/Join/Contact content, all plain data.
+  About/Programs/Gallery/Sponsors/Join/Resources content, all plain data.
+  Contact is just the email in the footer (`team.email`) — no separate page.
 - **`assets/js/site.js`** — reads `window.SITE_CONTENT` and builds the page.
-  Only touch this to add a new *kind* of section, not to edit copy.
+  Only touch this to add a new *kind* of section, not to edit copy. Also
+  builds `resources.html` — nav is page-aware (see comment above `renderNav`).
 - **`assets/css/site.css`** — same design tokens as `binder.css` (palette,
   type, spacing). Change `--accent` etc. in `:root` to re-theme.
-- **`index.html`** — thin shell; loads fonts, `content.js`, `site.js`.
+- **`index.html`** / **`resources.html`** — thin shells; load fonts,
+  `content.js`, `site.js`.
 
 ## To do before going live
 
 - [x] Replace placeholder gallery images with real photos (pulled from
       `../eh/new website stuff/`) — worth adding more over time
 - [x] Copy the full sponsor list from `../eh/content.js`
+- [x] Add a Resources page (code + past-season CAD links)
 - [ ] Point `CNAME` (currently `teamkoalafied.com`) at this repo in GitHub
       Pages settings, and update the domain's DNS
-- [ ] Swap the placeholder contact email in `content.js`
 - [ ] Review copy in every section of `content.js` — it's scaffold text, not
       final
 

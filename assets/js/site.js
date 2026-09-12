@@ -37,11 +37,18 @@
   function renderNav(isResourcesPage) {
     var t = C.team;
     var links = C.nav.map(function (n) {
-      var href = n.id === 'resources'
+      var isPageLink = n.id === 'resources';
+      var href = isPageLink
         ? 'resources.html'
         : (isResourcesPage ? 'index.html#' + n.id : '#' + n.id);
-      var active = isResourcesPage && n.id === 'resources' ? ' is-active' : '';
-      return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + active.trim() + '">' + esc(n.label) + '</a>';
+      var cls = [
+        isPageLink ? 'nav-page' : '',
+        isResourcesPage && isPageLink ? 'is-active' : ''
+      ].join(' ').trim();
+      var icon = isPageLink
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>'
+        : '';
+      return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + cls + '">' + esc(n.label) + icon + '</a>';
     }).join('');
 
     return el(
@@ -147,19 +154,6 @@
     return sectionShell('join', 'Get involved', 'Join the team', j.thesis, '<div class="cards">' + cards + '</div>');
   }
 
-  function renderContact() {
-    var c = C.contact;
-    var form =
-      '<form class="form" action="mailto:' + esc(c.email) + '" method="post" enctype="text/plain">' +
-        '<div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" required></div>' +
-        '<div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required></div>' +
-        '<div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>' +
-        '<button class="btn btn-primary" type="submit" style="justify-self:start;">Send</button>' +
-      '</form>' +
-      '<p class="note muted" style="margin-top:14px;font-size:13px;">Or email <a href="mailto:' + esc(c.email) + '" style="color:var(--accent);">' + esc(c.email) + '</a> directly.</p>';
-    return sectionShell('contact', 'Get in touch', 'Contact', c.thesis, form);
-  }
-
   /* ---- resources page ------------------------------------------ */
 
   function renderResources() {
@@ -183,6 +177,13 @@
       '</div>';
     }).join('');
 
+    var cadImage = r.cad.image
+      ? '<figure class="resource-figure">' +
+          '<div class="frame"><img src="' + esc(r.cad.image.src) + '" alt="' + esc(r.cad.image.alt) + '" loading="lazy"></div>' +
+          '<figcaption>' + esc(r.cad.image.caption) + '</figcaption>' +
+        '</figure>'
+      : '';
+
     return '<section class="sec" id="resources-top" style="border-top:none;"><div class="wrap">' +
         '<p class="eyebrow">' + esc(r.eyebrow) + '</p>' +
         '<h1 class="sec-title">' + esc(r.title) + '</h1>' +
@@ -195,6 +196,7 @@
       '<section class="sec"><div class="wrap">' +
         '<h3 class="block-label">' + esc(r.cad.title) + '</h3>' +
         '<p class="sec-thesis" style="margin-top:0;">' + esc(r.cad.desc) + '</p>' +
+        cadImage +
         '<div class="cards" style="margin-top:24px;">' + cadCards + '</div>' +
       '</div></section>';
   }
@@ -322,8 +324,7 @@
         renderPrograms() +
         renderGallery() +
         renderSponsors() +
-        renderJoin() +
-        renderContact();
+        renderJoin();
     }
     if (resourcesPage) {
       resourcesPage.innerHTML = renderResources();
@@ -336,7 +337,7 @@
     document.getElementById('foot').innerHTML =
       '<span>Team ' + esc(C.team.number) + ' · ' + esc(C.team.name) + '</span>' +
       '<span class="foot-links">' +
-        '<a href="mailto:' + esc(C.contact.email) + '">' + esc(C.contact.email) + '</a>' +
+        '<a href="mailto:' + esc(C.team.email) + '">' + esc(C.team.email) + '</a>' +
         social +
       '</span>';
 

@@ -106,6 +106,19 @@ code {
   content: ""; display: block; height: 1.5px; background: var(--accent);
   margin-top: 3px; border-radius: 2px;
 }
+
+/* Resources is a separate page, not a scroll-to anchor like its siblings —
+   a rule before it groups the anchors apart, and a small corner-arrow
+   (rather than the ::after underline the anchors get) marks it as a page
+   jump instead of a scroll. Same idea as the binder site's external CAD
+   link, but this arrow points into the site rather than out of it. */
+.nav-links a.nav-page {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-left: 8px; padding-left: 19px; border-left: 1px solid var(--rule);
+}
+.nav-links a.nav-page svg { width: 11px; height: 11px; flex: none; opacity: .55; }
+.nav-links a.nav-page:hover svg { opacity: .9; }
+
 @media (max-width: 720px) { .nav-links { display: none; } }
 
 /* ---- 4. Hero ------------------------------------------------ */
@@ -232,17 +245,15 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .sponsor-logo { height: 44px; max-width: 160px; width: auto; object-fit: contain; filter: grayscale(1) opacity(.7); transition: filter .15s; }
 .sponsor-logo:hover { filter: none; }
 
-/* ---- 9. Contact form -------------------------------------------- */
+/* ---- 9. Resource figure (CAD render, etc.) ----------------------- */
 
-.form { max-width: 480px; margin-top: clamp(20px, 3vw, 32px); display: grid; gap: 14px; }
-.field { display: grid; gap: 6px; }
-.field label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
-.field input, .field textarea {
-  font: inherit; font-size: 14px; padding: 10px 12px; border: 1px solid var(--rule);
-  border-radius: 4px; background: var(--panel); color: var(--ink);
+.resource-figure { margin: clamp(20px, 3vw, 32px) 0; max-width: 560px; }
+.resource-figure .frame { border-radius: 3px; overflow: hidden; background: var(--panel); border: 1px solid var(--rule); }
+.resource-figure img { width: 100%; display: block; }
+.resource-figure figcaption {
+  margin-top: 10px; font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: .06em; color: var(--ink-3);
 }
-.field textarea { resize: vertical; min-height: 110px; }
-.field input:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 /* ---- 10. Lightbox — same component as the binder site ------------ */
 
