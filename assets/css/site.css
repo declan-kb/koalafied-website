@@ -119,7 +119,22 @@ code {
 }
 .nav-links a.nav-page svg { width: 12px; height: 12px; flex: none; }
 .nav-links a.nav-group-start {
-  margin-left: 8px; padding-left: 19px; border-left: 1px solid var(--rule);
+  /* A border-left glued to this element's own box can only ever hug one
+     side of the gap (border sits right against padding in the box
+     model), which put the rule hard against Resources rather than
+     centered between it and Gallery. Drawing it as an absolutely
+     positioned line at the midpoint of margin-left splits the gap evenly
+     instead, while this button's own padding stays the same 11px/11px as
+     every other nav link (so its hover highlight is symmetric too). */
+  position: relative;
+  margin-left: 26px;
+}
+.nav-links a.nav-group-start::before {
+  content: "";
+  position: absolute; top: 50%; left: -13px;
+  width: 1px; height: 16px;
+  background: var(--rule);
+  transform: translateY(-50%);
 }
 
 .nav-toggle {
@@ -154,9 +169,8 @@ code {
     border-bottom: 1px solid var(--rule-2);
   }
   .nav-links a.is-active::after { display: none; }
-  .nav-links a.nav-group-start {
-    margin-left: 0; padding-left: var(--gutter); border-left: none;
-  }
+  .nav-links a.nav-group-start { margin-left: 0; }
+  .nav-links a.nav-group-start::before { display: none; }
 }
 
 /* ---- 4. Hero ------------------------------------------------ */
