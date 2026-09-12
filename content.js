@@ -107,8 +107,8 @@ window.SITE_CONTENT = {
   // Primarily aimed at prospective student members — see renderJoin() in
   // site.js. Copy pulled from the old Google Sites "Join our Team" page.
   join: {
-    thesis: "We're currently around 20 students, and 2026 has been our most successful year yet — more members can only help us keep that up. We're all chill and welcome anyone at all interested in the areas below. No experience required — we teach everything on the team.",
-    schedule: "During build season — early January through our March competition in Sydney — we meet on weekends. The rest of the year we meet less often, to prepare for extra competitions, improve the robot, and pick up new skills.",
+    thesis: "We're currently looking for new students for the 2027 season, starting in January. We're all chill and welcome anyone at all interested in the areas below. No experience required: we teach everything on the team.",
+    schedule: "During build season (early January through our March competition in Sydney) we meet several times per week. The rest of the year we meet less often, to prepare for extra competitions, improve the robot, and pick up new skills.",
     photo: { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" },
     areas: [
       { title: "Mechanical", desc: "Assembling robots and fabricating parts on drills, lathes, CNC routers, rivet guns, and more." },
