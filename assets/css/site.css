@@ -186,6 +186,13 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .card h4 { font-size: 16px; font-weight: 600; }
 .card p { margin-top: 8px; font-size: 13.5px; color: var(--ink-3); line-height: 1.5; }
 .card .stat { font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--accent); }
+.card .card-robot { font-style: italic; color: var(--ink-2); font-weight: 500; }
+.card-links { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.card-go {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em;
+  text-transform: uppercase; text-decoration: none; color: var(--accent);
+}
+.card-go:hover { text-decoration: underline; }
 
 /* ---- 7. Carousel (photos) — same component as the binder site -- */
 

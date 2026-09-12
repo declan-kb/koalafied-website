@@ -30,16 +30,24 @@
 
   /* ---- nav ------------------------------------------------- */
 
-  function renderNav() {
+  // Nav is shared between index.html (a one-pager, so most items are
+  // #hash anchors) and any standalone page like resources.html (which
+  // needs those same anchors qualified back to "index.html#id", and
+  // points at itself directly rather than by hash).
+  function renderNav(isResourcesPage) {
     var t = C.team;
     var links = C.nav.map(function (n) {
-      return '<a href="#' + esc(n.id) + '" data-nav="' + esc(n.id) + '">' + esc(n.label) + '</a>';
+      var href = n.id === 'resources'
+        ? 'resources.html'
+        : (isResourcesPage ? 'index.html#' + n.id : '#' + n.id);
+      var active = isResourcesPage && n.id === 'resources' ? ' is-active' : '';
+      return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + active.trim() + '">' + esc(n.label) + '</a>';
     }).join('');
 
     return el(
       '<header class="nav">' +
         '<div class="nav-in wrap">' +
-          '<a class="wordmark" href="#top">' +
+          '<a class="wordmark" href="' + (isResourcesPage ? 'index.html' : '#top') + '">' +
             (t.logo ? '<img class="wordmark-mark" src="' + esc(t.logo) + '" alt="">' : '') +
             '<span class="wordmark-a">' + esc(t.number) + '</span>' +
             '<span class="wordmark-b">' + esc(t.name) + '</span>' +
@@ -152,6 +160,45 @@
     return sectionShell('contact', 'Get in touch', 'Contact', c.thesis, form);
   }
 
+  /* ---- resources page ------------------------------------------ */
+
+  function renderResources() {
+    var r = C.resources;
+
+    var code =
+      '<div class="card" style="max-width:480px;">' +
+        '<h4>' + esc(r.code.title) + '</h4>' +
+        '<p>' + esc(r.code.desc) + '</p>' +
+        '<a class="card-go" href="' + esc(r.code.href) + '" target="_blank" rel="noopener">' + esc(r.code.label) + ' →</a>' +
+      '</div>';
+
+    var cadCards = r.cad.seasons.map(function (s) {
+      var links = s.links.map(function (l) {
+        return '<a class="card-go" href="' + esc(l.href) + '" target="_blank" rel="noopener">' + esc(l.label) + ' →</a>';
+      }).join('');
+      return '<div class="card">' +
+        '<h4>' + esc(s.season) + '</h4>' +
+        '<p class="card-robot">' + esc(s.robot) + '</p>' +
+        '<div class="card-links">' + links + '</div>' +
+      '</div>';
+    }).join('');
+
+    return '<section class="sec" id="resources-top" style="border-top:none;"><div class="wrap">' +
+        '<p class="eyebrow">' + esc(r.eyebrow) + '</p>' +
+        '<h1 class="sec-title">' + esc(r.title) + '</h1>' +
+        '<p class="sec-thesis">' + esc(r.thesis) + '</p>' +
+      '</div></section>' +
+      '<section class="sec"><div class="wrap">' +
+        '<h3 class="block-label">' + esc(r.code.title) + '</h3>' +
+        code +
+      '</div></section>' +
+      '<section class="sec"><div class="wrap">' +
+        '<h3 class="block-label">' + esc(r.cad.title) + '</h3>' +
+        '<p class="sec-thesis" style="margin-top:0;">' + esc(r.cad.desc) + '</p>' +
+        '<div class="cards" style="margin-top:24px;">' + cadCards + '</div>' +
+      '</div></section>';
+  }
+
   /* ---- interactions ------------------------------------------ */
 
   function wireCarousels(root) {
@@ -258,21 +305,29 @@
   function boot() {
     if (!C || !C.team) return fail('content.js did not define window.SITE_CONTENT.');
 
-    document.title = C.team.name + ' — Team ' + C.team.number;
     var root = document.documentElement;
     if (C.team.accent) root.style.setProperty('--accent', C.team.accent);
 
-    document.body.insertBefore(renderNav(), document.body.firstChild);
-
     var main = document.getElementById('site');
-    main.innerHTML =
-      renderHero() +
-      renderAbout() +
-      renderPrograms() +
-      renderGallery() +
-      renderSponsors() +
-      renderJoin() +
-      renderContact();
+    var resourcesPage = document.getElementById('resources-page');
+    var isResourcesPage = !!resourcesPage;
+
+    document.title = (isResourcesPage ? 'Resources — ' : '') + C.team.name + ' — Team ' + C.team.number;
+    document.body.insertBefore(renderNav(isResourcesPage), document.body.firstChild);
+
+    if (main) {
+      main.innerHTML =
+        renderHero() +
+        renderAbout() +
+        renderPrograms() +
+        renderGallery() +
+        renderSponsors() +
+        renderJoin() +
+        renderContact();
+    }
+    if (resourcesPage) {
+      resourcesPage.innerHTML = renderResources();
+    }
 
     var social = (C.team.social || []).map(function (s) {
       return '<a href="' + esc(s.href) + '" target="_blank" rel="noopener">' + esc(s.label) + '</a>';
@@ -285,9 +340,11 @@
         social +
       '</span>';
 
-    wireCarousels(main);
-    wireLightbox(main);
-    wireScrollSpy();
+    if (main) {
+      wireCarousels(main);
+      wireLightbox(main);
+      wireScrollSpy();
+    }
   }
 
   if (document.readyState === 'loading') {

@@ -35,6 +35,7 @@ window.SITE_CONTENT = {
     { id: "gallery", label: "Gallery" },
     { id: "sponsors", label: "Sponsors" },
     { id: "join", label: "Join" },
+    { id: "resources", label: "Resources" },
     { id: "contact", label: "Contact" }
   ],
 
@@ -89,7 +90,8 @@ window.SITE_CONTENT = {
     { name: "REDARC", logo: "assets/img/sponsors/redarc.png" },
     { name: "Energy Exemplar", logo: "assets/img/sponsors/energy-exemplar.png" },
     { name: "C&J Accountants and Advisors", logo: "assets/img/sponsors/cj-accountants.png" },
-    { name: "WHi", logo: "assets/img/sponsors/whi.png" }
+    { name: "WHi", logo: "assets/img/sponsors/whi.png" },
+    { name: "Rockwell Automation", logo: "assets/img/sponsors/rockwell-automation.svg" }
   ],
 
   join: {
@@ -104,5 +106,66 @@ window.SITE_CONTENT = {
   contact: {
     thesis: "Questions about joining, sponsoring, or this year's robot — get in touch.",
     email: "teamkoalafied@gmail.com"
+  },
+
+  // Rendered on its own page (resources.html), not on the index one-pager —
+  // see renderResources() in site.js. Links pulled from the old Google
+  // Sites Resources page.
+  resources: {
+    eyebrow: "Open source",
+    title: "Resources",
+    thesis: "In the spirit of FRC, we publish what we build — code and CAD from past seasons, in case it helps another team. Questions or comments are welcome — see Contact.",
+
+    code: {
+      title: "Code",
+      desc: "Team Koalafied programs in C++. Code for every robot we've built is public.",
+      href: "https://github.com/TeamKoalafied/public",
+      label: "GitHub — TeamKoalafied/public"
+    },
+
+    cad: {
+      title: "Robot Design & CAD",
+      desc: "Since 2022, every robot has been fully modelled in Onshape before it's built.",
+      seasons: [
+        {
+          season: "2026 Rebuilt", robot: "Lemon Launcher",
+          links: [
+            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/f777e2d9e964fbf60835e3da/w/235a7544344677d127d5777e/e/62d9f4aee1b8ab6f94113ccb" }
+          ]
+        },
+        {
+          season: "2025 Reefscape", robot: "Unk",
+          links: [
+            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/c6aa7cca3688b1b28fb8df62/w/a340963050603817736e33c1/e/c595ba8ef762207db832ccad" }
+          ]
+        },
+        {
+          season: "2025 Reefscape", robot: "Locked In",
+          links: [
+            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/102a531f9f12f2de5a27c2c0/v/ef274877a9ed6af3e292f405/e/23f5a1bc9ff04b58a115f348" }
+          ]
+        },
+        {
+          season: "2024 Crescendo", robot: "#10-32",
+          links: [
+            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/f766febc8e90c6595c502360/v/b26d0f4082e8170b1287d16a/e/600ed28dccf6c49ac9d2fe31" }
+          ]
+        },
+        {
+          season: "2023 Charged Up", robot: "Borzoi",
+          links: [
+            { label: "Onshape CAD (AUSC 2023)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/v/fabf0b2e8591f270ea97c5c4/e/9278ef3a8d123b33cdecc197" },
+            { label: "Onshape CAD (Final / MRT 2023)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/w/9fce9eb2fa7de646e453ab5d/e/9278ef3a8d123b33cdecc197" }
+          ]
+        },
+        {
+          season: "2022 Rapid React", robot: "Terrance",
+          links: [
+            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/910e9a18fff81f80b3abc55a/w/8ad7f0ddf213a39ad8e854ea/e/ab8ae5589140f22ccd0b1332" },
+            { label: "Design Documentation (PDF)", href: "https://www.chiefdelphi.com/uploads/short-url/mAkm3d8cyBXEPry1zg2KFUno75c.pdf" }
+          ]
+        }
+      ]
+    }
   }
 };
