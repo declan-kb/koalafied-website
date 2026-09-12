@@ -7,7 +7,6 @@ The team's general-purpose website
 
 - **`content.js`** — the only file most edits touch. Team info, hero copy,
   About/Programs/Gallery/Sponsors/Join/Resources content, all plain data.
-  Contact is just the email in the footer (`team.email`) — no separate page.
 - **`assets/js/site.js`** — reads `window.SITE_CONTENT` and builds the page.
   Only touch this to add a new *kind* of section, not to edit copy. Also
   builds `resources.html` — nav is page-aware (see comment above `renderNav`).
