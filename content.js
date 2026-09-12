@@ -90,12 +90,11 @@ window.SITE_CONTENT = {
     title: "Our Sponsors",
     thesis: "Every part of a season — the robot, the travel, the competitions — is paid for by sponsors. Here's what that support actually buys, for the team and for you:",
     points: [
-      { title: "Robot budget", desc: "Motors, sensors, controllers, and the raw material and CNC time to machine custom parts — bought fresh every season." },
-      { title: "Competition & travel", desc: "Registration fees plus flights and accommodation for events interstate and, when we qualify, overseas." },
-      { title: "Mentorship, not just money", desc: "Many sponsors send their own engineers and tradespeople to work alongside students on the robot." },
-      { title: "A measurable return", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering — a pipeline of future hires." },
-      { title: "Visibility", desc: "Your logo travels on the robot, the team shirts, and this site — seen by thousands of students, teachers, and industry judges at every event." },
-      { title: "Something rare to back", desc: "Adelaide's only school-based FRC team — one of a small handful in the country building this from a high school, not a university or company." }
+      { title: "Robot budget", desc: "Motors, sensors, controllers, and the raw material to CNC machine custom parts" },
+      { title: "Competition & travel", desc: "Registration fees for our regional events and when we qualify, World Championships." },
+      { title: "A measurable return", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering– a pipeline of future hires." },
+      { title: "Visibility", desc: "Your logo is placed on the robot, the team shirts, and this site — seen by thousands of students, teachers, and industry judges at every event." },
+      { title: "Something rare to back", desc: "Adelaide's only school-based FRC team" }
     ]
   },
 
