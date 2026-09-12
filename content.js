@@ -92,9 +92,8 @@ window.SITE_CONTENT = {
     points: [
       { title: "Robot budget", desc: "Motors, sensors, controllers, and the raw material to CNC machine custom parts" },
       { title: "Competition & travel", desc: "Registration fees for our regional events and when we qualify, World Championships." },
-      { title: "A measurable return", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering– a pipeline of future hires." },
-      { title: "Visibility", desc: "Your logo is placed on the robot, the team shirts, and this site — seen by thousands of students, teachers, and industry judges at every event." },
-      { title: "Something rare to back", desc: "Adelaide's only school-based FRC team" }
+      { title: "Investing in STEM", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering — a pipeline toward future hires." },
+      { title: "Visibility", desc: "Your logo is placed on the robot, the team shirts, and this site — seen by thousands of students, teachers, and industry judges at every event." }
     ]
   },
 
@@ -173,7 +172,6 @@ window.SITE_CONTENT = {
 
     cad: {
       title: "Robot Design & CAD",
-      desc: "Since 2022, every robot has been fully modelled in Onshape before it's built.",
       seasons: [
         {
           season: "2026 Rebuilt", robot: "Lemon Launcher",

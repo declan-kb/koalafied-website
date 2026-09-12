@@ -117,7 +117,42 @@ code {
   margin-left: 8px; padding-left: 19px; border-left: 1px solid var(--rule);
 }
 
-@media (max-width: 720px) { .nav-links { display: none; } }
+.nav-toggle {
+  display: none;
+  margin-left: auto;
+  align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  background: none; border: 1px solid transparent; border-radius: 6px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.nav-toggle:hover { background: var(--rule-2); }
+
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    margin-left: 0;
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; gap: 0;
+    background: var(--panel);
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.18);
+    max-height: 0; overflow: hidden;
+    opacity: 0;
+    transition: max-height .2s ease, opacity .15s ease;
+  }
+  .nav-links.is-open { max-height: 60vh; opacity: 1; overflow-y: auto; }
+  .nav-links a {
+    padding: 14px var(--gutter);
+    border-radius: 0;
+    border-bottom: 1px solid var(--rule-2);
+  }
+  .nav-links a.is-active::after { display: none; }
+  .nav-links a.nav-page {
+    margin-left: 0; padding-left: var(--gutter); border-left: none;
+  }
+}
 
 /* ---- 4. Hero ------------------------------------------------ */
 
@@ -213,14 +248,38 @@ a.card { text-decoration: none; display: block; }
 a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .card h4 { font-size: 16px; font-weight: 600; }
 .card p { margin-top: 8px; font-size: 13.5px; color: var(--ink-3); line-height: 1.5; }
-.card .stat { font-family: var(--font-display); font-size: 30px; font-weight: 800; color: var(--accent); }
 .card .card-robot { font-style: italic; color: var(--ink-2); font-weight: 500; }
 .card-links { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
 .card-go {
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em;
-  text-transform: uppercase; text-decoration: none; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: .08em;
+  text-transform: uppercase; text-decoration: none; color: #fff;
+  padding: 7px 12px; border: 1px solid var(--accent); border-radius: 4px;
+  background: var(--accent); transition: opacity .15s;
 }
-.card-go:hover { text-decoration: underline; }
+.card-go:hover { opacity: .88; }
+
+/* Code link (Resources page) — one repo, so it's a single line under the
+   thesis rather than its own section. */
+.resources-code-line {
+  margin-top: 14px; display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap; font-size: 14px; color: var(--ink-2);
+}
+
+/* CAD seasons (Resources page) — a row per season rather than a card grid:
+   the entries are too sparse (one line + 1-2 links) to justify cards, and
+   an odd count of them left a ragged, gappy last grid row. */
+.cad-list { margin-top: 0; }
+.cad-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px 32px; flex-wrap: wrap; padding: 18px 0; border-bottom: 1px solid var(--rule);
+}
+.cad-row-info { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.cad-row-info h4 { font-size: 16px; font-weight: 600; }
+.cad-row-links.card-links { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-top: 0; }
+@media (max-width: 640px) {
+  .cad-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
 
 /* Events (About section) — a card per competition, results as icon tags,
    left edge colored by series so the grid reads at a glance. */
@@ -293,34 +352,29 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .sponsor-banner { border-top: 1px solid var(--rule); padding: 24px 0; }
 .sponsor-banner-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 34px; }
 
-.sponsors { border-top: 1px solid var(--rule); padding-top: 56px; padding-bottom: 40px; text-align: left; }
+.sponsors { border-top: 1px solid var(--rule); padding-top: 40px; padding-bottom: 32px; text-align: left; }
 .sponsors .sec-title { margin-top: 10px; }
-.sponsors-thesis { max-width: var(--measure); margin: 14px 0 0; color: var(--ink-2); font-size: clamp(15px, 1.6vw, 17px); }
-.sponsors-points { margin-top: clamp(20px, 3vw, 32px); }
-.sponsors-points .card h4 { color: var(--accent); }
-
-.sponsor-tier {
-  --tier-color: var(--rule);
-  margin-top: 28px; text-align: center;
-  background: var(--panel); border: 1px solid var(--rule); border-top: 4px solid var(--tier-color);
-  border-radius: 4px; padding: 28px 24px 32px;
+.sponsors-thesis { max-width: var(--measure); margin: 12px 0 0; color: var(--ink-2); font-size: clamp(15px, 1.6vw, 17px); }
+.sponsors-points { max-width: var(--measure); margin: 16px 0 0; padding: 0; list-style: none; }
+.sponsors-points li { position: relative; padding-left: 20px; color: var(--ink-2); line-height: 1.55; }
+.sponsors-points li + li { margin-top: 10px; }
+.sponsors-points li::before {
+  content: ""; position: absolute; left: 2px; top: 9px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
 }
-.tier-platinum { --tier-color: #a9b4bd; }
-.tier-gold { --tier-color: #c99a3d; }
-.tier-silver { --tier-color: #9aa4ad; }
 
-.sponsors-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 28px; }
-.sponsors-label::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; background: var(--tier-color); }
-.sponsors-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px 56px; }
+.sponsor-tier { margin-top: 32px; text-align: center; }
+.sponsors-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 20px; }
+.sponsors-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 32px 48px; }
 
 .sponsor-logo { width: auto; object-fit: contain; }
 .sponsor-banner-row .sponsor-logo { height: 26px; max-width: 104px; filter: grayscale(1) opacity(.7); transition: filter .15s; }
 .sponsor-banner-row .sponsor-logo:hover { filter: none; }
-.sponsors-row .sponsor-logo { height: 60px; max-width: 190px; }
-.tier-platinum .sponsors-row .sponsor-logo { height: 76px; max-width: 230px; }
-.tier-silver .sponsors-row .sponsor-logo { height: 50px; max-width: 160px; }
+.sponsors-row .sponsor-logo { height: 80px; max-width: 240px; }
+.tier-platinum .sponsors-row .sponsor-logo { height: 100px; max-width: 280px; }
+.tier-silver .sponsors-row .sponsor-logo { height: 64px; max-width: 200px; }
 
-/* ---- 10. Lightbox — same component as the binder site ------------ */
+/* ---- 9. Lightbox — same component as the binder site ------------- */
 
 .lightbox {
   position: fixed; inset: 0; z-index: 500;
@@ -344,7 +398,7 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 }
 .lightbox-close:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.4); }
 
-/* ---- 11. Footer -------------------------------------------------- */
+/* ---- 10. Footer -------------------------------------------------- */
 
 .foot {
   border-top: 1px solid var(--rule); padding: 40px 0 56px;
@@ -355,7 +409,7 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .foot a:hover { color: var(--accent); }
 .foot-links { display: flex; gap: 20px; }
 
-/* ---- 12. Error banner --------------------------------------------- */
+/* ---- 11. Error banner --------------------------------------------- */
 
 .boom {
   margin: 40px auto; max-width: 640px; padding: 20px 24px;
