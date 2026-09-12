@@ -69,8 +69,13 @@ window.SITE_CONTENT = {
 
   sponsors: [
     { name: "Gene Haas Foundation", logo: "assets/img/sponsors/gene-haas-foundation.png" },
-    { name: "REDARC", logo: "assets/img/sponsors/redarc.png" }
-    // Copy the rest of this list straight from ../eh/content.js when ready.
+    { name: "South Australia — The Defence State", logo: "assets/img/sponsors/sa-defence-state.png" },
+    { name: "Pembroke School", logo: "assets/img/sponsors/pembroke.svg" },
+    { name: "Australian Institute for Machine Learning", logo: "assets/img/sponsors/AIML.png" },
+    { name: "REDARC", logo: "assets/img/sponsors/redarc.png" },
+    { name: "Energy Exemplar", logo: "assets/img/sponsors/energy-exemplar.png" },
+    { name: "C&J Accountants and Advisors", logo: "assets/img/sponsors/cj-accountants.png" },
+    { name: "WHi", logo: "assets/img/sponsors/whi.png" }
   ],
 
   join: {

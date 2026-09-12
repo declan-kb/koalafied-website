@@ -24,7 +24,7 @@ Same content/render split as the binder site:
 
 - [ ] Replace placeholder gallery images in `assets/img/gallery-*.svg` with
       real photos
-- [ ] Copy the full sponsor list from `../eh/content.js`
+- [x] Copy the full sponsor list from `../eh/content.js`
 - [ ] Point `CNAME` (currently `teamkoalafied.com`) at this repo in GitHub
       Pages settings, and update the domain's DNS
 - [ ] Swap the placeholder contact email in `content.js`
