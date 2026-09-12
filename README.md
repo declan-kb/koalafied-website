@@ -22,8 +22,8 @@ Same content/render split as the binder site:
 
 ## To do before going live
 
-- [ ] Replace placeholder gallery images in `assets/img/gallery-*.svg` with
-      real photos
+- [x] Replace placeholder gallery images with real photos (pulled from
+      `../eh/new website stuff/`) — worth adding more over time
 - [x] Copy the full sponsor list from `../eh/content.js`
 - [ ] Point `CNAME` (currently `teamkoalafied.com`) at this repo in GitHub
       Pages settings, and update the domain's DNS

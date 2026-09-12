@@ -45,7 +45,8 @@ window.SITE_CONTENT = {
     ctas: [
       { label: "This year's binder →", href: "https://2026.teamkoalafied.com", primary: true },
       { label: "Join the team", href: "#join" }
-    ]
+    ],
+    image: { src: "assets/img/hero.jpg", alt: "Robot 6996 on the field at a match, with a packed crowd behind the barrier" }
   },
 
   about: {
@@ -72,10 +73,11 @@ window.SITE_CONTENT = {
   gallery: {
     thesis: "A season in photos.",
     items: [
-      { src: "assets/img/gallery-1.svg", alt: "Placeholder — competition photo", caption: "Pit area, Southern Cross Regional" },
-      { src: "assets/img/gallery-2.svg", alt: "Placeholder — build season photo", caption: "Build season, late night" },
-      { src: "assets/img/gallery-3.svg", alt: "Placeholder — team photo", caption: "Drive team before a match" },
-      { src: "assets/img/gallery-4.svg", alt: "Placeholder — robot reveal photo", caption: "On the field, FIRST Championship" }
+      { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match", caption: "Driver station, Southern Cross Regional 2024" },
+      { src: "assets/img/gallery-2024-scr-team-photo.jpg", alt: "Team photo with the robot 'Locked In' and awards", caption: "Team photo with 'Locked In'" },
+      { src: "assets/img/gallery-2025-champs-waiting.jpg", alt: "Team members in the pit area among many other teams", caption: "Waiting for a match, FIRST Championship 2025" },
+      { src: "assets/img/gallery-2025-champs-team-photo.jpg", alt: "Full team photo at the FIRST Championship venue", caption: "Team photo, FIRST Championship 2025" },
+      { src: "assets/img/gallery-2026-scr-team-photo.jpg", alt: "Team photo with the robot 'Lemon Launcher'", caption: "Team photo, Southern Cross Regional 2026" }
     ]
   },
 

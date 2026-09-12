@@ -57,12 +57,19 @@
       return '<a class="btn ' + (c.primary ? 'btn-primary' : 'btn-ghost') + '" href="' + esc(c.href) + '">' + esc(c.label) + '</a>';
     }).join('');
 
+    var media = h.image
+      ? '<div class="hero-media"><img src="' + esc(h.image.src) + '" alt="' + esc(h.image.alt) + '"></div>'
+      : '';
+
     return '<section class="hero" id="top"><div class="wrap">' +
-      '<div class="hero-meta">' +
-        '<p class="eyebrow">' + esc(h.eyebrow) + '</p>' +
-        '<h1 class="hero-title">' + esc(h.title) + '</h1>' +
-        '<p class="hero-sub">' + esc(h.sub) + '</p>' +
-        '<div class="hero-cta">' + ctas + '</div>' +
+      '<div class="hero-inner">' +
+        '<div class="hero-meta">' +
+          '<p class="eyebrow">' + esc(h.eyebrow) + '</p>' +
+          '<h1 class="hero-title">' + esc(h.title) + '</h1>' +
+          '<p class="hero-sub">' + esc(h.sub) + '</p>' +
+          '<div class="hero-cta">' + ctas + '</div>' +
+        '</div>' +
+        media +
       '</div>' +
     '</div></section>';
   }

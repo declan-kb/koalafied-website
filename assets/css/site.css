@@ -111,6 +111,10 @@ code {
 /* ---- 4. Hero ------------------------------------------------ */
 
 .hero { padding: clamp(48px, 8vw, 100px) 0 clamp(32px, 5vw, 64px); }
+.hero-inner { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 48px); align-items: center; }
+@media (min-width: 860px) { .hero-inner { grid-template-columns: 1.05fr 1fr; } }
+.hero-media { border-radius: 3px; overflow: hidden; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 4 / 3; }
 .hero-meta { max-width: 720px; }
 .hero-title {
   font-size: clamp(2.4rem, 7vw, 5rem);
