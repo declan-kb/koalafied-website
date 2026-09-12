@@ -107,13 +107,18 @@ code {
   margin-top: 3px; border-radius: 2px;
 }
 
-/* Resources is a separate page, not a scroll-to anchor like its siblings —
-   a rule before it groups the anchors apart, and a small corner-arrow
-   (rather than the ::after underline the anchors get) marks it as a page
-   jump instead of a scroll. Same idea as the binder site's external CAD
-   link, but this arrow points into the site rather than out of it. */
+/* Resources (a separate page) and any external link (like the current
+   binder) aren't scroll-to anchors like their siblings, so they get no
+   ::after underline. A rule before the first of them groups the anchors
+   apart — nav-group-start, not repeated per item so two in a row don't
+   get a double rule. External links also get a small corner-arrow, same
+   idea as the binder site's external CAD link, to show they leave the site;
+   Resources is an internal page jump, so it carries no icon. */
 .nav-links a.nav-page {
   display: inline-flex; align-items: center; gap: 5px;
+}
+.nav-links a.nav-page svg { width: 12px; height: 12px; flex: none; }
+.nav-links a.nav-group-start {
   margin-left: 8px; padding-left: 19px; border-left: 1px solid var(--rule);
 }
 
@@ -149,7 +154,7 @@ code {
     border-bottom: 1px solid var(--rule-2);
   }
   .nav-links a.is-active::after { display: none; }
-  .nav-links a.nav-page {
+  .nav-links a.nav-group-start {
     margin-left: 0; padding-left: var(--gutter); border-left: none;
   }
 }

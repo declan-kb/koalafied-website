@@ -42,21 +42,39 @@
   // #hash anchors) and any standalone page like resources.html (which
   // needs those same anchors qualified back to "index.html#id", and
   // points at itself directly rather than by hash).
+  // External-link arrow (opens-in-new-tab), same icon as the binder site's
+  // CAD link — see ../koalafied-design-system.
+  var EXTERNAL_ICON =
+    '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+    '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
+
   function renderNav(isResourcesPage) {
     var t = C.team;
+    var prevSpecial = false;
     var links = C.nav.map(function (n) {
       var isPageLink = n.id === 'resources';
+      var isExternal = !isPageLink && !!n.href;
+      var isSpecial = isPageLink || isExternal;
       var href = isPageLink
         ? 'resources.html'
-        : (isResourcesPage ? 'index.html#' + n.id : '#' + n.id);
+        : isExternal
+          ? n.href
+          : (isResourcesPage ? 'index.html#' + n.id : '#' + n.id);
       var cls = [
-        isPageLink ? 'nav-page' : '',
+        isSpecial ? 'nav-page' : '',
+        // Only the first item after the anchors gets the separating rule —
+        // Resources and any external link (like the current binder) sit
+        // in the same trailing group.
+        isSpecial && !prevSpecial ? 'nav-group-start' : '',
         isResourcesPage && isPageLink ? 'is-active' : ''
       ].join(' ').trim();
+      prevSpecial = isSpecial;
       // The corner-arrow icon is reserved for genuine external links —
       // Resources is an internal page jump, so it gets no icon, just the
-      // separating rule via .nav-page.
-      return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + cls + '">' + esc(n.label) + '</a>';
+      // separating rule via .nav-group-start.
+      var attrs = isExternal ? ' target="_blank" rel="noopener"' : '';
+      var icon = isExternal ? EXTERNAL_ICON : '';
+      return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + cls + '"' + attrs + '>' + esc(n.label) + icon + '</a>';
     }).join('');
 
     return el(

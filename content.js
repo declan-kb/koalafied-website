@@ -31,7 +31,8 @@ window.SITE_CONTENT = {
     { id: "sponsors", label: "Sponsors" },
     { id: "join", label: "Join" },
     { id: "gallery", label: "Gallery" },
-    { id: "resources", label: "Resources" }
+    { id: "resources", label: "Resources" },
+    { id: "binder", label: "2026 Binder", href: "https://2026.teamkoalafied.com" }
   ],
 
   hero: {
@@ -79,12 +80,12 @@ window.SITE_CONTENT = {
   // Text pulled and tightened from the old Google Sites Sponsorship page.
   sponsorship: {
     title: "Our Sponsors",
-    thesis: "Every part of a season — the robot, the travel, the competitions — is paid for by sponsors. Here's what that support actually buys, for the team and for you:",
+    thesis: "Robot parts, registration fees and new tools are all paid for by sponsors. Here's what that support actually buys, for the team and for you:",
     points: [
       { title: "Robot budget", desc: "Motors, sensors, controllers, and the raw material to CNC machine custom parts" },
       { title: "Competition & travel", desc: "Registration fees for our regional events and when we qualify, World Championships." },
-      { title: "Investing in STEM", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering — a pipeline toward future hires." },
-      { title: "Visibility", desc: "Your logo is placed on the robot, the team shirts, and this site — seen by thousands of students, teachers, and industry judges at every event." }
+      { title: "Investing in STEM", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering." },
+      { title: "Visibility", desc: "Your logo is placed on the robot, the team shirts, and this site: seen by thousands of students, teachers, and industry judges at every event." }
     ]
   },
 
