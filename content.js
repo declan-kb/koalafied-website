@@ -5,6 +5,10 @@
    Plain JSON wrapped in one line of JavaScript so the site works
    when you just double-click index.html (no web server, no build).
 
+   Copy pulled and tightened from the previous Google Sites page
+   (sites.google.com/view/team-koalafied) — facts checked against
+   its Home, Team History, Sponsorship and Join our Team pages.
+
    Same content/render split as the technical binder — see
    ../koalafied-design-system/website-style-guide.html "Content pattern".
    ============================================================ */
@@ -14,9 +18,15 @@ window.SITE_CONTENT = {
   team: {
     number: "6996",
     name: "Koalafied",
-    tagline: "An FRC robotics team building robots, and the people who build them.",
+    tagline: "The only school-based FRC team in South Australia.",
     accent: "#0a7770",
-    logo: "assets/img/logo.svg"
+    logo: "assets/img/logo.svg",
+    email: "teamkoalafied@gmail.com",
+    social: [
+      { label: "Instagram", href: "https://www.instagram.com/koalafied_6996/" },
+      { label: "Facebook", href: "https://www.facebook.com/koalafied6996/" },
+      { label: "YouTube", href: "https://www.youtube.com/channel/UCNGR7FG2zscbgj31Bp5toSw" }
+    ]
   },
 
   nav: [
@@ -29,9 +39,9 @@ window.SITE_CONTENT = {
   ],
 
   hero: {
-    eyebrow: "Team 6996",
+    eyebrow: "Team 6996 · Adelaide, South Australia",
     title: "Koalafied",
-    sub: "We design, build, and compete with a robot every season — and we teach every skill that takes along the way.",
+    sub: "High school students and mentors designing, building, and programming a competition robot every year — since 2018.",
     ctas: [
       { label: "This year's binder →", href: "https://2026.teamkoalafied.com", primary: true },
       { label: "Join the team", href: "#join" }
@@ -39,31 +49,33 @@ window.SITE_CONTENT = {
   },
 
   about: {
-    thesis: "Started in 2019, Koalafied is a student-run FIRST Robotics Competition team based in Adelaide, South Australia.",
+    thesis: "Team Koalafied is a group of Pembroke School students and mentors competing in the FIRST® Robotics Competition since 2018. Every year, students design, build, test, and program a robot from scratch to compete against teams from around the world — meeting on weekends throughout build season.",
     stats: [
-      { stat: "2019", label: "Founded" },
-      { stat: "40+", label: "Active students" },
-      { stat: "6", label: "Seasons competed" }
+      { stat: "2018", label: "Founded" },
+      { stat: "~20", label: "Students and mentors" },
+      { stat: "2026", label: "FIRST Championship qualifier" }
     ]
   },
 
   programs: {
-    thesis: "Four sub-teams run in parallel through build season, each open to any student regardless of experience.",
+    thesis: "Every student picks up several of these over a season — no prior experience in any of them is expected.",
     items: [
-      { title: "Mechanical", desc: "Design and machine the robot — CAD, fabrication, assembly." },
-      { title: "Electrical", desc: "Wiring, control systems, sensors, pneumatics." },
-      { title: "Software", desc: "Robot code, autonomous routines, driver tooling." },
-      { title: "Business", desc: "Sponsorship, outreach, media, and this website." }
+      { title: "Mechanical", desc: "Assembling the robot and fabricating parts on drills, lathes, and CNC routers." },
+      { title: "Programming", desc: "Writing and fine-tuning robot code, designing autonomous paths." },
+      { title: "CAD", desc: "3D-modelling components and full robot assemblies before they're built." },
+      { title: "Prototyping", desc: "Turning an idea into a working mechanism, fast." },
+      { title: "Media", desc: "Photos, video, and marketing — including this website." },
+      { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
     ]
   },
 
   gallery: {
     thesis: "A season in photos.",
     items: [
-      { src: "assets/img/gallery-1.svg", alt: "Placeholder — competition photo", caption: "Regional competition, pit area" },
+      { src: "assets/img/gallery-1.svg", alt: "Placeholder — competition photo", caption: "Pit area, Southern Cross Regional" },
       { src: "assets/img/gallery-2.svg", alt: "Placeholder — build season photo", caption: "Build season, late night" },
-      { src: "assets/img/gallery-3.svg", alt: "Placeholder — team photo", caption: "Full team, season kickoff" },
-      { src: "assets/img/gallery-4.svg", alt: "Placeholder — robot reveal photo", caption: "Robot reveal" }
+      { src: "assets/img/gallery-3.svg", alt: "Placeholder — team photo", caption: "Drive team before a match" },
+      { src: "assets/img/gallery-4.svg", alt: "Placeholder — robot reveal photo", caption: "On the field, FIRST Championship" }
     ]
   },
 
@@ -79,16 +91,16 @@ window.SITE_CONTENT = {
   ],
 
   join: {
-    thesis: "No experience required — we teach everything on the team, from CAD to code to public speaking.",
+    thesis: "We're all chill and always welcome new members interested in any of the areas above — no experience required, we teach everything on the team.",
     roles: [
-      { title: "Students", desc: "Open to any high-school student in the region. Sign up at the start of the season." },
-      { title: "Mentors", desc: "Engineers, tradespeople, and professionals — a few hours a week during build season." },
-      { title: "Sponsors", desc: "Funding, materials, and mentorship keep the team running. See the Sponsors section above." }
+      { title: "Students", desc: "Open to any Pembroke School student. We meet weekends during build season, early January through March." },
+      { title: "Mentors", desc: "Engineers, tradespeople, and parents — a few hours a week during build season, more around competitions." },
+      { title: "Sponsors", desc: "Funding and materials keep the team running — see Sponsorship above, or get in touch below." }
     ]
   },
 
   contact: {
-    thesis: "Questions about joining, sponsoring, or this year's robot — reach out.",
-    email: "contact@teamkoalafied.com"
+    thesis: "Questions about joining, sponsoring, or this year's robot — get in touch.",
+    email: "teamkoalafied@gmail.com"
   }
 };

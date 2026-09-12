@@ -267,9 +267,16 @@
       renderJoin() +
       renderContact();
 
+    var social = (C.team.social || []).map(function (s) {
+      return '<a href="' + esc(s.href) + '" target="_blank" rel="noopener">' + esc(s.label) + '</a>';
+    }).join('');
+
     document.getElementById('foot').innerHTML =
       '<span>Team ' + esc(C.team.number) + ' · ' + esc(C.team.name) + '</span>' +
-      '<a href="mailto:' + esc(C.contact.email) + '">' + esc(C.contact.email) + '</a>';
+      '<span class="foot-links">' +
+        '<a href="mailto:' + esc(C.contact.email) + '">' + esc(C.contact.email) + '</a>' +
+        social +
+      '</span>';
 
     wireCarousels(main);
     wireLightbox(main);
