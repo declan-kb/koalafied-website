@@ -16,7 +16,7 @@ The team's general-purpose website
 - Most edits should only involve **content.js**– this handles almost all of the text on the website. This is fairly simple to do, just copy the existing syntax.
 - **assetts/css/Site.js** then interprets the text that content.js receives and renders that into the layout of the website. You edit site.js to change the layout, add interactive elements etc. 
 - **assets/css/site.css** adjusts the style of the website: the palette, the font, the spacing between elements. 
-Add any images used throughout the website to **assets/img**
+- Add any images used throughout the website to **assets/img**. Label the image file with an appropriate title. 
 - To open the website locally, use **index.html**. The .html file itself is just a wrapper for content.js and site.js– it doesn't really contain anything to edit. 
 
 ## Local preview
