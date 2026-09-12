@@ -54,7 +54,7 @@ window.SITE_CONTENT = {
     // event's location, shown under the full competition title.
     events: [
       { event: "Melbourne Robotics Tournament 2026", sub: "Melbourne, Australia",
-        titles: ["Qual Rank 6", "Excellence in Robot Design", "2nd Place"] },
+        titles: ["Qual Rank 6", "Competed with two robots","Excellence in Robot Design", "2nd Place"] },
       { event: "Southern Cross Regional 2026", sub: "Sydney, Australia",
         titles: ["Qual Rank 4", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"] },
       { event: "FIRST Championship: Newton Division 2025", sub: "Houston, USA",
@@ -114,7 +114,7 @@ window.SITE_CONTENT = {
     areas: [
       { title: "Mechanical", desc: "Assembling robots and fabricating parts on drills, lathes, CNC routers, rivet guns, and more." },
       { title: "Programming", desc: "Writing and fine-tuning robot code, designing autonomous paths." },
-      { title: "CAD", desc: "3D-modelling components and full robots before they're built." },
+      { title: "Design", desc: "3D-modelling components and full robots using CAD software before they're built." },
       { title: "Prototyping", desc: "Turning an idea into a working mechanism, fast." },
       { title: "Woodwork", desc: "Producing large field elements for each year's game." },
       { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
