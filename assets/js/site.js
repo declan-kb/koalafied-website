@@ -57,21 +57,21 @@
       return '<a class="btn ' + (c.primary ? 'btn-primary' : 'btn-ghost') + '" href="' + esc(c.href) + '">' + esc(c.label) + '</a>';
     }).join('');
 
-    var media = h.image
-      ? '<div class="hero-media"><img src="' + esc(h.image.src) + '" alt="' + esc(h.image.alt) + '"></div>'
+    var bg = h.image
+      ? '<div class="hero-bg"><img src="' + esc(h.image.src) + '" alt="' + esc(h.image.alt) + '"><div class="hero-scrim"></div></div>'
       : '';
 
-    return '<section class="hero" id="top"><div class="wrap">' +
-      '<div class="hero-inner">' +
+    return '<section class="hero" id="top">' +
+      bg +
+      '<div class="hero-content wrap">' +
         '<div class="hero-meta">' +
           '<p class="eyebrow">' + esc(h.eyebrow) + '</p>' +
           '<h1 class="hero-title">' + esc(h.title) + '</h1>' +
           '<p class="hero-sub">' + esc(h.sub) + '</p>' +
           '<div class="hero-cta">' + ctas + '</div>' +
         '</div>' +
-        media +
       '</div>' +
-    '</div></section>';
+    '</section>';
   }
 
   /* ---- generic section shell --------------------------------- */

@@ -110,20 +110,37 @@ code {
 
 /* ---- 4. Hero ------------------------------------------------ */
 
-.hero { padding: clamp(48px, 8vw, 100px) 0 clamp(32px, 5vw, 64px); }
-.hero-inner { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 48px); align-items: center; }
-@media (min-width: 860px) { .hero-inner { grid-template-columns: 1.05fr 1fr; } }
-.hero-media { border-radius: 3px; overflow: hidden; }
-.hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 4 / 3; }
-.hero-meta { max-width: 720px; }
+/* Full-bleed photo behind the title, scrimmed for legibility — the one
+   deliberately dark, photo-led moment on an otherwise light, typographic
+   site. Text colors here are hardcoded against the photo rather than
+   pulled from the light-mode ink tokens, since they're never meant to
+   apply anywhere else. */
+.hero { position: relative; padding: 0; overflow: hidden; }
+.hero-bg { position: relative; width: 100%; height: clamp(480px, 64vw, 660px); }
+.hero-bg img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%;
+  display: block;
+}
+.hero-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(6,8,12,.96) 0%, rgba(6,8,12,.82) 28%, rgba(6,8,12,.42) 58%, rgba(6,8,12,.14) 100%),
+    linear-gradient(to right, rgba(6,8,12,.4) 0%, rgba(6,8,12,0) 60%);
+}
+.hero-content {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding-bottom: clamp(28px, 5vw, 56px);
+}
+.hero-meta { max-width: 640px; }
+.hero-content .eyebrow { color: #8fe0d6; }
 .hero-title {
-  font-size: clamp(2.4rem, 7vw, 5rem);
-  font-weight: 800; letter-spacing: -0.04em; line-height: 0.98;
-  margin: 14px 0 0; font-style: italic;
+  font-size: clamp(2.6rem, 8vw, 5.6rem);
+  font-weight: 800; letter-spacing: -0.04em; line-height: 0.96;
+  margin: 14px 0 0; font-style: italic; color: #fff;
 }
 .hero-sub {
-  max-width: 56ch; margin: 20px 0 0;
-  color: var(--ink-2); font-size: clamp(15px, 1.6vw, 18px);
+  max-width: 52ch; margin: 20px 0 0;
+  color: rgba(255,255,255,.86); font-size: clamp(15px, 1.6vw, 18px);
 }
 .hero-cta { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
 .btn {
@@ -135,6 +152,8 @@ code {
 }
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { opacity: .88; }
+.hero-content .btn-ghost { border-color: rgba(255,255,255,.5); color: #fff; }
+.hero-content .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.1); }
 .btn-ghost { border-color: var(--rule); color: var(--ink); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
