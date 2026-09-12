@@ -42,8 +42,9 @@
   // #hash anchors) and any standalone page like resources.html (which
   // needs those same anchors qualified back to "index.html#id", and
   // points at itself directly rather than by hash).
-  // External-link arrow (opens-in-new-tab), same icon as the binder site's
-  // CAD link — see ../koalafied-design-system.
+  // External-link icon (opens-in-new-tab), same icon as the binder site's
+  // CAD link — see ../koalafied-design-system. Reused everywhere a link
+  // leaves the site (nav, hero CTA, resources page) instead of a "→".
   var EXTERNAL_ICON =
     '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
     '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
@@ -98,7 +99,10 @@
   function renderHero() {
     var h = C.hero;
     var ctas = h.ctas.map(function (c) {
-      return '<a class="btn ' + (c.primary ? 'btn-primary' : 'btn-ghost') + '" href="' + esc(c.href) + '">' + esc(c.label) + '</a>';
+      // Same external-link cue as the nav: a CTA that leaves the site gets
+      // the corner-arrow icon instead of plain text.
+      var isExternal = /^https?:\/\//i.test(c.href);
+      return '<a class="btn ' + (c.primary ? 'btn-primary' : 'btn-ghost') + '" href="' + esc(c.href) + '">' + esc(c.label) + (isExternal ? EXTERNAL_ICON : '') + '</a>';
     }).join('');
 
     var bg = h.image
@@ -275,12 +279,12 @@
 
     var codeLine =
       '<p class="resources-code-line">' + esc(r.code.desc) +
-        ' <a class="card-go" href="' + esc(r.code.href) + '" target="_blank" rel="noopener">' + esc(r.code.label) + ' →</a>' +
+        ' <a class="card-go" href="' + esc(r.code.href) + '" target="_blank" rel="noopener">' + esc(r.code.label) + EXTERNAL_ICON + '</a>' +
       '</p>';
 
     var cadRows = r.cad.seasons.map(function (s) {
       var links = s.links.map(function (l) {
-        return '<a class="card-go" href="' + esc(l.href) + '" target="_blank" rel="noopener">' + esc(l.label) + ' →</a>';
+        return '<a class="card-go" href="' + esc(l.href) + '" target="_blank" rel="noopener">' + esc(l.label) + EXTERNAL_ICON + '</a>';
       }).join('');
       return '<div class="cad-row">' +
         '<div class="cad-row-info">' +

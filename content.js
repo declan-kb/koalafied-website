@@ -40,7 +40,7 @@ window.SITE_CONTENT = {
     title: "Koalafied",
     sub: "High school students and mentors designing, building, and programming a competition robot every year since 2018.",
     ctas: [
-      { label: "This year's robot →", href: "https://2026.teamkoalafied.com", primary: true },
+      { label: "This year's robot", href: "https://2026.teamkoalafied.com", primary: true },
       { label: "Join the team", href: "#join" }
     ],
     image: { src: "assets/img/hero.jpg", alt: "Our robot on the field at a match" }
@@ -109,7 +109,7 @@ window.SITE_CONTENT = {
   // site.js. Copy pulled from the old Google Sites "Join our Team" page.
   join: {
     thesis: "We're currently looking for new students for the 2027 season, starting in January. We're all chill and welcome anyone at all interested in the areas below. No experience required: we teach everything on the team.",
-    schedule: "During build season (early January through our March competition in Sydney) we meet several times per week. The rest of the year we meet less often, to prepare for extra competitions, improve the robot, and pick up new skills.",
+    schedule: "During build season (early January through to our March competition in Sydney) we meet several times per week. The rest of the year we meet less often, to prepare for extra competitions, improve the robot, and pick up new skills.",
     photo: { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" },
     areas: [
       { title: "Mechanical", desc: "Assembling robots and fabricating parts on drills, lathes, CNC routers, rivet guns, and more." },
