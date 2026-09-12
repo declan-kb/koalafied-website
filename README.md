@@ -1,16 +1,9 @@
 # Team Koalafied — Main Site
 
-The team's general-purpose website (replacing the old Google Sites page),
-themed to match the season technical binder at
-[`eh`](https://github.com/declan-kb/eh) / `2026.teamkoalafied.com`.
-
-Deployed separately from `eh` — this is the evergreen team site (root
-domain), `eh` is the per-season binder (`2026.` subdomain). Shared theming
-lives in [koalafied-design-system](https://github.com/declan-kb/koalafied-design-system).
+The team's general-purpose website 
 
 ## Structure
 
-Same content/render split as the binder site:
 
 - **`content.js`** — the only file most edits touch. Team info, hero copy,
   About/Programs/Gallery/Sponsors/Join/Resources content, all plain data.
@@ -22,17 +15,8 @@ Same content/render split as the binder site:
   type, spacing). Change `--accent` etc. in `:root` to re-theme.
 - **`index.html`** / **`resources.html`** — thin shells; load fonts,
   `content.js`, `site.js`.
+- **`assets/img`** – stores all the media files and images for the website
 
-## To do before going live
-
-- [x] Replace placeholder gallery images with real photos (pulled from
-      `../eh/new website stuff/`) — worth adding more over time
-- [x] Copy the full sponsor list from `../eh/content.js`
-- [x] Add a Resources page (code + past-season CAD links)
-- [ ] Point `CNAME` (currently `teamkoalafied.com`) at this repo in GitHub
-      Pages settings, and update the domain's DNS
-- [ ] Review copy in every section of `content.js` — it's scaffold text, not
-      final
 
 ## Local preview
 
