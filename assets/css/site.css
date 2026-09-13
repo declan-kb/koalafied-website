@@ -352,14 +352,14 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 }
 
 .robot-name { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
-.robot-media .carousel { margin-top: 14px; }
+.robot-media .carousel { margin: 14px 0 0; }
 /* Robot shots vary from the Gallery's more panoramic frame — these are
    near-square (sometimes portrait) full-robot photos, so the frame needs
    to be close to square too or object-fit: cover crops the top/bottom of
    the robot off. Arrows center on the track itself (like the Events
    carousel) rather than a fixed frame height, since single-image robots
    render no frame at all. */
-.robot-media .carousel-frame { height: clamp(230px, 32vw, 360px); }
+.robot-media .carousel-frame { height: clamp(200px, 32vw, 300px); }
 .carousel--robot .carousel-nav { top: 50%; }
 
 .robot-info { display: flex; flex-direction: column; gap: clamp(20px, 2.6vw, 28px); }
