@@ -39,9 +39,13 @@
   /* ---- nav ------------------------------------------------- */
 
   // Nav is shared between index.html (a one-pager, so most items are
-  // #hash anchors) and any standalone page like resources.html (which
-  // needs those same anchors qualified back to "index.html#id", and
-  // points at itself directly rather than by hash).
+  // #hash anchors) and any standalone page like resources.html or
+  // robots.html (which need those same anchors qualified back to
+  // "index.html#id", and point at themselves directly rather than by
+  // hash). Add a standalone page by giving it a nav.id here and a
+  // matching #<id>-page container in boot() — no other nav change needed.
+  var PAGE_ROUTES = { resources: 'resources.html', robots: 'robots.html' };
+
   // External-link icon (opens-in-new-tab), same icon as the binder site's
   // CAD link — see ../koalafied-design-system. Reused everywhere a link
   // leaves the site (nav, hero CTA, resources page) instead of a "→".
@@ -49,30 +53,32 @@
     '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
     '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
 
-  function renderNav(isResourcesPage) {
+  // `currentPage` is null on index.html, or the nav id of the standalone
+  // page currently showing (e.g. "resources", "robots").
+  function renderNav(currentPage) {
     var t = C.team;
     var prevSpecial = false;
     var links = C.nav.map(function (n) {
-      var isPageLink = n.id === 'resources';
+      var isPageLink = PAGE_ROUTES.hasOwnProperty(n.id);
       var isExternal = !isPageLink && !!n.href;
       var isSpecial = isPageLink || isExternal;
       var href = isPageLink
-        ? 'resources.html'
+        ? PAGE_ROUTES[n.id]
         : isExternal
           ? n.href
-          : (isResourcesPage ? 'index.html#' + n.id : '#' + n.id);
+          : (currentPage ? 'index.html#' + n.id : '#' + n.id);
       var cls = [
         isSpecial ? 'nav-page' : '',
         // Only the first item after the anchors gets the separating rule —
-        // Resources and any external link (like the current binder) sit
-        // in the same trailing group.
+        // standalone pages and any external link (like the current binder)
+        // sit in the same trailing group.
         isSpecial && !prevSpecial ? 'nav-group-start' : '',
-        isResourcesPage && isPageLink ? 'is-active' : ''
+        isPageLink && n.id === currentPage ? 'is-active' : ''
       ].join(' ').trim();
       prevSpecial = isSpecial;
       // The corner-arrow icon is reserved for genuine external links —
-      // Resources is an internal page jump, so it gets no icon, just the
-      // separating rule via .nav-group-start.
+      // standalone pages are an internal page jump, so they get no icon,
+      // just the separating rule via .nav-group-start.
       var attrs = isExternal ? ' target="_blank" rel="noopener"' : '';
       var icon = isExternal ? EXTERNAL_ICON : '';
       return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + cls + '"' + attrs + '>' + esc(n.label) + icon + '</a>';
@@ -81,7 +87,7 @@
     return el(
       '<header class="nav">' +
         '<div class="nav-in wrap">' +
-          '<a class="wordmark" href="' + (isResourcesPage ? 'index.html' : '#top') + '">' +
+          '<a class="wordmark" href="' + (currentPage ? 'index.html' : '#top') + '">' +
             (t.logo ? '<img class="wordmark-mark" src="' + esc(t.logo) + '" alt="">' : '') +
             '<span class="wordmark-a">' + esc(t.number) + '</span>' +
             '<span class="wordmark-b">' + esc(t.name) + '</span>' +
@@ -307,6 +313,79 @@
       '</div></section>';
   }
 
+  /* ---- robots page ----------------------------------------------- */
+
+  // One result card per event — shared between a robot's `official` and
+  // `offseason` lists. Reuses the same icon-tag treatment as the About
+  // section's event cards, plus an alliance-partner line underneath.
+  function robotResultCard(ev) {
+    var tags = (ev.titles || []).map(function (t) {
+      return '<span class="event-tag">' + eventIcon(t) + esc(t) + '</span>';
+    }).join('');
+    var sub = ev.sub ? '<p class="event-sub">' + esc(ev.sub) + '</p>' : '';
+    var alliance = (ev.alliance && ev.alliance.length)
+      ? '<div class="event-alliance"><strong>Alliance:</strong> ' + ev.alliance.map(esc).join(', ') + '</div>'
+      : '';
+    return '<div class="card event-card">' +
+      '<h4>' + esc(ev.event) + '</h4>' +
+      sub +
+      '<div class="event-tags">' + tags + '</div>' +
+      alliance +
+    '</div>';
+  }
+
+  function renderRobots() {
+    var r = C.robots;
+
+    var entries = (r.items || []).map(function (bot, i) {
+      var images = (bot.images || []).map(function (img) {
+        return '<div class="carousel-item">' +
+          '<div class="carousel-frame"><img src="' + esc(img.src) + '" alt="' + esc(img.alt) + '" loading="lazy"></div>' +
+        '</div>';
+      }).join('');
+      var gallery = images
+        ? '<figure class="carousel carousel--robot" data-carousel="robot-' + i + '">' +
+            '<div class="carousel-track">' + images + '</div>' +
+            carouselArrow(-1, 'Previous photo') + carouselArrow(1, 'Next photo') +
+          '</figure>'
+        : '';
+
+      var official = (bot.official || []).map(robotResultCard).join('');
+      var offseason = (bot.offseason || []).map(robotResultCard).join('');
+
+      return '<article class="robot-entry">' +
+        '<div class="robot-media">' +
+          '<h3 class="robot-name">' + esc(bot.name) + '</h3>' +
+          gallery +
+        '</div>' +
+        '<div class="robot-info">' +
+          '<div class="robot-block">' +
+            '<h4 class="block-label">Competed in</h4>' +
+            '<p class="robot-season">' + esc(bot.season) + '</p>' +
+          '</div>' +
+          '<div class="robot-block">' +
+            '<h4 class="block-label">What it does</h4>' +
+            '<p class="robot-summary">' + esc(bot.summary) + '</p>' +
+          '</div>' +
+          (official ? '<div class="robot-block">' +
+            '<h4 class="block-label">Official results</h4>' +
+            '<div class="cards robot-results">' + official + '</div>' +
+          '</div>' : '') +
+          (offseason ? '<div class="robot-block">' +
+            '<h4 class="block-label">Offseason results</h4>' +
+            '<div class="cards robot-results">' + offseason + '</div>' +
+          '</div>' : '') +
+        '</div>' +
+      '</article>';
+    }).join('');
+
+    return '<section class="sec" id="robots-top" style="border-top:none;"><div class="wrap">' +
+        '<h1 class="sec-title">' + esc(r.title) + '</h1>' +
+        '<p class="sec-thesis">' + esc(r.thesis) + '</p>' +
+        '<div class="robot-list">' + entries + '</div>' +
+      '</div></section>';
+  }
+
   /* ---- interactions ------------------------------------------ */
 
   function wireCarousels(root) {
@@ -452,10 +531,14 @@
 
     var main = document.getElementById('site');
     var resourcesPage = document.getElementById('resources-page');
-    var isResourcesPage = !!resourcesPage;
+    var robotsPage = document.getElementById('robots-page');
+    // Add a future standalone page here (and to PAGE_ROUTES above) by
+    // extending this chain — whichever container is present wins.
+    var currentPage = resourcesPage ? 'resources' : (robotsPage ? 'robots' : null);
+    var pageTitles = { resources: 'Resources — ', robots: 'Our Robots — ' };
 
-    document.title = (isResourcesPage ? 'Resources — ' : '') + C.team.name + ' — Team ' + C.team.number;
-    document.body.insertBefore(renderNav(isResourcesPage), document.body.firstChild);
+    document.title = (pageTitles[currentPage] || '') + C.team.name + ' — Team ' + C.team.number;
+    document.body.insertBefore(renderNav(currentPage), document.body.firstChild);
     wireNavToggle();
 
     if (main) {
@@ -470,6 +553,9 @@
     if (resourcesPage) {
       resourcesPage.innerHTML = renderResources();
     }
+    if (robotsPage) {
+      robotsPage.innerHTML = renderRobots();
+    }
 
     var social = (C.team.social || []).map(function (s) {
       return '<a href="' + esc(s.href) + '" target="_blank" rel="noopener">' + esc(s.label) + '</a>';
@@ -482,11 +568,14 @@
         social +
       '</span>';
 
-    if (main) {
-      wireCarousels(main);
-      wireLightbox(main);
-      wireScrollSpy();
+    // Carousels/lightbox apply to whichever page actually rendered content;
+    // scroll-spy is index.html-only since it tracks in-page #anchors.
+    var contentRoot = main || robotsPage;
+    if (contentRoot) {
+      wireCarousels(contentRoot);
+      wireLightbox(contentRoot);
     }
+    if (main) wireScrollSpy();
   }
 
   if (document.readyState === 'loading') {
