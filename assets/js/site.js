@@ -362,10 +362,15 @@
       var offseason = (bot.offseason || []).map(function (ev) { return robotResultCard(ev, false); });
       var competitions = official.concat(offseason).join('');
 
+      var links = (bot.links || []).map(function (l) {
+        return '<a class="card-go" href="' + esc(l.href) + '" target="_blank" rel="noopener">' + esc(l.label) + EXTERNAL_ICON + '</a>';
+      }).join('');
+
       return '<article class="robot-entry">' +
         '<div class="robot-media">' +
           '<h3 class="robot-name">' + esc(bot.name) + '</h3>' +
           gallery +
+          (links ? '<div class="card-links robot-links">' + links + '</div>' : '') +
         '</div>' +
         '<div class="robot-info">' +
           '<div class="robot-block">' +

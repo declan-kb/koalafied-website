@@ -133,6 +133,11 @@ window.SITE_CONTENT = {
   // {event, sub, titles} shape as about.events, plus an `alliance` list of
   // the partner teams for that event.
   //
+  // `links` is optional — a plain {label, href} list of anywhere else to
+  // read more about this robot (CAD, its Blue Alliance team-season page,
+  // a tech binder site, design docs, ...). Leave it off, or use an empty
+  // array, for a robot with nothing to link to. Blue Alliance team-season
+  // URLs look like https://www.thebluealliance.com/team/6996/2026.
 
   robots: {
     title: "Our Robots",
@@ -148,6 +153,11 @@ window.SITE_CONTENT = {
           { src: "assets/img/robots/2026/starting.jpg", alt: "Lemon Launcher (V1 spec) before a match pictured alongside an alliance partner at the 2026 Southern Cross Regional" }        
         ],
         summary: "Intakes fuel from the ground, shoots fuel with a variable hood turreted shooter and performs a climb to L1 in both auto and teleop.",
+        links: [
+          { label: "Onshape", href: "https://cad.onshape.com/documents/f777e2d9e964fbf60835e3da/w/235a7544344677d127d5777e/e/62d9f4aee1b8ab6f94113ccb" },
+          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2026" },
+          { label: "Tech Binder", href: "https://2026.teamkoalafied.com" }
+        ],
         official: [
           { event: "2026 Southern Cross Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 4", "Excellence in Engineering Award", "2nd Place", "Qualified for FIRST Championship", "Alliance Captain"],
@@ -169,6 +179,10 @@ window.SITE_CONTENT = {
           { src: "assets/img/robots/2025/score.jpg", alt: "Locked In scoring a coral on Level 4 at the 2025 Southern Cross Regional" }
         ],
         summary: "Retrieves coral from the coral station, scores coral on all levels, and performs a deep climb under the barge.",
+        links: [
+          { label: "Onshape", href: "https://cad.onshape.com/documents/102a531f9f12f2de5a27c2c0/v/ef274877a9ed6af3e292f405/e/23f5a1bc9ff04b58a115f348" },
+          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2025" }
+        ],
         official: [
           { event: "2025 Southern Cross Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 3", "Excellence in Engineering Award", "2nd Place", "Qualified for FIRST Championship", "Alliance Captain"],
@@ -190,6 +204,9 @@ window.SITE_CONTENT = {
           { src: "assets/img/robots/unk25-26/unk26.jpg", alt: "Unk (2026 spec) defending during a match at the 2025 Melbourne Robotics Tournament" }
         ],
         summary: "Uses fixed-arm coral scorer to score in Level 1, and performs a deep climb in REEFSCAPE. Drivebase only robot for defense and passing fuel to human players in REBUILT.",
+        links: [
+          { label: "Onshape", href: "https://cad.onshape.com/documents/c6aa7cca3688b1b28fb8df62/w/a340963050603817736e33c1/e/c595ba8ef762207db832ccad" }
+        ],
         official: [],
         offseason: [
           { event: "2025 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
@@ -207,6 +224,10 @@ window.SITE_CONTENT = {
           { src: "assets/img/robots/10-32.jpg", full: "assets/img/robots/10-32-full.jpg", alt: "#10-32 on the field" }
         ],
         summary: "Under-bumper note intake feeding a pivoting shooter, with a single-stage climb hook.",
+        links: [
+          { label: "Onshape", href: "https://cad.onshape.com/documents/f766febc8e90c6595c502360/v/b26d0f4082e8170b1287d16a/e/600ed28dccf6c49ac9d2fe31" },
+          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2024" }
+        ],
         official: [],
         offseason: []
       },
@@ -217,6 +238,11 @@ window.SITE_CONTENT = {
           { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
         ],
         summary: "Cube/cone dual-game-piece arm on a tank drive base, built for the 2023 AUSC and MRT events.",
+        links: [
+          { label: "Onshape(AUSC)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/v/fabf0b2e8591f270ea97c5c4/e/9278ef3a8d123b33cdecc197" },
+          { label: "Onshape (MRT)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/w/9fce9eb2fa7de646e453ab5d/e/9278ef3a8d123b33cdecc197" },
+          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2023" }
+        ],
         official: [],
         offseason: []
       },
@@ -227,6 +253,11 @@ window.SITE_CONTENT = {
           { src: "assets/img/robots/terrance.jpg", full: "assets/img/robots/terrance-full.jpg", alt: "Terrance on the field" }
         ],
         summary: "Cargo-shooting turret with a hooded flywheel and a low-profile intake.",
+        links: [
+          { label: "Onshape", href: "https://cad.onshape.com/documents/910e9a18fff81f80b3abc55a/w/8ad7f0ddf213a39ad8e854ea/e/ab8ae5589140f22ccd0b1332" },
+          { label: "Design Doc (PDF)", href: "https://www.chiefdelphi.com/uploads/short-url/mAkm3d8cyBXEPry1zg2KFUno75c.pdf" },
+          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2022" }
+        ],
         official: [],
         offseason: []
       }
@@ -253,39 +284,39 @@ window.SITE_CONTENT = {
         {
           season: "2026 Rebuilt", robot: "Lemon Launcher",
           links: [
-            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/f777e2d9e964fbf60835e3da/w/235a7544344677d127d5777e/e/62d9f4aee1b8ab6f94113ccb" }
+            { label: "Onshape", href: "https://cad.onshape.com/documents/f777e2d9e964fbf60835e3da/w/235a7544344677d127d5777e/e/62d9f4aee1b8ab6f94113ccb" }
           ]
         },
         {
           season: "2025 Reefscape", robot: "Unk",
           links: [
-            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/c6aa7cca3688b1b28fb8df62/w/a340963050603817736e33c1/e/c595ba8ef762207db832ccad" }
+            { label: "Onshape", href: "https://cad.onshape.com/documents/c6aa7cca3688b1b28fb8df62/w/a340963050603817736e33c1/e/c595ba8ef762207db832ccad" }
           ]
         },
         {
           season: "2025 Reefscape", robot: "Locked In",
           links: [
-            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/102a531f9f12f2de5a27c2c0/v/ef274877a9ed6af3e292f405/e/23f5a1bc9ff04b58a115f348" }
+            { label: "Onshape", href: "https://cad.onshape.com/documents/102a531f9f12f2de5a27c2c0/v/ef274877a9ed6af3e292f405/e/23f5a1bc9ff04b58a115f348" }
           ]
         },
         {
           season: "2024 Crescendo", robot: "#10-32",
           links: [
-            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/f766febc8e90c6595c502360/v/b26d0f4082e8170b1287d16a/e/600ed28dccf6c49ac9d2fe31" }
+            { label: "Onshape", href: "https://cad.onshape.com/documents/f766febc8e90c6595c502360/v/b26d0f4082e8170b1287d16a/e/600ed28dccf6c49ac9d2fe31" }
           ]
         },
         {
           season: "2023 Charged Up", robot: "Borzoi",
           links: [
-            { label: "Onshape CAD (AUSC 2023)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/v/fabf0b2e8591f270ea97c5c4/e/9278ef3a8d123b33cdecc197" },
-            { label: "Onshape CAD (MRT 2023)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/w/9fce9eb2fa7de646e453ab5d/e/9278ef3a8d123b33cdecc197" }
+            { label: "Onshape (AUSC)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/v/fabf0b2e8591f270ea97c5c4/e/9278ef3a8d123b33cdecc197" },
+            { label: "Onshape (MRT)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/w/9fce9eb2fa7de646e453ab5d/e/9278ef3a8d123b33cdecc197" }
           ]
         },
         {
           season: "2022 Rapid React", robot: "Terrance",
           links: [
-            { label: "Onshape CAD", href: "https://cad.onshape.com/documents/910e9a18fff81f80b3abc55a/w/8ad7f0ddf213a39ad8e854ea/e/ab8ae5589140f22ccd0b1332" },
-            { label: "Design Documentation (PDF)", href: "https://www.chiefdelphi.com/uploads/short-url/mAkm3d8cyBXEPry1zg2KFUno75c.pdf" }
+            { label: "Onshape", href: "https://cad.onshape.com/documents/910e9a18fff81f80b3abc55a/w/8ad7f0ddf213a39ad8e854ea/e/ab8ae5589140f22ccd0b1332" },
+            { label: "Design Doc (PDF)", href: "https://www.chiefdelphi.com/uploads/short-url/mAkm3d8cyBXEPry1zg2KFUno75c.pdf" }
           ]
         }
       ]

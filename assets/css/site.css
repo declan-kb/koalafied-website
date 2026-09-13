@@ -372,6 +372,12 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .robot-season { font-size: 15px; color: var(--ink-2); font-weight: 500; }
 .robot-summary { color: var(--ink-2); font-size: 14.5px; line-height: 1.6; max-width: var(--measure); }
 
+/* CAD / Blue Alliance / tech binder links — same row-of-buttons treatment
+   as the CAD season links on the Resources page (.cad-row-links). Sits
+   under the photo gallery rather than in the info column, since these are
+   "more about this robot" links rather than page content of their own. */
+.robot-links.card-links { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
 /* Official vs offseason badge — Competitions combines both result lists
    under one heading, so this small tag on each card is what keeps that
    distinction visible instead of a second heading. */
