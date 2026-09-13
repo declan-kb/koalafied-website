@@ -344,8 +344,9 @@
 
     var entries = (r.items || []).map(function (bot, i) {
       var images = (bot.images || []).map(function (img) {
+        var full = img.full ? ' data-full="' + esc(img.full) + '"' : '';
         return '<div class="carousel-item">' +
-          '<div class="carousel-frame"><img src="' + esc(img.src) + '" alt="' + esc(img.alt) + '" loading="lazy"></div>' +
+          '<div class="carousel-frame"><img src="' + esc(img.src) + '" alt="' + esc(img.alt) + '" loading="lazy"' + full + '></div>' +
         '</div>';
       }).join('');
       var gallery = images
@@ -445,7 +446,7 @@
 
     function open(src) {
       opener = document.activeElement;
-      img.src = src.currentSrc || src.src;
+      img.src = src.dataset.full || src.currentSrc || src.src;
       img.alt = src.alt || '';
       cap.innerHTML = captionFor(src);
       box.hidden = false;

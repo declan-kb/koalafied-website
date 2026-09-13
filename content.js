@@ -116,6 +116,7 @@ window.SITE_CONTENT = {
       { title: "Programming", desc: "Writing and fine-tuning robot code, designing autonomous paths." },
       { title: "CAD", desc: "3D-modelling components and full robots before they're built." },
       { title: "Prototyping", desc: "Turning an idea into a working mechanism, fast." },
+      { title: "Electrical", desc: "Wiring all of the robots mechanisms, bringing the robot to life." },
       { title: "Woodwork", desc: "Producing large field elements for each year's game." },
       { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
       { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
@@ -202,7 +203,7 @@ window.SITE_CONTENT = {
         name: "#10-32",
         season: "2024 Crescendo presented by Haas",
         images: [
-          { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" }
+          { src: "assets/img/robots/10-32.jpg", full: "assets/img/robots/10-32-full.jpg", alt: "#10-32 on the field" }
         ],
         summary: "Under-bumper note intake feeding a pivoting shooter, with a single-stage climb hook.",
         official: [],
@@ -211,7 +212,9 @@ window.SITE_CONTENT = {
       {
         name: "Borzoi",
         season: "2023 Charged Up",
-        images: [],
+        images: [
+          { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
+        ],
         summary: "Cube/cone dual-game-piece arm on a tank drive base, built for the 2023 AUSC and MRT events.",
         official: [],
         offseason: []
@@ -219,7 +222,9 @@ window.SITE_CONTENT = {
       {
         name: "Terrance",
         season: "2022 Rapid React",
-        images: [],
+        images: [
+          { src: "assets/img/robots/terrance.jpg", full: "assets/img/robots/terrance-full.jpg", alt: "Terrance on the field" }
+        ],
         summary: "Cargo-shooting turret with a hooded flywheel and a low-profile intake.",
         official: [],
         offseason: []
