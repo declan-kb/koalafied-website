@@ -32,7 +32,7 @@ window.SITE_CONTENT = {
     { id: "gallery", label: "Gallery" },
     { id: "robots", label: "Robots" },
     { id: "resources", label: "Resources" },
-    { id: "page3", label: "Page 3"},   // idk if this will work lol
+   // { id: "page3", label: "Page 3"},   // idk if this will work lol (it worked, but no button)
     { id: "binder", label: "2026 Binder", href: "https://2026.teamkoalafied.com" }
   ],
 
