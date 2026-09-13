@@ -143,8 +143,7 @@ window.SITE_CONTENT = {
         name: "Lemon Launcher",
         season: "2026 Rebuilt",
         images: [
-          { src: "assets/img/robots/lemon-launcher-1.jpg", alt: "Lemon Launcher, front view" },
-          { src: "assets/img/robots/lemon-launcher-2.jpg", alt: "Lemon Launcher on the field" }
+          { src: "assets/img/robots/lemon-launcher.jpg", full: "assets/img/robots/lemon-launcher-full.jpg", alt: "Lemon Launcher on the field" }
         ],
         summary: "Swerve drive base with a dual-flywheel launcher, an over-the-bumper intake, and a telescoping climb arm.",
         official: [
@@ -162,7 +161,7 @@ window.SITE_CONTENT = {
         name: "Locked In",
         season: "2025 Reefscape",
         images: [
-          { src: "assets/img/gallery-2024-scr-team-photo.jpg", alt: "Team photo with the robot 'Locked In' and awards" }
+          { src: "assets/img/robots/locked-in.jpg", full: "assets/img/robots/locked-in-full.jpg", alt: "Locked In on the field" }
         ],
         summary: "Coral-scoring arm with a ground-intake and algae remover, built around a swerve drive base.",
         official: [
@@ -183,7 +182,7 @@ window.SITE_CONTENT = {
         name: "Unk",
         season: "2025 Reefscape",
         images: [
-          { src: "assets/img/gallery-2025-champs-waiting.jpg", alt: "Team members in the pit area among many other teams" }
+          { src: "assets/img/robots/unk.jpg", full: "assets/img/robots/unk-full.jpg", alt: "Unk on the field" }
         ],
         summary: "Our second 2025 chassis — a fixed-arm coral scorer used for offseason and practice matches.",
         official: [],
@@ -197,7 +196,7 @@ window.SITE_CONTENT = {
         name: "#10-32",
         season: "2024 Crescendo",
         images: [
-          { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" }
+          { src: "assets/img/robots/10-32.jpg", full: "assets/img/robots/10-32-full.jpg", alt: "#10-32 on the field" }
         ],
         summary: "Under-bumper note intake feeding a pivoting shooter, with a single-stage climb hook.",
         official: [],
@@ -206,7 +205,9 @@ window.SITE_CONTENT = {
       {
         name: "Borzoi",
         season: "2023 Charged Up",
-        images: [],
+        images: [
+          { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
+        ],
         summary: "Cube/cone dual-game-piece arm on a tank drive base, built for the 2023 AUSC and MRT events.",
         official: [],
         offseason: []
@@ -214,7 +215,9 @@ window.SITE_CONTENT = {
       {
         name: "Terrance",
         season: "2022 Rapid React",
-        images: [],
+        images: [
+          { src: "assets/img/robots/terrance.jpg", full: "assets/img/robots/terrance-full.jpg", alt: "Terrance on the field" }
+        ],
         summary: "Cargo-shooting turret with a hooded flywheel and a low-profile intake.",
         official: [],
         offseason: []
