@@ -13,7 +13,7 @@ window.SITE_CONTENT = {
 
   team: {
     number: "6996",
-    name: "Koalafied",
+    name: "Team Koalafied",
     tagline: "The only school-based FRC team in South Australia.",
     accent: "#0a7770",
     logo: "assets/img/logo.svg",
@@ -69,8 +69,8 @@ window.SITE_CONTENT = {
   gallery: {
     thesis: "A season in photos.",
     items: [
-      { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match", caption: "Driver station, Southern Cross Regional 2024" },
-      { src: "assets/img/gallery-2024-scr-team-photo.jpg", alt: "Team photo with the robot 'Locked In' and awards", caption: "Team photo with 'Locked In'" },
+      { src: "assets/img/gallery-2023-scr-driver-station.jpg", alt: "Two students at the driver station during a match", caption: "Driver station, Southern Cross Regional 2023" },
+      { src: "assets/img/gallery-2025-scr-team-photo.jpg", alt: "Team photo with the robot 'Locked In' and awards", caption: "Team photo with 'Locked In'" },
       { src: "assets/img/gallery-2025-champs-waiting.jpg", alt: "Team members in the pit area among many other teams", caption: "Waiting for a match, FIRST Championship 2025" },
       { src: "assets/img/gallery-2025-champs-team-photo.jpg", alt: "Full team photo at the FIRST Championship venue", caption: "Team photo, FIRST Championship 2025" },
       { src: "assets/img/gallery-2026-scr-team-photo.jpg", alt: "Team photo with the robot 'Lemon Launcher'", caption: "Team photo, Southern Cross Regional 2026" }
@@ -110,7 +110,7 @@ window.SITE_CONTENT = {
   join: {
     thesis: "We're currently looking for new students for the 2027 season, starting in January. We're all chill and welcome anyone at all interested in the areas below. No experience required: we teach everything on the team.",
     schedule: "During build season (early January through to our March competition in Sydney) we meet several times per week. The rest of the year we meet less often, to prepare for extra competitions, improve the robot, and pick up new skills.",
-    photo: { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" },
+    photo: { src: "assets/img/gallery-2023-scr-driver-station.jpg", alt: "Two students at the driver station during a match" },
     areas: [
       { title: "Mechanical", desc: "Assembling robots and fabricating parts on drills, lathes, CNC routers, rivet guns, and more." },
       { title: "Programming", desc: "Writing and fine-tuning robot code, designing autonomous paths." },
@@ -131,71 +131,76 @@ window.SITE_CONTENT = {
   // {event, sub, titles} shape as about.events, plus an `alliance` list of
   // the partner teams for that event.
   //
-  // PLACEHOLDER DATA: alliance partners below are examples only — swap in
-  // your real alliance picks/partners per event. The 2022–2024 robots have
-  // empty official/offseason arrays since that event-level detail isn't
-  // tracked elsewhere in this file yet; add it the same way once you have it.
+
   robots: {
     title: "Our Robots",
-    thesis: "Every robot we've built, season by season — from bumper to code.",
+    thesis: "Competing since in the FIRST® Robotics Competiton since 2018, Team Koalafied have built a wide range of robots. Designed and built from scratch each year, they complete a unique game objective each year.",
     items: [
       {
         name: "Lemon Launcher",
-        season: "2026 Rebuilt",
+        season: "2026 REBUILT presented by Haas",
         images: [
-          { src: "assets/img/robots/lemon-launcher-1.jpg", alt: "Lemon Launcher, front view" },
-          { src: "assets/img/robots/lemon-launcher-2.jpg", alt: "Lemon Launcher on the field" }
+          { src: "assets/img/robots/2026/cover.jpg", alt: "Lemon Launcher (V1 spec) shooting fuel during the teleoperated period at the 2026 Southern Cross Regional" },
+          { src: "assets/img/robots/2026/shooting1.jpg", alt: "Lemon Launcher (V1 spec) shooting fuel during the autonomous control period at the 2026 Southern Cross Regional" },
+          { src: "assets/img/robots/2026/climb.jpg", alt: "Lemon Launcher (V2 spec) performing a climb during the autonomous control period at the 2026 Melbourne Robotics Tournament" },
+          { src: "assets/img/robots/2026/starting.jpg", alt: "Lemon Launcher (V1 spec) before a match pictured alongside an alliance partner at the 2026 Southern Cross Regional" }        
         ],
-        summary: "Swerve drive base with a dual-flywheel launcher, an over-the-bumper intake, and a telescoping climb arm.",
+        summary: "Intakes fuel from the ground, shoots fuel with a variable hood turreted shooter and performs a climb to L1 in both auto and teleop.",
         official: [
-          { event: "Southern Cross Regional 2026", sub: "Sydney, Australia",
-            titles: ["Qual Rank 4", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"],
-            alliance: ["Team 1234 — Example Robotics", "Team 5678 — Example Squad"] }
+          { event: "2026 Southern Cross Regional", sub: "Sydney, Australia",
+            titles: ["Qualification Rank 4", "Excellence in Engineering Award", "2nd Place", "Qualified for FIRST Championship", "Alliance Captain"],
+            alliance: ["Team 6510 — Pymble Pride", "Team 4774 — The Drop Bears", "Team 7583 — Embers"] }
         ],
         offseason: [
-          { event: "Melbourne Robotics Tournament 2026", sub: "Melbourne, Australia",
-            titles: ["Qual Rank 6", "Competed with two robots", "Excellence in Robot Design", "2nd Place"],
-            alliance: ["Team 9999 — Example Bots"] }
+          { event: "2026 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
+            titles: ["Qualification Rank 6", "Excellence in Robot Design Award", "2nd Place"],
+            alliance: ["Team 5584 — IC Robotics", "Team 9991 — Blackburn Burnouts 2"] }
         ]
       },
       {
         name: "Locked In",
-        season: "2025 Reefscape",
+        season: "2025 REEFSCAPE presented by Haas",
         images: [
-          { src: "assets/img/gallery-2024-scr-team-photo.jpg", alt: "Team photo with the robot 'Locked In' and awards" }
+          { src: "assets/img/robots/2025/cycle.jpg", alt: "Locked In preparing to score at a match at the 2025 Southern Cross Regional" },
+          { src: "assets/img/robots/2025/award.jpg", alt: "The team with Locked In receiving the Finalist Award at the 2025 Southern Cross Regional" },
+          { src: "assets/img/robots/2025/climb.jpg", alt: "Locked In performing a triple deep climb with alliance partners at the 2025 Southern Cross Regional" },
+          { src: "assets/img/robots/2025/score.jpg", alt: "Locked In scoring a coral on Level 4 at the 2025 Southern Cross Regional" }
         ],
-        summary: "Coral-scoring arm with a ground-intake and algae remover, built around a swerve drive base.",
+        summary: "Retrieves coral from the coral station, scores coral on all levels, and performs a deep climb under the barge.",
         official: [
-          { event: "Southern Cross Regional 2025", sub: "Sydney, Australia",
-            titles: ["Qual Rank 3", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"],
-            alliance: ["Team 2468 — Example Robotics"] },
-          { event: "FIRST Championship: Newton Division 2025", sub: "Houston, USA",
-            titles: ["Qual Rank 18"],
-            alliance: ["Team 1357 — Example Alliance", "Team 8642 — Example Team"] }
+          { event: "2025 Southern Cross Regional", sub: "Sydney, Australia",
+            titles: ["Qualification Rank 3", "Excellence in Engineering Award", "2nd Place", "Qualified for FIRST Championship", "Alliance Captain"],
+            alliance: ["Team 7433 — Iona Fusion", "Team 4729 — EMU Robotics"] },
+          { event: "2025 FIRST Championship: Newton Division", sub: "Houston, USA",
+            titles: ["Qualification Rank 18"], }
         ],
         offseason: [
-          { event: "Melbourne Robotics Tournament 2025", sub: "Melbourne, Australia",
-            titles: ["Qual Rank 4 and 13", "Competed with two robots", "3rd Place"],
-            alliance: ["Team 3691 — Example Bots"] }
+          { event: "2025 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
+            titles: ["Qualification Rank 13", "3rd Place"],
+            alliance: ["Team 9976 — Unkoalafied", "Team 9993", "Team 9999"] }
         ]
       },
       {
-        name: "Unk",
-        season: "2025 Reefscape",
+        name: "Unk (Unkoalafied)",
+        season: "2025 REEFSCAPE presented by Haas (Offseason) & 2026 REBUILT presented by Haas (Offseason)",
         images: [
-          { src: "assets/img/gallery-2025-champs-waiting.jpg", alt: "Team members in the pit area among many other teams" }
+          { src: "assets/img/robots/unk25-26/unk25.jpg", alt: "Unk (2025 spec) before a match at the 2025 Melbourne Robotics Tournament" },
+          { src: "assets/img/robots/unk25-26/unk26.jpg", alt: "Unk (2026 spec) defending during a match at the 2025 Melbourne Robotics Tournament" }
         ],
-        summary: "Our second 2025 chassis — a fixed-arm coral scorer used for offseason and practice matches.",
+        summary: "Uses fixed-arm coral scorer to score in Level 1, and performs a deep climb in REEFSCAPE. Drivebase only robot for defense and passing fuel to human players in REBUILT.",
         official: [],
         offseason: [
-          { event: "Melbourne Robotics Tournament 2025", sub: "Melbourne, Australia",
-            titles: ["Qual Rank 4 and 13", "Competed with two robots", "3rd Place"],
-            alliance: ["Team 3691 — Example Bots"] }
+          { event: "2025 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
+            titles: ["Qualification Rank 4", "3rd Place", "Alliance Captain"],
+            alliance: ["Team 6996 — Koalafied", "Team 9993", "Team 9999"] },
+          { event: "2026 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
+            titles: ["Qualification Rank 7", "5th Place", "Alliance Captain"],
+            alliance: ["Team 7128 — XLR8", "Team 7583 — Embers"] }
         ]
       },
       {
         name: "#10-32",
-        season: "2024 Crescendo",
+        season: "2024 Crescendo presented by Haas",
         images: [
           { src: "assets/img/gallery-2024-scr-driver-station.jpg", alt: "Two students at the driver station during a match" }
         ],

@@ -315,10 +315,12 @@
 
   /* ---- robots page ----------------------------------------------- */
 
-  // One result card per event — shared between a robot's `official` and
-  // `offseason` lists. Reuses the same icon-tag treatment as the About
-  // section's event cards, plus an alliance-partner line underneath.
-  function robotResultCard(ev) {
+  // One result card per event — shared across a robot's combined
+  // Competitions list. Reuses the same icon-tag treatment and series color
+  // coding as the About section's event cards, plus an alliance-partner
+  // line and an Official/Offseason badge underneath (since official and
+  // offseason results are no longer split into separate headings).
+  function robotResultCard(ev, isOfficial) {
     var tags = (ev.titles || []).map(function (t) {
       return '<span class="event-tag">' + eventIcon(t) + esc(t) + '</span>';
     }).join('');
@@ -326,7 +328,10 @@
     var alliance = (ev.alliance && ev.alliance.length)
       ? '<div class="event-alliance"><strong>Alliance:</strong> ' + ev.alliance.map(esc).join(', ') + '</div>'
       : '';
-    return '<div class="card event-card">' +
+    var kind = '<span class="event-kind event-kind--' + (isOfficial ? 'official' : 'offseason') + '">' +
+      (isOfficial ? 'Official' : 'Offseason') + '</span>';
+    return '<div class="card event-card event-card--' + eventSeries(ev.event) + '">' +
+      '<div class="event-card-head">' + kind + '</div>' +
       '<h4>' + esc(ev.event) + '</h4>' +
       sub +
       '<div class="event-tags">' + tags + '</div>' +
@@ -350,8 +355,9 @@
           '</figure>'
         : '';
 
-      var official = (bot.official || []).map(robotResultCard).join('');
-      var offseason = (bot.offseason || []).map(robotResultCard).join('');
+      var official = (bot.official || []).map(function (ev) { return robotResultCard(ev, true); });
+      var offseason = (bot.offseason || []).map(function (ev) { return robotResultCard(ev, false); });
+      var competitions = official.concat(offseason).join('');
 
       return '<article class="robot-entry">' +
         '<div class="robot-media">' +
@@ -367,13 +373,9 @@
             '<h4 class="block-label">What it does</h4>' +
             '<p class="robot-summary">' + esc(bot.summary) + '</p>' +
           '</div>' +
-          (official ? '<div class="robot-block">' +
-            '<h4 class="block-label">Official results</h4>' +
-            '<div class="cards robot-results">' + official + '</div>' +
-          '</div>' : '') +
-          (offseason ? '<div class="robot-block">' +
-            '<h4 class="block-label">Offseason results</h4>' +
-            '<div class="cards robot-results">' + offseason + '</div>' +
+          (competitions ? '<div class="robot-block">' +
+            '<h4 class="block-label">Competitions</h4>' +
+            '<div class="cards robot-results">' + competitions + '</div>' +
           '</div>' : '') +
         '</div>' +
       '</article>';

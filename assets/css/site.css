@@ -365,6 +365,17 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .robot-season { font-size: 15px; color: var(--ink-2); font-weight: 500; }
 .robot-summary { color: var(--ink-2); font-size: 14.5px; line-height: 1.6; max-width: var(--measure); }
 
+/* Official vs offseason badge — Competitions combines both result lists
+   under one heading, so this small tag on each card is what keeps that
+   distinction visible instead of a second heading. */
+.event-card-head { margin-bottom: 6px; }
+.event-kind {
+  font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.event-kind--official { color: var(--accent-2); }
+.event-kind--offseason { color: var(--ink-3); }
+
 /* Alliance partners sit inside the same event-card used elsewhere, set
    off from the result tags by a light dashed rule rather than a new card. */
 .event-alliance {
