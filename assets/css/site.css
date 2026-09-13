@@ -326,6 +326,11 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
    the same `flex` shorthand for photos) so this basis actually wins
    regardless of source order. */
 .carousel-item.carousel-item--events { flex: 0 0 clamp(180px, 20vw, 210px); }
+/* Robots page Competitions carousel reuses .carousel--events, but its cards
+   used to sit in a `.cards` grid (minmax(220px, 1fr)) before going
+   horizontal — keep that same width rather than the narrower About-page
+   event card. */
+.carousel-item.carousel-item--results { flex: 0 0 clamp(200px, 22vw, 260px); }
 .carousel--events .carousel-nav { top: 50%; }
 /* Cards vary a lot in height (1 vs 4 result tags) — without this, flex's
    default stretch pads every shorter card with blank space below it to

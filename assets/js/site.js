@@ -330,12 +330,14 @@
       : '';
     var kind = '<span class="event-kind event-kind--' + (isOfficial ? 'official' : 'offseason') + '">' +
       (isOfficial ? 'Official' : 'Offseason') + '</span>';
-    return '<div class="card event-card event-card--' + eventSeries(ev.event) + '">' +
-      '<div class="event-card-head">' + kind + '</div>' +
-      '<h4>' + esc(ev.event) + '</h4>' +
-      sub +
-      '<div class="event-tags">' + tags + '</div>' +
-      alliance +
+    return '<div class="carousel-item carousel-item--results">' +
+      '<div class="card event-card event-card--' + eventSeries(ev.event) + '">' +
+        '<div class="event-card-head">' + kind + '</div>' +
+        '<h4>' + esc(ev.event) + '</h4>' +
+        sub +
+        '<div class="event-tags">' + tags + '</div>' +
+        alliance +
+      '</div>' +
     '</div>';
   }
 
@@ -376,7 +378,10 @@
           '</div>' +
           (competitions ? '<div class="robot-block">' +
             '<h4 class="block-label">Competitions</h4>' +
-            '<div class="cards robot-results">' + competitions + '</div>' +
+            '<figure class="carousel carousel--events" data-carousel="robot-' + i + '-competitions" style="margin:12px 0 0;">' +
+              '<div class="carousel-track">' + competitions + '</div>' +
+              carouselArrow(-1, 'Previous competition') + carouselArrow(1, 'Next competition') +
+            '</figure>' +
           '</div>' : '') +
         '</div>' +
       '</article>';
