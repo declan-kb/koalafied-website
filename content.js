@@ -48,7 +48,7 @@ window.SITE_CONTENT = {
   },
 
   about: {
-    thesis: "Team Koalafied is a group of Pembroke School students and mentors competing in the FIRST® Robotics Competition since 2018. Every year, students design, build, test, and program a robot from scratch to compete against teams from around the world, meeting several times a week throughout build season. It's hands-on and multi-disciplinary: mechanical build, programming, electrical, CAD, prototyping, woodwork, and media all go into it.",
+    thesis: "Team Koalafied is a group of high school students from Pembroke School and mentors participating in the FIRST® Robotics Competition since 2018 in Adelaide, South Australia. Students design, build, test and program robots to compete from scratch based on each year's unique game challenge. The team currently consists of approximately 20 high school students and mentors, meeting regularly on weekends to build robots and develop skills.",
     photo: { src: "assets/img/gallery-2026-scr-team-photo.jpg", alt: "Team photo with the robot 'Lemon Launcher'" },
     // One card per event, reverse chronological (newest first) — rendered
     // as a horizontal carousel, see renderAbout() in site.js. `sub` is the
@@ -80,13 +80,13 @@ window.SITE_CONTENT = {
 
   // Text pulled and tightened from the old Google Sites Sponsorship page.
   sponsorship: {
-    title: "Our Sponsors",
-    thesis: "Robot parts, registration fees and new tools are all paid for by sponsors. Here's what that support actually buys, for the team and for you:",
+    title: "Our 2026 Sponsors",
+    thesis: "Robot parts, registration fees and new tools are all paid for by sponsors. Here's what that support actually buys, for the team and for sponsors:",
     points: [
       { title: "Robot budget", desc: "Motors, sensors, controllers, and the raw material to CNC machine custom parts" },
-      { title: "Competition & travel", desc: "Registration fees for our regional events and when we qualify, World Championships." },
-      { title: "Investing in STEM", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering." },
-      { title: "Visibility", desc: "Your logo is placed on the robot, the team shirts, and this site: seen by thousands of students, teachers, and industry judges at every event." }
+      { title: "Competition & travel", desc: "Registration fees for our regional events and when we qualify, the World Championships." },
+      { title: "Investing in STEM", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue careers in STEM fields." },
+      { title: "Visibility", desc: "Sponsor logos are placed on the robot, our team shirts, and this website. Seen by thousands of students, teachers, and professionals at every event, it brings visibility to companies and shows their support and investment in the future of STEM." }
     ]
   },
 
@@ -122,7 +122,7 @@ window.SITE_CONTENT = {
       { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
       { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
     ],
-    note: "And winning competitions. No promises."
+    note: "And maybe winning competitions. No promises."
   },
 
   // Rendered on its own page (robots.html), not on the index one-pager —
