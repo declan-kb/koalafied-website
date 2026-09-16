@@ -34,7 +34,7 @@ The team's general-purpose website
    }
    ```
 2. In `content.js`'s `nav` array, add `{ id: "yourid", label: "Your Label" }` so it shows up in the header.
-3. In `assets/js/site.js`, write a small `renderYourSection()` function that combines the existing blocks (`introRow`, `blockCardGrid`, `blockEventCarousel`, `blockImageCarousel`, `blockBulletPoints`, `blockSponsorTiers`) inside `renderSection('yourid', ...)`. Copy `renderJoin()` as a template.
+3. In `assets/js/site.js`, write a small `renderYourSection()` function that combines the existing blocks (`introRow`, `blockCardGrid`, `blockEventCarousel`, `blockImageCarousel`, `blockBulletPoints`) inside `renderSection('yourid', ...)`. Copy `renderJoin()` as a template. If your section needs something none of these cover (like Sponsors' tier grouping), write it directly in your render function rather than forcing it into a reusable block.
 4. Add `renderYourSection()` to the `main.innerHTML` chain in `boot()`.
 
 **New standalone page** (like Resources, Robots):

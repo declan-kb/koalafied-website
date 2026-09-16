@@ -287,11 +287,16 @@
     }).join('') + '</ul>';
   }
 
-  // Sponsor logos grouped into Platinum/Gold/Silver rows.
-  function blockSponsorTiers(sponsors) {
-    if (!Array.isArray(sponsors) || !sponsors.length) return '';
-    return SPONSOR_TIER_ORDER.map(function (tierName) {
-      var inTier = sponsors.filter(function (sp) { return sp.tier === tierName; });
+  function renderSponsors() {
+    if (!Array.isArray(C.sponsors) || !C.sponsors.length) return '';
+    var s = C.sponsorship || {};
+    var header =
+      (s.title ? '<h2 class="sec-title">' + esc(s.title) + '</h2>' : '') +
+      (s.thesis ? '<p class="sponsors-thesis">' + esc(s.thesis) + '</p>' : '');
+    // Sponsor logos grouped into Platinum/Gold/Silver rows — specific to
+    // this section (tier grouping/ordering), not a reusable block.
+    var tiers = SPONSOR_TIER_ORDER.map(function (tierName) {
+      var inTier = C.sponsors.filter(function (sp) { return sp.tier === tierName; });
       if (!inTier.length) return '';
       var row = inTier.map(function (sp) {
         return '<img class="sponsor-logo" src="' + esc(sp.logo) + '" alt="' + esc(sp.name) + '" loading="lazy">';
@@ -301,18 +306,10 @@
         '<div class="sponsors-row">' + row + '</div>' +
       '</div>';
     }).join('');
-  }
-
-  function renderSponsors() {
-    if (!Array.isArray(C.sponsors) || !C.sponsors.length) return '';
-    var s = C.sponsorship || {};
-    var header =
-      (s.title ? '<h2 class="sec-title">' + esc(s.title) + '</h2>' : '') +
-      (s.thesis ? '<p class="sponsors-thesis">' + esc(s.thesis) + '</p>' : '');
     return '<section class="sponsors wrap" id="sponsors">' +
       header +
       blockBulletPoints(s.points) +
-      blockSponsorTiers(C.sponsors) +
+      tiers +
     '</section>';
   }
 
