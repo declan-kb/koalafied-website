@@ -193,7 +193,7 @@ window.SITE_CONTENT = {
         ]
       },
       {
-        name: "Unkoalafied (AKA 'Unk')",
+        name: "UnKoalafied (aka 'Unk')",
         season: "2025 REEFSCAPE presented by Haas (Offseason) & 2026 REBUILT presented by Haas (Offseason)",
         images: [
           { src: "assets/img/robots/unk25-26/unk25.jpg", alt: "Unk (2025 spec) before a match at the 2025 Melbourne Robotics Tournament" },
@@ -293,7 +293,7 @@ window.SITE_CONTENT = {
         ]
       },
       {
-        name: "Poltergust 3000 (AKA 'CJ')",
+        name: "Poltergust 3000 (aka 'CJ')",
         season: "2019 Destination: Deep Space presented by Boeing",
         images: [
           { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
