@@ -171,50 +171,92 @@
     return '<div class="sec-cols two">' + (opts.photoFirst ? figure + intro : intro + figure) + '</div>';
   }
 
+  // ---- reusable content blocks --------------------------------
+  // Each section on the page is a header (via introRow, or a plain
+  // title+thesis pair) followed by zero or more of these blocks. Adding a
+  // new section is usually just a new content.js entry plus a couple of
+  // calls below — see renderAbout/renderGallery/renderSponsors/renderJoin
+  // for examples of composing them with renderSection().
+
+  // Wraps header + block HTML in the standard "<section class="sec">
+  // <div class="wrap">" shell shared by About, Gallery and Join.
+  function renderSection(id, innerHtml) {
+    return '<section class="sec" id="' + id + '"><div class="wrap">' + innerHtml + '</div></section>';
+  }
+
+  // The Recent Competitions carousel on About — result cards with icon
+  // tags, colored by event series. Deliberately specific to that shape
+  // (not a generic "card carousel") since event cards have their own
+  // icon/tag/series-color rules that don't apply to any other block.
+  function blockEventCarousel(events, heading, carouselId) {
+    if (!Array.isArray(events) || !events.length) return '';
+    var cards = events.map(function (ev) {
+      var tags = ev.titles.map(function (t) {
+        return '<span class="event-tag">' + eventIcon(t) + esc(t) + '</span>';
+      }).join('');
+      var sub = ev.sub ? '<p class="event-sub">' + esc(ev.sub) + '</p>' : '';
+      return '<div class="carousel-item carousel-item--events">' +
+        '<div class="card event-card event-card--' + eventSeries(ev.event) + '">' +
+          '<h4>' + esc(ev.event) + '</h4>' +
+          sub +
+          '<div class="event-tags">' + tags + '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    return '<h3 class="block-label" style="margin-top:clamp(24px,3vw,36px);">' + esc(heading) + '</h3>' +
+      '<figure class="carousel carousel--events" data-carousel="' + esc(carouselId || 'events') + '" style="margin:16px 0 0;">' +
+        '<div class="carousel-track">' + cards + '</div>' +
+        carouselArrow(-1, 'Previous event') + carouselArrow(1, 'Next event') +
+      '</figure>';
+  }
+
+  // A photo carousel — used by Gallery and the Robots page. `opts.margin`
+  // lets a caller override the inline margin-top (Gallery's top-level use
+  // needs more breathing room than Robots' nested one). Captions
+  // (Gallery) and lightbox `full` zoom targets (Robots) are both optional
+  // per-item, since neither section uses both.
+  function blockImageCarousel(items, carouselId, opts) {
+    opts = opts || {};
+    if (!Array.isArray(items) || !items.length) return '';
+    var frames = items.map(function (it) {
+      var full = it.full ? ' data-full="' + esc(it.full) + '"' : '';
+      return '<div class="carousel-item">' +
+        '<div class="carousel-frame"><img src="' + esc(it.src) + '" alt="' + esc(it.alt) + '" loading="lazy"' + full + '></div>' +
+        (it.caption ? '<p class="carousel-cap">' + esc(it.caption) + '</p>' : '') +
+      '</div>';
+    }).join('');
+    var cls = 'carousel' + (opts.figureClass ? ' ' + opts.figureClass : '');
+    var style = opts.margin !== false ? ' style="margin:' + (opts.margin || 'clamp(20px,3vw,32px) 0 0') + ';"' : '';
+    return '<figure class="' + cls + '" data-carousel="' + esc(carouselId) + '"' + style + '>' +
+      '<div class="carousel-track">' + frames + '</div>' +
+      carouselArrow(-1, 'Previous photo') + carouselArrow(1, 'Next photo') +
+    '</figure>';
+  }
+
+  // A plain {title, desc} card grid — used by Join's "areas". Not shared
+  // with the event carousel above: those cards carry tags/icons/series
+  // color that a plain info card has no use for.
+  function blockCardGrid(cards, heading) {
+    if (!Array.isArray(cards) || !cards.length) return '';
+    var items = cards.map(function (c) {
+      return '<div class="card"><h4>' + esc(c.title) + '</h4><p>' + esc(c.desc) + '</p></div>';
+    }).join('');
+    return (heading ? '<h3 class="block-label" style="margin-top:clamp(24px,3vw,36px);">' + esc(heading) + '</h3>' : '') +
+      '<div class="cards">' + items + '</div>';
+  }
+
   function renderAbout() {
     var a = C.about;
-    var events = '';
-    if (Array.isArray(a.events) && a.events.length) {
-      var eventCards = a.events.map(function (ev) {
-        var tags = ev.titles.map(function (t) {
-          return '<span class="event-tag">' + eventIcon(t) + esc(t) + '</span>';
-        }).join('');
-        var sub = ev.sub ? '<p class="event-sub">' + esc(ev.sub) + '</p>' : '';
-        return '<div class="carousel-item carousel-item--events">' +
-          '<div class="card event-card event-card--' + eventSeries(ev.event) + '">' +
-            '<h4>' + esc(ev.event) + '</h4>' +
-            sub +
-            '<div class="event-tags">' + tags + '</div>' +
-          '</div>' +
-        '</div>';
-      }).join('');
-      events = '<h3 class="block-label" style="margin-top:clamp(24px,3vw,36px);">Competitions</h3>' +
-        '<figure class="carousel carousel--events" data-carousel="events" style="margin:16px 0 0;">' +
-          '<div class="carousel-track">' + eventCards + '</div>' +
-          carouselArrow(-1, 'Previous event') + carouselArrow(1, 'Next event') +
-        '</figure>';
-    }
-    var top = introRow('About the team', a.thesis, a.photo);
-
-    return '<section class="sec" id="about"><div class="wrap">' + top + events + '</div></section>';
+    var header = introRow('About the team', a.thesis, a.photo);
+    var events = blockEventCarousel(a.events, 'Recent Competitions', 'events');
+    return renderSection('about', header + events);
   }
 
   function renderGallery() {
     var g = C.gallery;
-    var items = g.items.map(function (it) {
-      return '<div class="carousel-item">' +
-        '<div class="carousel-frame"><img src="' + esc(it.src) + '" alt="' + esc(it.alt) + '" loading="lazy"></div>' +
-        '<p class="carousel-cap">' + esc(it.caption) + '</p>' +
-      '</div>';
-    }).join('');
-    var body = '<figure class="carousel" data-carousel="gallery" style="margin:clamp(20px,3vw,32px) 0 0;">' +
-      '<div class="carousel-track">' + items + '</div>' + carouselArrow(-1, 'Previous photo') + carouselArrow(1, 'Next photo') +
-    '</figure>';
-    return '<section class="sec" id="gallery"><div class="wrap">' +
-      '<h2 class="sec-title">Gallery</h2>' +
-      '<p class="sec-thesis">' + esc(g.thesis) + '</p>' +
-      body +
-    '</div></section>';
+    var header = '<h2 class="sec-title">Gallery</h2><p class="sec-thesis">' + esc(g.thesis) + '</p>';
+    var body = blockImageCarousel(g.items, 'gallery');
+    return renderSection('gallery', header + body);
   }
 
   // Small, quiet strip right under the hero photo — just a small label and
@@ -237,15 +279,19 @@
   // sponsor with a `tier` name, it doesn't say which tier outranks which.
   var SPONSOR_TIER_ORDER = ['Platinum', 'Gold', 'Silver'];
 
-  function renderSponsors() {
-    if (!Array.isArray(C.sponsors) || !C.sponsors.length) return '';
-    var s = C.sponsorship || {};
-    var points = Array.isArray(s.points) && s.points.length ?
-      '<ul class="sponsors-points">' + s.points.map(function (pt) {
-        return '<li><strong>' + esc(pt.title) + ':</strong> ' + esc(pt.desc) + '</li>';
-      }).join('') + '</ul>' : '';
-    var tiers = SPONSOR_TIER_ORDER.map(function (tierName) {
-      var inTier = C.sponsors.filter(function (sp) { return sp.tier === tierName; });
+  // The {title, desc} bullet list under Sponsors' thesis.
+  function blockBulletPoints(points) {
+    if (!Array.isArray(points) || !points.length) return '';
+    return '<ul class="sponsors-points">' + points.map(function (pt) {
+      return '<li><strong>' + esc(pt.title) + ':</strong> ' + esc(pt.desc) + '</li>';
+    }).join('') + '</ul>';
+  }
+
+  // Sponsor logos grouped into Platinum/Gold/Silver rows.
+  function blockSponsorTiers(sponsors) {
+    if (!Array.isArray(sponsors) || !sponsors.length) return '';
+    return SPONSOR_TIER_ORDER.map(function (tierName) {
+      var inTier = sponsors.filter(function (sp) { return sp.tier === tierName; });
       if (!inTier.length) return '';
       var row = inTier.map(function (sp) {
         return '<img class="sponsor-logo" src="' + esc(sp.logo) + '" alt="' + esc(sp.name) + '" loading="lazy">';
@@ -255,30 +301,30 @@
         '<div class="sponsors-row">' + row + '</div>' +
       '</div>';
     }).join('');
-    return '<section class="sponsors wrap" id="sponsors">' +
+  }
+
+  function renderSponsors() {
+    if (!Array.isArray(C.sponsors) || !C.sponsors.length) return '';
+    var s = C.sponsorship || {};
+    var header =
       (s.title ? '<h2 class="sec-title">' + esc(s.title) + '</h2>' : '') +
-      (s.thesis ? '<p class="sponsors-thesis">' + esc(s.thesis) + '</p>' : '') +
-      points +
-      tiers +
+      (s.thesis ? '<p class="sponsors-thesis">' + esc(s.thesis) + '</p>' : '');
+    return '<section class="sponsors wrap" id="sponsors">' +
+      header +
+      blockBulletPoints(s.points) +
+      blockSponsorTiers(C.sponsors) +
     '</section>';
   }
 
   function renderJoin() {
     var j = C.join;
-    var areaCards = (j.areas || []).map(function (a) {
-      return '<div class="card"><h4>' + esc(a.title) + '</h4><p>' + esc(a.desc) + '</p></div>';
-    }).join('');
-
     // Photo on the left here (About put it on the right) — just for some
     // rhythm between the two photo-accented sections on the page.
-    var top = introRow('Join the team', j.thesis, j.photo, { extra: j.schedule, photoFirst: true });
+    var header = introRow('Join the team', j.thesis, j.photo, { extra: j.schedule, photoFirst: true });
+    var grid = blockCardGrid(j.areas, 'What you could work on');
+    var note = j.note ? '<p class="muted" style="margin-top:16px;font-style:italic;">' + esc(j.note) + '</p>' : '';
 
-    var rest =
-      '<h3 class="block-label" style="margin-top:clamp(24px,3vw,36px);">What you could work on</h3>' +
-      '<div class="cards">' + areaCards + '</div>' +
-      (j.note ? '<p class="muted" style="margin-top:16px;font-style:italic;">' + esc(j.note) + '</p>' : '');
-
-    return '<section class="sec" id="join"><div class="wrap">' + top + rest + '</div></section>';
+    return renderSection('join', header + grid + note);
   }
 
   /* ---- resources page ------------------------------------------ */
@@ -345,18 +391,7 @@
     var r = C.robots;
 
     var entries = (r.items || []).map(function (bot, i) {
-      var images = (bot.images || []).map(function (img) {
-        var full = img.full ? ' data-full="' + esc(img.full) + '"' : '';
-        return '<div class="carousel-item">' +
-          '<div class="carousel-frame"><img src="' + esc(img.src) + '" alt="' + esc(img.alt) + '" loading="lazy"' + full + '></div>' +
-        '</div>';
-      }).join('');
-      var gallery = images
-        ? '<figure class="carousel carousel--robot" data-carousel="robot-' + i + '">' +
-            '<div class="carousel-track">' + images + '</div>' +
-            carouselArrow(-1, 'Previous photo') + carouselArrow(1, 'Next photo') +
-          '</figure>'
-        : '';
+      var gallery = blockImageCarousel(bot.images, 'robot-' + i, { figureClass: 'carousel--robot', margin: false });
 
       var official = (bot.official || []).map(function (ev) { return robotResultCard(ev, true); });
       var offseason = (bot.offseason || []).map(function (ev) { return robotResultCard(ev, false); });
@@ -369,6 +404,7 @@
       return '<article class="robot-entry">' +
         '<div class="robot-media">' +
           '<h3 class="robot-name">' + esc(bot.name) + '</h3>' +
+          (bot.aka ? '<p class="robot-aka">aka &ldquo;' + esc(bot.aka) + '&rdquo;</p>' : '') +
           gallery +
           (links ? '<div class="card-links robot-links">' + links + '</div>' : '') +
         '</div>' +

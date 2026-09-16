@@ -134,6 +134,8 @@ window.SITE_CONTENT = {
   // a tech binder site, design docs, ...). Leave it off, or use an empty
   // array, for a robot with nothing to link to. Blue Alliance team-season
   // URLs look like https://www.thebluealliance.com/team/6996/2026.
+  //
+  // `aka` is optional — a nickname or alternate name shown under `name`.
 
   robots: {
     title: "Our Robots",
@@ -193,7 +195,8 @@ window.SITE_CONTENT = {
         ]
       },
       {
-        name: "UnKoalafied (aka 'Unk')",
+        name: "UnKoalafied",
+        aka: "Unk",
         season: "2025 REEFSCAPE presented by Haas (Offseason) & 2026 REBUILT presented by Haas (Offseason)",
         images: [
           { src: "assets/img/robots/unk25-26/unk25.jpg", alt: "Unk (2025 spec) before a match at the 2025 Melbourne Robotics Tournament" },
@@ -280,7 +283,7 @@ window.SITE_CONTENT = {
         name: "Bob",
         season: "2020/2021 Infinite Recharge",
         images: [
-          { src: "assets/img/robots/terrance.jpg", full: "assets/img/robots/terrance-full.jpg", alt: "Terrance on the field" }
+          { src: "assets/img/robots/bob.jpg", alt: "Bob on the field" }
         ],
         summary: "Shoots a volley of 6 dodgeballs collected from the ground with automatic targeting, and hangs from a balancing beam.",
         links: [
@@ -293,10 +296,11 @@ window.SITE_CONTENT = {
         ]
       },
       {
-        name: "Poltergust 3000 (aka 'CJ')",
+        name: "Poltergust 3000",
+        aka: "CJ",
         season: "2019 Destination: Deep Space presented by Boeing",
         images: [
-          { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
+          { src: "assets/img/robots/poltergust-3000.jpg", alt: "Poltergust 3000 on the field" }
         ],
         summary: "Picks up panels with suction and places them 2m high with a telescoping arm.",
         links: [
@@ -306,7 +310,7 @@ window.SITE_CONTENT = {
           { event: "2019 Southern Cross Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 19"] },
           { event: "2019 South Pacific Regional", sub: "Sydney, Australia",
-            titles: ["Qualification Rank 37", "Tied 4th Place"],
+            titles: ["Qualification Rank 37", "Tied 4th Place", "Creativity Award"],
             alliance: ["Team 4614 — Purple Monkey Diswasher", "Team 4270 — Crusaders"] }
         ]
       },
@@ -314,7 +318,7 @@ window.SITE_CONTENT = {
         name: "Buzz",
         season: "2018 Power Up",
         images: [
-          { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
+          { src: "assets/img/robots/buzz.jpg", alt: "Buzz on the field" }
         ],
         summary: "Picks up crates and stacks them 2m high using a fork-lift style mechanism.",
         links: [
