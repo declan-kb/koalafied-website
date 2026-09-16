@@ -2,11 +2,7 @@
    TEAM KOALAFIED — SITE CONTENT
    ------------------------------------------------------------
    This is the only file most people need to touch.
-   Plain JSON wrapped in one line of JavaScript so the site works
-   when you just double-click index.html (no web server, no build).
-
-   Same content/render split as the technical binder — see
-   ../koalafied-design-system/website-style-guide.html "Content pattern".
+   Plain JSON wrapped in a line of JavaScript
    ============================================================ */
 
 window.SITE_CONTENT = {
@@ -297,7 +293,7 @@ window.SITE_CONTENT = {
         ]
       },
       {
-        name: "Poltergeist 3000 (a.k.a. CJ)",
+        name: "Poltergust 3000 (a.k.a. CJ)",
         season: "2019 Destination: Deep Space presented by Boeing",
         images: [
           { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
@@ -326,7 +322,7 @@ window.SITE_CONTENT = {
         ],
         official: [
           { event: "2018 Southern Cross Regional", sub: "Sydney, Australia",
-            titles: ["Qualification Rank 15", "Rookie All Star Award", "FIRST Dean's List Finalist Award", "2nd Place"], 
+            titles: ["Qualification Rank 15", "Rookie All Star Award", "FIRST Dean's List Finalist Award", "2nd Place",], 
             alliance: ["Team 6508 — Hastings Heroes", "Team 4774 — The Drop Bears"] },
           { event: "2018 FIRST Championship: Roebling Division", sub: "Houston, USA",
             titles: ["Qualification Rank 30", "5th Place"], 
