@@ -2,11 +2,7 @@
    TEAM KOALAFIED — SITE CONTENT
    ------------------------------------------------------------
    This is the only file most people need to touch.
-   Plain JSON wrapped in one line of JavaScript so the site works
-   when you just double-click index.html (no web server, no build).
-
-   Same content/render split as the technical binder — see
-   ../koalafied-design-system/website-style-guide.html "Content pattern".
+   Plain JSON wrapped in a line of JavaScript
    ============================================================ */
 
 window.SITE_CONTENT = {
@@ -32,7 +28,7 @@ window.SITE_CONTENT = {
     { id: "gallery", label: "Gallery" },
     { id: "robots", label: "Robots" },
     { id: "resources", label: "Resources" },
-    { id: "page3", label: "Page 3"},   // idk if this will work lol
+   // { id: "page3", label: "Page 3"},   // idk if this will work lol (it worked, but no button)
     { id: "binder", label: "2026 Binder", href: "https://2026.teamkoalafied.com" }
   ],
 
@@ -48,22 +44,22 @@ window.SITE_CONTENT = {
   },
 
   about: {
-    thesis: "Team Koalafied is a group of Pembroke School students and mentors competing in the FIRST® Robotics Competition since 2018. Every year, students design, build, test, and program a robot from scratch to compete against teams from around the world, meeting several times a week throughout build season. It's hands-on and multi-disciplinary: mechanical build, programming, electrical, CAD, prototyping, woodwork, and media all go into it.",
+    thesis: "Team Koalafied is a group of high school students from Pembroke School and mentors participating in the FIRST® Robotics Competition since 2018 in Adelaide, South Australia. Students design, build, test and program robots to compete from scratch based on each year's unique game challenge. The team currently consists of approximately 20 high school students and mentors, meeting regularly on weekends to build robots and develop skills.",
     photo: { src: "assets/img/gallery-2026-scr-team-photo.jpg", alt: "Team photo with the robot 'Lemon Launcher'" },
     // One card per event, reverse chronological (newest first) — rendered
     // as a horizontal carousel, see renderAbout() in site.js. `sub` is the
     // event's location, shown under the full competition title.
     events: [
       { event: "Melbourne Robotics Tournament 2026", sub: "Melbourne, Australia",
-        titles: ["Qual Rank 6", "Excellence in Robot Design", "2nd Place"] },
+        titles: ["Qualification Rank 6", "Excellence in Robot Design", "2nd Place"] },
       { event: "Southern Cross Regional 2026", sub: "Sydney, Australia",
-        titles: ["Qual Rank 4", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"] },
+        titles: ["Qualification Rank 4", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"] },
       { event: "FIRST Championship: Newton Division 2025", sub: "Houston, USA",
-        titles: ["Qual Rank 18"] },
+        titles: ["Qualification Rank 18"] },
       { event: "Melbourne Robotics Tournament 2025", sub: "Melbourne, Australia",
-        titles: ["Qual Rank 4 and 13", "Competed with two robots", "3rd Place"] },
+        titles: ["Qualification Rank 4 and 13", "Competed with two robots", "3rd Place"] },
       { event: "Southern Cross Regional 2025", sub: "Sydney, Australia",
-        titles: ["Qual Rank 3", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"] }
+        titles: ["Qualification Rank 3", "Excellence in Engineering", "2nd Place", "Qualified for FIRST Championship"] }
     ]
   },
 
@@ -80,13 +76,13 @@ window.SITE_CONTENT = {
 
   // Text pulled and tightened from the old Google Sites Sponsorship page.
   sponsorship: {
-    title: "Our Sponsors",
-    thesis: "Robot parts, registration fees and new tools are all paid for by sponsors. Here's what that support actually buys, for the team and for you:",
+    title: "Our 2026 Sponsors",
+    thesis: "Robot parts, registration fees and new tools are all paid for by sponsors. Here's what that support actually buys, for the team and for sponsors:",
     points: [
       { title: "Robot budget", desc: "Motors, sensors, controllers, and the raw material to CNC machine custom parts" },
-      { title: "Competition & travel", desc: "Registration fees for our regional events and when we qualify, World Championships." },
-      { title: "Investing in STEM", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue engineering." },
-      { title: "Visibility", desc: "Your logo is placed on the robot, the team shirts, and this site: seen by thousands of students, teachers, and industry judges at every event." }
+      { title: "Competition & travel", desc: "Registration fees for our regional events and when we qualify, the World Championships." },
+      { title: "Investing in STEM", desc: "FIRST Robotics alumni are demonstrably more confident in STEM and more likely to pursue careers in STEM fields." },
+      { title: "Visibility", desc: "Sponsor logos are placed on the robot, our team shirts, and this website. Seen by thousands of students, teachers, and professionals at every event, it brings visibility to companies and shows their support and investment in the future of STEM." }
     ]
   },
 
@@ -122,7 +118,7 @@ window.SITE_CONTENT = {
       { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
       { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
     ],
-    note: "And winning competitions. No promises."
+    note: "And maybe winning competitions. No promises."
   },
 
   // Rendered on its own page (robots.html), not on the index one-pager —
@@ -193,11 +189,11 @@ window.SITE_CONTENT = {
         offseason: [
           { event: "2025 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 13", "3rd Place"],
-            alliance: ["Team 9976 — Unkoalafied", "Team 9993", "Team 9999"] }
+            alliance: ["Team 9976 — Unkoalafied", "Team 9993 — GVC"] }
         ]
       },
       {
-        name: "Unk (Unkoalafied)",
+        name: "UnKoalafied (aka 'Unk')",
         season: "2025 REEFSCAPE presented by Haas (Offseason) & 2026 REBUILT presented by Haas (Offseason)",
         images: [
           { src: "assets/img/robots/unk25-26/unk25.jpg", alt: "Unk (2025 spec) before a match at the 2025 Melbourne Robotics Tournament" },
@@ -211,7 +207,7 @@ window.SITE_CONTENT = {
         offseason: [
           { event: "2025 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 4", "3rd Place", "Alliance Captain"],
-            alliance: ["Team 6996 — Koalafied", "Team 9993", "Team 9999"] },
+            alliance: ["Team 6996 — Koalafied", "Team 9993 — GVC"] },
           { event: "2026 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 7", "5th Place", "Alliance Captain"],
             alliance: ["Team 7128 — XLR8", "Team 7583 — Embers"] }
@@ -223,43 +219,115 @@ window.SITE_CONTENT = {
         images: [
           { src: "assets/img/robots/10-32.jpg", full: "assets/img/robots/10-32-full.jpg", alt: "#10-32 on the field" }
         ],
-        summary: "Under-bumper note intake feeding a pivoting shooter, with a single-stage climb hook.",
+        summary: "Picks up notes and fires them into the amp and speaker. Also climbs on the stage and scores in the trap.",
         links: [
           { label: "Onshape", href: "https://cad.onshape.com/documents/f766febc8e90c6595c502360/v/b26d0f4082e8170b1287d16a/e/600ed28dccf6c49ac9d2fe31" },
           { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2024" }
         ],
-        official: [],
-        offseason: []
+        official: [
+          { event: "2024 Southern Cross Regional", sub: "Sydney, Australia",
+            titles: ["Qualification Rank 14", "3rd Place"],
+            alliance: ["Team 4788 — Can't Control", "Team 9599 — Colorful Panda"] }
+        ],
+        offseason: [
+          { event: "2024 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
+            titles: ["Qualification Rank 3", "2nd Place"],
+            alliance: ["Team 5584 — IC Robotics", "Team 9992", "Team 9994"] }
+        ]
       },
       {
         name: "Borzoi",
-        season: "2023 Charged Up",
+        season: "2023 Charged Up presented by Haas",
         images: [
           { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
         ],
-        summary: "Cube/cone dual-game-piece arm on a tank drive base, built for the 2023 AUSC and MRT events.",
+        summary: "Our first year to utilise swerve-drive, enabling us to move in any direction with incredible speed. Picks up cones and cubes and reaches out 1.5m to place them using an arm.",
         links: [
-          { label: "Onshape(AUSC)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/v/fabf0b2e8591f270ea97c5c4/e/9278ef3a8d123b33cdecc197" },
+          { label: "Onshape (AUSC)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/v/fabf0b2e8591f270ea97c5c4/e/9278ef3a8d123b33cdecc197" },
           { label: "Onshape (MRT)", href: "https://cad.onshape.com/documents/cc5eccf3b82e6a0c4a353be1/w/9fce9eb2fa7de646e453ab5d/e/9278ef3a8d123b33cdecc197" },
           { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2023" }
         ],
-        official: [],
-        offseason: []
+        official: [
+          { event: "2023 Southern Cross Regional", sub: "Wollongong, Australia",
+            titles: ["Qualification Rank 6", "Quality Award", "3rd Place", "Alliance Captain"],
+            alliance: ["Team 4774 — The Drop Bears", "Team 7583 — Embers"] }
+        ],
+        offseason: [
+          { event: "2023 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
+            titles: ["Qualification Rank 1", "1st Place", "Alliance Captain"],
+            alliance: ["Team 6508 — Hastings Heroes", "Team 5876 — ARTEMIS", "Team 5648 — Melbourne Robocats"] }
+        ]
       },
       {
         name: "Terrance",
-        season: "2022 Rapid React",
+        season: "2022 Rapid React presented by Boeing",
         images: [
           { src: "assets/img/robots/terrance.jpg", full: "assets/img/robots/terrance-full.jpg", alt: "Terrance on the field" }
         ],
-        summary: "Cargo-shooting turret with a hooded flywheel and a low-profile intake.",
+        summary: "Shoots basketball sized balls picked up from the ground with a variable hood turret.",
         links: [
           { label: "Onshape", href: "https://cad.onshape.com/documents/910e9a18fff81f80b3abc55a/w/8ad7f0ddf213a39ad8e854ea/e/ab8ae5589140f22ccd0b1332" },
           { label: "Design Doc (PDF)", href: "https://www.chiefdelphi.com/uploads/short-url/mAkm3d8cyBXEPry1zg2KFUno75c.pdf" },
-          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2022" }
+          { label: "TBA", href: "https://www.thebluealliance.com/team/9996/2022" }
         ],
-        official: [],
-        offseason: []
+        offseason: [
+          { event: "2022 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
+            titles: ["Qualification Rank 16", "1st Place"],
+            alliance: ["Team 4613 — Barker Redbacks", "Team 6508 — Hastings Heroes", "Team 9993"] }
+        ]
+      },
+      {
+        name: "Bob",
+        season: "2020/2021 Infinite Recharge",
+        images: [
+          { src: "assets/img/robots/terrance.jpg", full: "assets/img/robots/terrance-full.jpg", alt: "Terrance on the field" }
+        ],
+        summary: "Shoots a volley of 6 dodgeballs collected from the ground with automatic targeting, and hangs from a balancing beam.",
+        links: [
+          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2021" }
+        ],
+        offseason: [
+          { event: "2021 Unofficial South Pacific Regional", sub: "Sydney, Australia",
+            titles: ["Qualification Rank 2", "2nd Place"],
+            alliance: ["Team 6579 — Komplete Kaos Inc", "Team 5564 — GRANBOTS", "Team 6575 — Tempe T-Rex"] }
+        ]
+      },
+      {
+        name: "Poltergust 3000 (aka 'CJ')",
+        season: "2019 Destination: Deep Space presented by Boeing",
+        images: [
+          { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
+        ],
+        summary: "Picks up panels with suction and places them 2m high with a telescoping arm.",
+        links: [
+          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2019" }
+        ],
+        official: [
+          { event: "2019 Southern Cross Regional", sub: "Sydney, Australia",
+            titles: ["Qualification Rank 19"] },
+          { event: "2019 South Pacific Regional", sub: "Sydney, Australia",
+            titles: ["Qualification Rank 37", "Tied 4th Place"],
+            alliance: ["Team 4614 — Purple Monkey Diswasher", "Team 4270 — Crusaders"] }
+        ]
+      },
+      {
+        name: "Buzz",
+        season: "2018 Power Up",
+        images: [
+          { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
+        ],
+        summary: "Picks up crates and stacks them 2m high using a fork-lift style mechanism.",
+        links: [
+          { label: "TBA", href: "https://www.thebluealliance.com/team/6996/2018" }
+        ],
+        official: [
+          { event: "2018 Southern Cross Regional", sub: "Sydney, Australia",
+            titles: ["Qualification Rank 15", "Rookie All Star Award", "FIRST Dean's List Finalist Award", "2nd Place","Qualified for FIRST Championship"], 
+            alliance: ["Team 6508 — Hastings Heroes", "Team 4774 — The Drop Bears"] },
+          { event: "2018 FIRST Championship: Roebling Division", sub: "Houston, USA",
+            titles: ["Qualification Rank 30", "5th Place"], 
+            alliance: ["Team 6072 — Triton Tech 6072", "Team 6106 — PrepaTeec - TecGear", "Team 6390 — Hephaestus"] }
+          ]
       }
     ]
   },
@@ -322,4 +390,4 @@ window.SITE_CONTENT = {
       ]
     }
   }
-};
+}

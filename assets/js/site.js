@@ -132,7 +132,7 @@
   // nav's external-link arrow — picked by keyword so content.js can stay
   // plain data with no icon names to maintain.
   var EVENT_ICONS = [
-    [/excellence/i, '<path d="M12 2l2.6 5.8 6.4.6-4.8 4.3 1.4 6.3L12 15.9l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/>'],
+    [/award/i, '<path d="M12 2l2.6 5.8 6.4.6-4.8 4.3 1.4 6.3L12 15.9l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/>'],
     [/place/i, '<circle cx="12" cy="15" r="6"/><path d="M9 9.5 6.5 3M15 9.5 17.5 3"/>'],
     [/qualified/i, '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5 5-6"/>'],
     [/rank/i, '<path d="M4 20V11M12 20V4M20 20v-7M2 20h20"/>'],
