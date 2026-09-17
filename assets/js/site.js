@@ -356,39 +356,6 @@
       '</div></section>';
   }
 
-  /* ---- code of conduct page --------------------------------------- */
-
-  function renderConduct() {
-    var c = C.conduct;
-    var intro = c.intro.map(function (p) { return '<p class="sec-thesis">' + esc(p) + '</p>'; }).join('');
-    var photo = c.photo
-      ? '<figure class="section-photo"><img src="' + esc(c.photo.src) + '" alt="' + esc(c.photo.alt) + '" loading="lazy"></figure>'
-      : '';
-    var header = photo
-      ? '<div class="sec-cols two">' + '<div>' + intro + '</div>' + photo + '</div>'
-      : intro;
-
-    var parts = c.parts.map(function (part) {
-      var sections = part.sections.map(function (s) {
-        var body = s.list
-          ? '<ul class="conduct-list">' + s.list.map(function (li) { return '<li>' + esc(li) + '</li>'; }).join('') + '</ul>'
-          : '<p>' + esc(s.body) + '</p>';
-        return '<div class="conduct-item">' +
-          '<h4>' + esc(s.n) + '. ' + esc(s.title) + '</h4>' +
-          body +
-        '</div>';
-      }).join('');
-      return '<h3 class="conduct-part-title" style="margin-top:clamp(28px,4vw,44px);">' + esc(part.title) + '</h3>' +
-        '<div class="conduct-list-group">' + sections + '</div>';
-    }).join('');
-
-    return '<section class="sec" id="conduct-top" style="border-top:none;"><div class="wrap">' +
-        '<h1 class="sec-title">' + esc(c.title) + '</h1>' +
-        header +
-        parts +
-      '</div></section>';
-  }
-
   /* ---- robots page ----------------------------------------------- */
 
   // One result card per event — shared across a robot's combined
@@ -615,7 +582,10 @@
     // Add a future standalone page here (and to PAGE_ROUTES above) by
     // extending this chain — whichever container is present wins.
     // conduct.html has no nav.id / PAGE_ROUTES entry — it's reachable only
-    // by navigating to it directly, on purpose (see content.js).
+    // by navigating to it directly, on purpose. Unlike the other standalone
+    // pages, its content is static HTML in the page itself (not content.js),
+    // since it's one-off prose nothing else reuses — this var only drives
+    // the page <title> below.
     var currentPage = resourcesPage ? 'resources' : (robotsPage ? 'robots' : (conductPage ? 'conduct' : null));
     var pageTitles = { resources: 'Resources — ', robots: 'Our Robots — ', conduct: 'Code of Conduct — ' };
 
@@ -637,9 +607,6 @@
     }
     if (robotsPage) {
       robotsPage.innerHTML = renderRobots();
-    }
-    if (conductPage) {
-      conductPage.innerHTML = renderConduct();
     }
 
     var social = (C.team.social || []).map(function (s) {
