@@ -1,4 +1,4 @@
-# Team Koalafied — Main Site
+# Team Koalafied: Main Site
 
 The team's general-purpose website 
 
@@ -34,7 +34,7 @@ The team's general-purpose website
    }
    ```
 2. In `content.js`'s `nav` array, add `{ id: "yourid", label: "Your Label" }` so it shows up in the header.
-3. In `assets/js/site.js`, write a small `renderYourSection()` function that combines the existing blocks (`introRow`, `blockCardGrid`, `blockEventCarousel`, `blockImageCarousel`, `blockBulletPoints`) inside `renderSection('yourid', ...)`. Copy `renderJoin()` as a template. If your section needs something none of these cover (like Sponsors' tier grouping), write it directly in your render function rather than forcing it into a reusable block.
+3. In `assets/js/site.js`, write a small `renderYourSection()` function that combines the existing blocks (`introRow`, `blockIconList`, `blockResults`, `blockPhotoGrid`, `blockPhotoStage`, `blockBulletPoints`) inside `renderSection('yourid', ...)`. Copy `renderJoin()` as a template. If your section needs something none of these cover (like Sponsors' tier grouping), write it directly in your render function rather than forcing it into a reusable block.
 4. Add `renderYourSection()` to the `main.innerHTML` chain in `boot()`.
 
 **New standalone page** (like Resources, Robots):
@@ -42,6 +42,16 @@ The team's general-purpose website
 2. In `content.js`, add a data object for the page's content, and add it to `PAGE_ROUTES` at the top of `assets/js/site.js` (maps the nav id to the new `.html` file).
 3. In `assets/js/site.js`, write a `renderYourPage()` function (see `renderResources()` for a template).
 4. In `boot()`, grab the container by id and set `yourPage.innerHTML = renderYourPage()`, following the existing `resourcesPage`/`robotsPage` pattern.
+
+## Alliance partner avatars
+
+The Robots page shows each alliance partner's FIRST avatar next to its name. Partners are written in `content.js` as the team number, then the name, e.g. `"6510 Pymble Pride"`.
+
+**This is automatic.** Whenever `content.js` changes on `main`, a GitHub Action downloads any new avatars from The Blue Alliance and commits them. Partners with no avatar in any season show their initials instead.
+
+One-time setup: in the GitHub repo go to **Settings → Secrets and variables → Actions → New repository secret**, name it `TBA_KEY`, and paste a Read API key from https://www.thebluealliance.com/account.
+
+To run it by hand (Node 18 or newer): `TBA_KEY=your_read_key node scripts/fetch-team-avatars.mjs`, then commit `assets/img/avatars/` and `assets/js/team-avatars.js`. It can also be started from the repo's **Actions** tab ("Update alliance avatars" → Run workflow).
 
 ## Local preview
 

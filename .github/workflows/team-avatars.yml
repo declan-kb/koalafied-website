@@ -1,0 +1,40 @@
+# Downloads alliance partners' FIRST avatars from The Blue Alliance whenever
+# content.js changes, and commits any new ones. Needs a TBA_KEY repository
+# secret (Settings → Secrets and variables → Actions). See README.
+name: Update alliance avatars
+
+on:
+  push:
+    branches: [main]
+    paths: [content.js]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  avatars:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Download avatars
+        env:
+          TBA_KEY: ${{ secrets.TBA_KEY }}
+        run: node scripts/fetch-team-avatars.mjs
+
+      - name: Commit new avatars
+        run: |
+          git add assets/img/avatars assets/js/team-avatars.js
+          if git diff --cached --quiet; then
+            echo "No new avatars."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Update alliance partner avatars"
+            git push
+          fi

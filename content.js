@@ -92,7 +92,7 @@ window.SITE_CONTENT = {
   // `tier`, ordered by SPONSOR_TIER_ORDER in site.js.
   sponsors: [
     { name: "Gene Haas Foundation", logo: "assets/img/sponsors/gene-haas-foundation.png", tier: "Gold" },
-    { name: "South Australia — The Defence State", logo: "assets/img/sponsors/sa-defence-state.png", tier: "Gold" },
+    { name: "South Australia: The Defence State", logo: "assets/img/sponsors/sa-defence-state.png", tier: "Gold" },
     { name: "Pembroke School", logo: "assets/img/sponsors/pembroke.svg", tier: "Platinum" },
     { name: "Australian Institute for Machine Learning", logo: "assets/img/sponsors/AIML.png", tier: "Silver" },
     { name: "REDARC", logo: "assets/img/sponsors/redarc.png", tier: "Silver" },
@@ -115,7 +115,7 @@ window.SITE_CONTENT = {
       { title: "Prototyping", desc: "Turning an idea into a working mechanism, fast." },
       { title: "Electrical", desc: "Wiring all of the robots mechanisms, bringing the robot to life." },
       { title: "Woodwork", desc: "Producing large field elements for each year's game." },
-      { title: "Media", desc: "Filming, editing, photos, and marketing — including this website." },
+      { title: "Media", desc: "Filming, editing, photos, and marketing, including this website." },
       { title: "Sponsorships", desc: "Reaching out to local companies to help fund the season." }
     ],
     note: "And maybe winning competitions. No promises."
@@ -127,7 +127,9 @@ window.SITE_CONTENT = {
   // sanctioned events (regionals, Championship); `offseason` is everything
   // else (e.g. the Melbourne Robotics Tournament). Both reuse the same
   // {event, sub, titles} shape as about.events, plus an `alliance` list of
-  // the partner teams for that event.
+  // the partner teams for that event. Write each partner as the team
+  // number, then its name: "6510 Pymble Pride" (the name is optional).
+  // Their FIRST avatars come from scripts/fetch-team-avatars.mjs, see README.
   //
   // `links` is optional — a plain {label, href} list of anywhere else to
   // read more about this robot (CAD, its Blue Alliance team-season page,
@@ -159,12 +161,12 @@ window.SITE_CONTENT = {
         official: [
           { event: "2026 Southern Cross Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 4", "Excellence in Engineering Award", "2nd Place", "Qualified for FIRST Championship", "Alliance Captain"],
-            alliance: ["Team 6510 — Pymble Pride", "Team 4774 — The Drop Bears", "Team 7583 — Embers"] }
+            alliance: ["6510 Pymble Pride", "4774 The Drop Bears", "7583 Embers"] }
         ],
         offseason: [
           { event: "2026 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 6", "Excellence in Robot Design Award", "2nd Place"],
-            alliance: ["Team 5584 — IC Robotics", "Team 9991 — Blackburn Burnouts 2"] }
+            alliance: ["5584 IC Robotics", "9991 Blackburn Burnouts 2"] }
         ]
       },
       {
@@ -184,14 +186,14 @@ window.SITE_CONTENT = {
         official: [
           { event: "2025 Southern Cross Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 3", "Excellence in Engineering Award", "2nd Place", "Qualified for FIRST Championship", "Alliance Captain"],
-            alliance: ["Team 7433 — Iona Fusion", "Team 4729 — EMU Robotics"] },
+            alliance: ["7433 Iona Fusion", "4729 EMU Robotics"] },
           { event: "2025 FIRST Championship: Newton Division", sub: "Houston, USA",
             titles: ["Qualification Rank 18"], }
         ],
         offseason: [
           { event: "2025 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 13", "3rd Place"],
-            alliance: ["Team 9976 — Unkoalafied", "Team 9993 — GVC"] }
+            alliance: ["9976 Unkoalafied", "9993 GVC"] }
         ]
       },
       {
@@ -210,10 +212,10 @@ window.SITE_CONTENT = {
         offseason: [
           { event: "2025 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 4", "3rd Place", "Alliance Captain"],
-            alliance: ["Team 6996 — Koalafied", "Team 9993 — GVC"] },
+            alliance: ["6996 Koalafied", "9993 GVC"] },
           { event: "2026 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 7", "5th Place", "Alliance Captain"],
-            alliance: ["Team 7128 — XLR8", "Team 7583 — Embers"] }
+            alliance: ["7128 XLR8", "7583 Embers"] }
         ]
       },
       {
@@ -230,12 +232,12 @@ window.SITE_CONTENT = {
         official: [
           { event: "2024 Southern Cross Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 14", "3rd Place"],
-            alliance: ["Team 4788 — Can't Control", "Team 9599 — Colorful Panda"] }
+            alliance: ["4788 Can't Control", "9599 Colorful Panda"] }
         ],
         offseason: [
           { event: "2024 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 3", "2nd Place"],
-            alliance: ["Team 5584 — IC Robotics", "Team 9992", "Team 9994"] }
+            alliance: ["5584 IC Robotics", "9992", "9994"] }
         ]
       },
       {
@@ -253,12 +255,12 @@ window.SITE_CONTENT = {
         official: [
           { event: "2023 Southern Cross Regional", sub: "Wollongong, Australia",
             titles: ["Qualification Rank 6", "Quality Award", "3rd Place", "Alliance Captain"],
-            alliance: ["Team 4774 — The Drop Bears", "Team 7583 — Embers"] }
+            alliance: ["4774 The Drop Bears", "7583 Embers"] }
         ],
         offseason: [
           { event: "2023 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 1", "1st Place", "Alliance Captain"],
-            alliance: ["Team 6508 — Hastings Heroes", "Team 5876 — ARTEMIS", "Team 5648 — Melbourne Robocats"] }
+            alliance: ["6508 Hastings Heroes", "5876 ARTEMIS", "5648 Melbourne Robocats"] }
         ]
       },
       {
@@ -276,7 +278,7 @@ window.SITE_CONTENT = {
         offseason: [
           { event: "2022 Melbourne Robotics Tournament", sub: "Melbourne, Australia",
             titles: ["Qualification Rank 16", "1st Place"],
-            alliance: ["Team 4613 — Barker Redbacks", "Team 6508 — Hastings Heroes", "Team 9993"] }
+            alliance: ["4613 Barker Redbacks", "6508 Hastings Heroes", "9993"] }
         ]
       },
       {
@@ -292,7 +294,7 @@ window.SITE_CONTENT = {
         offseason: [
           { event: "2021 Unofficial South Pacific Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 2", "2nd Place"],
-            alliance: ["Team 6579 — Komplete Kaos Inc", "Team 5564 — GRANBOTS", "Team 6575 — Tempe T-Rex"] }
+            alliance: ["6579 Komplete Kaos Inc", "5564 GRANBOTS", "6575 Tempe T-Rex"] }
         ]
       },
       {
@@ -311,7 +313,7 @@ window.SITE_CONTENT = {
             titles: ["Qualification Rank 19"] },
           { event: "2019 South Pacific Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 37", "Tied 4th Place", "Creativity Award"],
-            alliance: ["Team 4614 — Purple Monkey Diswasher", "Team 4270 — Crusaders"] }
+            alliance: ["4614 Purple Monkey Diswasher", "4270 Crusaders"] }
         ]
       },
       {
@@ -327,10 +329,10 @@ window.SITE_CONTENT = {
         official: [
           { event: "2018 Southern Cross Regional", sub: "Sydney, Australia",
             titles: ["Qualification Rank 15", "Rookie All Star Award", "FIRST Dean's List Finalist Award", "2nd Place","Qualified for FIRST Championship"], 
-            alliance: ["Team 6508 — Hastings Heroes", "Team 4774 — The Drop Bears"] },
+            alliance: ["6508 Hastings Heroes", "4774 The Drop Bears"] },
           { event: "2018 FIRST Championship: Roebling Division", sub: "Houston, USA",
             titles: ["Qualification Rank 30", "5th Place"], 
-            alliance: ["Team 6072 — Triton Tech 6072", "Team 6106 — PrepaTeec - TecGear", "Team 6390 — Hephaestus"] }
+            alliance: ["6072 Triton Tech 6072", "6106 PrepaTeec - TecGear", "6390 Hephaestus"] }
           ]
       }
     ]
@@ -347,7 +349,7 @@ window.SITE_CONTENT = {
       title: "Code",
       desc: "Team Koalafied programs in C++. Code for every robot we've built is public.",
       href: "https://github.com/TeamKoalafied/public",
-      label: "GitHub — TeamKoalafied/public"
+      label: "GitHub: TeamKoalafied/public"
     },
 
     cad: {
