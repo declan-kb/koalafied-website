@@ -475,8 +475,7 @@ a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .sponsors-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 32px 48px; }
 
 .sponsor-logo { width: auto; object-fit: contain; }
-.sponsor-banner-row .sponsor-logo { height: 26px; max-width: 104px; filter: grayscale(1) opacity(.7); transition: filter .15s; }
-.sponsor-banner-row .sponsor-logo:hover { filter: none; }
+.sponsor-banner-row .sponsor-logo { height: 26px; max-width: 104px; }
 .sponsors-row .sponsor-logo { height: 80px; max-width: 240px; }
 .tier-platinum .sponsors-row .sponsor-logo { height: 100px; max-width: 280px; }
 .tier-silver .sponsors-row .sponsor-logo { height: 64px; max-width: 200px; }
