@@ -305,15 +305,25 @@
     return '<div class="pgrid">' + rows + '</div>';
   }
 
-  // One large photo with a thumbnail strip under it — used per robot on the
-  // Robots page. The photo sits whole on a soft "stage" (never cropped);
-  // the thumbnails switch it, and clicking it opens the lightbox (see
-  // wirePhotoStages). A robot with a single photo gets no thumbnails.
+  // The photo slideshow for each robot on the Robots page. Photos are never
+  // cropped: each sits whole in the frame over a soft blurred copy of
+  // itself. Arrows, a counter, swiping and a thumbnail strip step through
+  // them (see wirePhotoStages); clicking the photo opens the lightbox.
   // `full` is an optional higher-res lightbox image.
+  var EXPAND_ICON =
+    '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">' +
+    '<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+
   function blockPhotoStage(items) {
     if (!Array.isArray(items) || !items.length) return '';
     var first = items[0];
-    var thumbs = items.length > 1
+    var multi = items.length > 1;
+    var arrow = function (dir) {
+      return '<button type="button" class="pstage-nav pstage-' + (dir < 0 ? 'prev' : 'next') + '" aria-label="' + (dir < 0 ? 'Previous' : 'Next') + ' photo">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="' + (dir < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7') + '"/></svg></button>';
+    };
+    var thumbs = multi
       ? '<div class="pstage-thumbs">' + items.map(function (it, i) {
           return '<button type="button" class="pstage-thumb" aria-pressed="' + (i === 0) + '"' +
             ' aria-label="Show photo ' + (i + 1) + ' of ' + items.length + '"' +
@@ -323,9 +333,14 @@
         }).join('') + '</div>'
       : '';
     return '<div class="pstage">' +
-      '<button type="button" class="pstage-main" data-full="' + esc(first.full || first.src) + '" aria-label="View full size: ' + esc(first.alt) + '">' +
-        '<img class="pstage-photo" src="' + esc(first.src) + '" alt="' + esc(first.alt) + '" loading="lazy">' +
-      '</button>' +
+      '<div class="pstage-frame">' +
+        '<img class="pstage-ambient" src="' + esc(first.src) + '" alt="" loading="lazy">' +
+        '<button type="button" class="pstage-main" data-full="' + esc(first.full || first.src) + '" aria-label="View full size: ' + esc(first.alt) + '">' +
+          '<img class="pstage-photo" src="' + esc(first.src) + '" alt="' + esc(first.alt) + '" loading="lazy">' +
+        '</button>' +
+        '<span class="pstage-expand" aria-hidden="true">' + EXPAND_ICON + '</span>' +
+        (multi ? arrow(-1) + arrow(1) + '<span class="pstage-count" aria-hidden="true">1 / ' + items.length + '</span>' : '') +
+      '</div>' +
       thumbs +
     '</div>';
   }
@@ -675,34 +690,89 @@
     });
   }
 
-  // Robots page photo stages (see blockPhotoStage): thumbnails swap the
-  // large photo, and the large photo opens the lightbox on the same one.
+  // Robots page slideshows (see blockPhotoStage). Arrows loop around the
+  // set; the thumbnails, ←/→ keys and a sideways swipe all step through it
+  // too, with a short fade. The lightbox opens on the current photo and
+  // leaves the slideshow on whichever photo you closed it at.
   function wirePhotoStages(root, lightbox) {
+    var reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     root.querySelectorAll('.pstage').forEach(function (stage) {
+      var frame = stage.querySelector('.pstage-frame');
       var main = stage.querySelector('.pstage-main');
-      var mainImg = main.querySelector('.pstage-photo');
+      var photo = stage.querySelector('.pstage-photo');
+      var ambient = stage.querySelector('.pstage-ambient');
+      var count = stage.querySelector('.pstage-count');
       var thumbs = Array.prototype.slice.call(stage.querySelectorAll('.pstage-thumb'));
       var items = thumbs.length
         ? thumbs.map(function (t) { return { src: t.dataset.full, alt: t.dataset.alt }; })
-        : [{ src: main.dataset.full, alt: mainImg.alt }];
+        : [{ src: main.dataset.full, alt: photo.alt }];
       var current = 0;
+      var pending = null;
 
-      function select(i) {
-        if (i === current || !thumbs[i]) return;
+      // `instant` skips the fade (used while the lightbox is open on top).
+      function select(i, instant) {
+        var n = thumbs.length;
+        if (!n) return;
+        i = (i + n) % n;
+        if (i === current) return;
         current = i;
         var t = thumbs[i];
-        mainImg.src = t.dataset.src;
-        mainImg.alt = t.dataset.alt;
+        thumbs.forEach(function (other, j) { other.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+        if (count) count.textContent = (i + 1) + ' / ' + n;
         main.dataset.full = t.dataset.full;
         main.setAttribute('aria-label', 'View full size: ' + t.dataset.alt);
-        thumbs.forEach(function (other, j) { other.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+
+        function shown() { frame.classList.remove('is-changing'); }
+        function swap() {
+          photo.src = ambient.src = t.dataset.src;
+          photo.alt = t.dataset.alt;
+          if (photo.complete) shown();
+          else {
+            photo.addEventListener('load', shown, { once: true });
+            photo.addEventListener('error', shown, { once: true });
+          }
+        }
+        clearTimeout(pending);
+        if (instant || reduceMotion) { swap(); return; }
+        frame.classList.add('is-changing');
+        pending = setTimeout(swap, 160);
       }
 
       thumbs.forEach(function (t, i) {
         t.addEventListener('click', function () { select(i); });
       });
+      var prev = stage.querySelector('.pstage-prev');
+      var next = stage.querySelector('.pstage-next');
+      if (prev) prev.addEventListener('click', function () { select(current - 1); });
+      if (next) next.addEventListener('click', function () { select(current + 1); });
+      stage.addEventListener('keydown', function (e) {
+        if (!thumbs.length || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+        e.preventDefault();
+        select(current + (e.key === 'ArrowLeft' ? -1 : 1));
+      });
+
+      // Sideways swipe on touch screens. The tap that ends a swipe must not
+      // also open the lightbox.
+      var startX = null, startY = 0, swiped = false;
+      frame.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'mouse' || !thumbs.length) return;
+        startX = e.clientX;
+        startY = e.clientY;
+      });
+      frame.addEventListener('pointerup', function (e) {
+        if (startX === null) return;
+        var dx = e.clientX - startX, dy = e.clientY - startY;
+        startX = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+          swiped = true;
+          select(current + (dx < 0 ? 1 : -1));
+        }
+      });
+
       main.addEventListener('click', function () {
-        lightbox.open(items, current, select);
+        if (swiped) { swiped = false; return; }
+        lightbox.open(items, current, function (i) { select(i, true); });
       });
     });
   }
