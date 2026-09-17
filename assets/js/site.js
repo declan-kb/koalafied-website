@@ -79,7 +79,7 @@
       // The corner-arrow icon is reserved for genuine external links —
       // standalone pages are an internal page jump, so they get no icon,
       // just the separating rule via .nav-group-start.
-      var attrs = isExternal ? ' target="_blank" rel="noopener"' : '';
+      var attrs = isExternal && n.id !== 'binder' ? ' target="_blank" rel="noopener"' : '';
       var icon = isExternal ? EXTERNAL_ICON : '';
       return '<a href="' + esc(href) + '" data-nav="' + esc(n.id) + '" class="' + cls + '"' + attrs + '>' + esc(n.label) + icon + '</a>';
     }).join('');
