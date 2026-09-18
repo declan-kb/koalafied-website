@@ -136,6 +136,9 @@ window.SITE_CONTENT = {
   // URLs look like https://www.thebluealliance.com/team/6996/2026.
   //
   // `aka` is optional — a nickname or alternate name shown under `name`.
+  // 
+  // 'full' is used for a photo that would appear instead of the cover photo when clicked on. 
+  // Should be used when cropping a photo is necessary but having it as a full frame photo is weird
 
   robots: {
     title: "Our Robots",
@@ -171,6 +174,7 @@ window.SITE_CONTENT = {
         name: "Locked In",
         season: "2025 REEFSCAPE presented by Haas",
         images: [
+          { src: "assets/img/robots/2025/locked-in.jpg", full: "assets/img/robots/2025/locked-in-full.jpg", alt: "Locked In before a match at the 2025 Southern Cross Regional" },
           { src: "assets/img/robots/2025/cycle.jpg", alt: "Locked In preparing to score at a match at the 2025 Southern Cross Regional" },
           { src: "assets/img/robots/2025/award.jpg", alt: "The team with Locked In receiving the Finalist Award at the 2025 Southern Cross Regional" },
           { src: "assets/img/robots/2025/climb.jpg", alt: "Locked In performing a triple deep climb with alliance partners at the 2025 Southern Cross Regional" },
@@ -220,7 +224,7 @@ window.SITE_CONTENT = {
         name: "#10-32",
         season: "2024 Crescendo presented by Haas",
         images: [
-          { src: "assets/img/robots/10-32.jpg", full: "assets/img/robots/10-32-full.jpg", alt: "#10-32 on the field" }
+          { src: "assets/img/robots/2024/10-32.jpg", full: "assets/img/robots/2024/10-32-full.jpg", alt: "#10-32 on the field" }
         ],
         summary: "Picks up notes and fires them into the amp and speaker. Also climbs on the stage and scores in the trap.",
         links: [
@@ -242,7 +246,7 @@ window.SITE_CONTENT = {
         name: "Borzoi",
         season: "2023 Charged Up presented by Haas",
         images: [
-          { src: "assets/img/robots/borzoi.jpg", full: "assets/img/robots/borzoi-full.jpg", alt: "Borzoi on the field" }
+          { src: "assets/img/robots/2023/borzoi.jpg", full: "assets/img/robots/2023/borzoi-full.jpg", alt: "Borzoi on the field" }
         ],
         summary: "Our first year to utilise swerve-drive, enabling us to move in any direction with incredible speed. Picks up cones and cubes and reaches out 1.5m to place them using an arm.",
         links: [
@@ -265,7 +269,7 @@ window.SITE_CONTENT = {
         name: "Terrance",
         season: "2022 Rapid React presented by Boeing",
         images: [
-          { src: "assets/img/robots/terrance.jpg", full: "assets/img/robots/terrance-full.jpg", alt: "Terrance on the field" }
+          { src: "assets/img/robots/2022/terrance.jpg", full: "assets/img/robots/2022/terrance-full.jpg", alt: "Terrance on the field" }
         ],
         summary: "Shoots basketball sized balls picked up from the ground with a variable hood turret.",
         links: [
@@ -283,7 +287,7 @@ window.SITE_CONTENT = {
         name: "Bob",
         season: "2020/2021 Infinite Recharge",
         images: [
-          { src: "assets/img/robots/bob.jpg", alt: "Bob on the field" }
+          { src: "assets/img/robots/2020-21/bob.jpg", alt: "Bob on the field" }
         ],
         summary: "Shoots a volley of 6 dodgeballs collected from the ground with automatic targeting, and hangs from a balancing beam.",
         links: [
@@ -300,7 +304,7 @@ window.SITE_CONTENT = {
         aka: "CJ",
         season: "2019 Destination: Deep Space presented by Boeing",
         images: [
-          { src: "assets/img/robots/poltergust-3000.jpg", alt: "Poltergust 3000 on the field" }
+          { src: "assets/img/robots/2019/poltergust-3000.jpg", alt: "Poltergust 3000 on the field" }
         ],
         summary: "Picks up panels with suction and places them 2m high with a telescoping arm.",
         links: [
@@ -318,7 +322,7 @@ window.SITE_CONTENT = {
         name: "Buzz",
         season: "2018 Power Up",
         images: [
-          { src: "assets/img/robots/buzz.jpg", alt: "Buzz on the field" }
+          { src: "assets/img/robots/2018/buzz.jpg", alt: "Buzz on the field" }
         ],
         summary: "Picks up crates and stacks them 2m high using a fork-lift style mechanism.",
         links: [
